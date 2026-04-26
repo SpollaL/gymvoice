@@ -1,0 +1,28 @@
+build:
+  maxIssues: 0
+
+complexity:
+  LongMethod:
+    threshold: 60
+  LongParameterList:
+    functionThreshold: 6
+  TooManyFunctions:
+    thresholdInClasses: 15
+
+style:
+  MaxLineLength:
+    maxLineLength: 120
+  WildcardImport:
+    active: true
+  MagicNumber:
+    active: false
+
+exceptions:
+  TooGenericExceptionCaught:
+    active: false
+
+naming:
+  FunctionNaming:
+    active: true
+  VariableNaming:
+    active: true

@@ -1,0 +1,13 @@
+.gradle/
+build/
+*.iml
+local.properties
+*.jks
+.idea/
+# model files — push separately via adb
+models/
+*.tflite
+*.bin
+*.task
+*.litertlm
+*.db

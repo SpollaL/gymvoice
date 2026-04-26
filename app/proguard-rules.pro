@@ -1,0 +1,4 @@
+-keep class com.google.ai.edge.litert.** { *; }
+-keep class com.google.mediapipe.** { *; }
+-keep class * extends androidx.room.RoomDatabase
+-keepclassmembers class * extends androidx.room.RoomDatabase { *; }
