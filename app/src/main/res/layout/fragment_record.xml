@@ -54,6 +54,20 @@
         android:fontFamily="monospace"
         android:textSize="12sp"
         android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@id/btnManualEntry"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnManualEntry"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/log_manually"
+        android:textColor="@color/overlay0"
+        android:textSize="11sp"
+        android:fontFamily="monospace"
+        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toTopOf="@id/btnRecord"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

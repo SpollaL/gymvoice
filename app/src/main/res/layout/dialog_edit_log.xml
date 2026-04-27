@@ -51,4 +51,32 @@
             android:layout_height="wrap_content"
             android:inputType="numberDecimal" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <RadioGroup
+        android:id="@+id/rgUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp">
+
+        <RadioButton
+            android:id="@+id/rbKg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="kg"
+            android:textColor="@color/text"
+            android:buttonTint="@color/mauve"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/rbLbs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="lbs"
+            android:textColor="@color/text"
+            android:buttonTint="@color/mauve"
+            android:layout_marginStart="16dp" />
+
+    </RadioGroup>
+
 </LinearLayout>

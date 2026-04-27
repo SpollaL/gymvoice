@@ -8,4 +8,6 @@
     <string name="nav_calendar">Calendar</string>
     <string name="today_logs">TODAY</string>
     <string name="no_workouts">no workouts logged</string>
+    <string name="log_manually">+ manual entry</string>
+    <string name="add_log">+ add</string>
 </resources>

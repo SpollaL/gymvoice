@@ -98,6 +98,8 @@ class CalendarFragment : Fragment() {
             binding.calendarView.smoothScrollToMonth(current.plusMonths(1))
         }
 
+        binding.btnAddLog.setOnClickListener { showAddLogDialog() }
+
         viewModel.loadMonth(currentMonth)
     }
 
@@ -137,12 +139,35 @@ class CalendarFragment : Fragment() {
         _binding = null
     }
 
+    private fun showAddLogDialog() {
+        val dialogBinding = DialogEditLogBinding.inflate(layoutInflater)
+        AlertDialog.Builder(requireContext())
+            .setTitle("Add workout")
+            .setView(dialogBinding.root)
+            .setPositiveButton("Log") { _, _ ->
+                val exercise = dialogBinding.etExercise.text.toString().trim()
+                if (exercise.isNotBlank()) {
+                    val unit = if (dialogBinding.rgUnit.checkedRadioButtonId == R.id.rbLbs) "lbs" else "kg"
+                    viewModel.logManual(
+                        exercise = exercise,
+                        sets = dialogBinding.etSet.text.toString().toIntOrNull(),
+                        reps = dialogBinding.etReps.text.toString().toIntOrNull(),
+                        weight = dialogBinding.etWeight.text.toString().toFloatOrNull(),
+                        unit = unit,
+                    )
+                }
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
     private fun showEditDialog(log: WorkoutLog) {
         val dialogBinding = DialogEditLogBinding.inflate(layoutInflater)
         dialogBinding.etExercise.setText(log.exerciseName)
         dialogBinding.etSet.setText(log.setNumber?.toString() ?: "")
         dialogBinding.etReps.setText(log.reps?.toString() ?: "")
         dialogBinding.etWeight.setText(log.weight?.toString() ?: "")
+        if (log.unit == "lbs") dialogBinding.rbLbs.isChecked = true else dialogBinding.rbKg.isChecked = true
 
         AlertDialog.Builder(requireContext())
             .setTitle("Edit Log")
@@ -152,12 +177,14 @@ class CalendarFragment : Fragment() {
                 if (newExercise != log.exerciseName) {
                     viewModel.saveCorrection(log.exerciseName, newExercise)
                 }
+                val unit = if (dialogBinding.rgUnit.checkedRadioButtonId == R.id.rbLbs) "lbs" else "kg"
                 viewModel.updateLog(
                     log.copy(
                         exerciseName = newExercise,
                         setNumber = dialogBinding.etSet.text.toString().toIntOrNull(),
                         reps = dialogBinding.etReps.text.toString().toIntOrNull(),
                         weight = dialogBinding.etWeight.text.toString().toFloatOrNull(),
+                        unit = unit,
                     ),
                 )
             }

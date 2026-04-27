@@ -62,6 +62,8 @@ class RecordFragment : Fragment() {
             }
         }
 
+        binding.btnManualEntry.setOnClickListener { showManualEntryDialog() }
+
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { state ->
@@ -118,6 +120,28 @@ class RecordFragment : Fragment() {
         _binding = null
     }
 
+    private fun showManualEntryDialog() {
+        val dialogBinding = DialogEditLogBinding.inflate(layoutInflater)
+        AlertDialog.Builder(requireContext())
+            .setTitle("Log manually")
+            .setView(dialogBinding.root)
+            .setPositiveButton("Log") { _, _ ->
+                val exercise = dialogBinding.etExercise.text.toString().trim()
+                if (exercise.isNotBlank()) {
+                    val unit = if (dialogBinding.rgUnit.checkedRadioButtonId == R.id.rbLbs) "lbs" else "kg"
+                    viewModel.logManual(
+                        exercise = exercise,
+                        sets = dialogBinding.etSet.text.toString().toIntOrNull(),
+                        reps = dialogBinding.etReps.text.toString().toIntOrNull(),
+                        weight = dialogBinding.etWeight.text.toString().toFloatOrNull(),
+                        unit = unit,
+                    )
+                }
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
     private fun showFixDialog(log: WorkoutLog) {
         val input =
             EditText(requireContext()).apply {
@@ -146,6 +170,7 @@ class RecordFragment : Fragment() {
         dialogBinding.etSet.setText(log.setNumber?.toString() ?: "")
         dialogBinding.etReps.setText(log.reps?.toString() ?: "")
         dialogBinding.etWeight.setText(log.weight?.toString() ?: "")
+        if (log.unit == "lbs") dialogBinding.rbLbs.isChecked = true else dialogBinding.rbKg.isChecked = true
 
         AlertDialog.Builder(requireContext())
             .setTitle("Edit Log")
@@ -155,12 +180,14 @@ class RecordFragment : Fragment() {
                 if (newExercise != log.exerciseName) {
                     viewModel.saveCorrection(log.exerciseName, newExercise)
                 }
+                val unit = if (dialogBinding.rgUnit.checkedRadioButtonId == R.id.rbLbs) "lbs" else "kg"
                 viewModel.updateLog(
                     log.copy(
                         exerciseName = newExercise,
                         setNumber = dialogBinding.etSet.text.toString().toIntOrNull(),
                         reps = dialogBinding.etReps.text.toString().toIntOrNull(),
                         weight = dialogBinding.etWeight.text.toString().toFloatOrNull(),
+                        unit = unit,
                     ),
                 )
             }

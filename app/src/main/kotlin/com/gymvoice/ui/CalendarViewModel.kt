@@ -16,6 +16,7 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.ZoneId
+import java.util.UUID
 
 class CalendarViewModel(app: Application) : AndroidViewModel(app) {
     private val dao = AppDatabase.getInstance(app).workoutLogDao()
@@ -26,6 +27,8 @@ class CalendarViewModel(app: Application) : AndroidViewModel(app) {
 
     private val _activeDates = MutableStateFlow<Set<LocalDate>>(emptySet())
     val activeDates: StateFlow<Set<LocalDate>> = _activeDates
+
+    private var currentDisplayedMonth = YearMonth.now()
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val logsForDate: Flow<List<WorkoutLog>> =
@@ -41,6 +44,7 @@ class CalendarViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun loadMonth(yearMonth: YearMonth) {
+        currentDisplayedMonth = yearMonth
         viewModelScope.launch {
             val zone = ZoneId.systemDefault()
             val start = yearMonth.atDay(1).atStartOfDay(zone).toInstant().toEpochMilli()
@@ -50,6 +54,36 @@ class CalendarViewModel(app: Application) : AndroidViewModel(app) {
                     .map { Instant.ofEpochMilli(it).atZone(zone).toLocalDate() }
                     .toSet()
         }
+    }
+
+    fun logManual(
+        exercise: String,
+        sets: Int?,
+        reps: Int?,
+        weight: Float?,
+        unit: String,
+    ) = viewModelScope.launch {
+        if (exercise.isBlank()) return@launch
+        val date = _selectedDate.value
+        val zone = ZoneId.systemDefault()
+        val timestamp =
+            if (date == LocalDate.now()) {
+                System.currentTimeMillis()
+            } else {
+                date.atTime(12, 0).atZone(zone).toInstant().toEpochMilli()
+            }
+        dao.insert(
+            WorkoutLog(
+                sessionId = UUID.randomUUID().toString(),
+                exerciseName = exercise.lowercase().trim(),
+                setNumber = sets,
+                reps = reps,
+                weight = weight,
+                unit = unit,
+                timestamp = timestamp,
+            ),
+        )
+        loadMonth(currentDisplayedMonth)
     }
 
     fun saveCorrection(

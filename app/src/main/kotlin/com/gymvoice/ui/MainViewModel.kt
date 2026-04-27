@@ -90,6 +90,26 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     fun stopRecording() = stt.stop()
 
+    fun logManual(
+        exercise: String,
+        sets: Int?,
+        reps: Int?,
+        weight: Float?,
+        unit: String,
+    ) = viewModelScope.launch {
+        if (exercise.isBlank()) return@launch
+        dao.insert(
+            WorkoutLog(
+                sessionId = UUID.randomUUID().toString(),
+                exerciseName = exercise.lowercase().trim(),
+                setNumber = sets,
+                reps = reps,
+                weight = weight,
+                unit = unit,
+            ),
+        )
+    }
+
     fun saveCorrection(
         original: String,
         corrected: String,

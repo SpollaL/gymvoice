@@ -98,6 +98,16 @@ object WorkoutParser {
         return dp[a.length][b.length]
     }
 
+    private fun looksLikeSentence(name: String): Boolean {
+        val lower = name.lowercase()
+        return lower.any { it.isDigit() } || STOP_WORDS.any { Regex("\\b$it\\b").containsMatchIn(lower) }
+    }
+
+    private fun cleanExerciseName(
+        llmExercise: String,
+        rawText: String,
+    ): String = if (looksLikeSentence(llmExercise)) extractExercise(rawText) else llmExercise
+
     private fun closestExercise(name: String): String {
         val lower = name.lowercase().trim()
         val best = KNOWN_EXERCISES.minByOrNull { levenshtein(lower, it) } ?: return lower
@@ -145,7 +155,7 @@ object WorkoutParser {
                     ?.takeIf { hasWeightWord }
 
             ParsedWorkout(
-                exercise = closestExercise(exercise),
+                exercise = closestExercise(cleanExerciseName(exercise, rawText)),
                 set = set,
                 reps = reps,
                 weight = weight,
