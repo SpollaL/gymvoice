@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#1565C0</color>
-    <color name="onPrimary">#FFFFFF</color>
-    <color name="background">#121212</color>
-    <color name="onBackground">#FFFFFF</color>
-    <color name="surface">#1E1E1E</color>
+    <!-- Catppuccin Mocha -->
+    <color name="base">#1e1e2e</color>
+    <color name="mantle">#181825</color>
+    <color name="surface0">#313244</color>
+    <color name="surface1">#45475a</color>
+    <color name="overlay0">#6c7086</color>
+    <color name="text">#cdd6f4</color>
+    <color name="subtext0">#a6adc8</color>
+    <color name="mauve">#cba6f7</color>
+    <color name="blue">#89b4fa</color>
+    <color name="green">#a6e3a1</color>
+    <color name="red">#f38ba8</color>
+    <!-- Aliases -->
+    <color name="primary">@color/mauve</color>
+    <color name="onPrimary">@color/base</color>
+    <color name="background">@color/base</color>
+    <color name="onBackground">@color/text</color>
+    <color name="surface">@color/surface0</color>
 </resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- G - top bar -->
+    <path
+        android:fillColor="#cba6f7"
+        android:pathData="M20,22 L52,22 L52,32 L20,32 Z" />
+
+    <!-- G - left bar -->
+    <path
+        android:fillColor="#cba6f7"
+        android:pathData="M20,22 L30,22 L30,86 L20,86 Z" />
+
+    <!-- G - bottom bar -->
+    <path
+        android:fillColor="#cba6f7"
+        android:pathData="M20,76 L52,76 L52,86 L20,86 Z" />
+
+    <!-- G - mid crossbar (right side, lower half only = open top = G not C) -->
+    <path
+        android:fillColor="#cba6f7"
+        android:pathData="M42,54 L52,54 L52,76 L42,76 Z" />
+
+    <!-- V - tapered block letter, center x=74 -->
+    <path
+        android:fillColor="#89b4fa"
+        android:pathData="M58,22 L68,22 L74,78 L80,22 L90,22 L74,86 Z" />
+
+</vector>

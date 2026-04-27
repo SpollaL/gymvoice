@@ -58,4 +58,8 @@ dependencies {
 
     // LiteRT-LM — Gemma inference
     implementation(libs.litertlm.android)
+
+    // Fragments + calendar
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.calendar.view)
 }

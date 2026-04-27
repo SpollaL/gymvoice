@@ -12,6 +12,18 @@ interface WorkoutLogDao {
     @Query("SELECT * FROM logs WHERE timestamp > :startOfDay ORDER BY timestamp DESC")
     fun getTodayLogs(startOfDay: Long): Flow<List<WorkoutLog>>
 
+    @Query("SELECT * FROM logs WHERE timestamp >= :startOfDay AND timestamp < :endOfDay ORDER BY timestamp DESC")
+    fun getLogsForDate(
+        startOfDay: Long,
+        endOfDay: Long,
+    ): Flow<List<WorkoutLog>>
+
+    @Query("SELECT timestamp FROM logs WHERE timestamp >= :start AND timestamp < :end")
+    suspend fun getTimestampsInRange(
+        start: Long,
+        end: Long,
+    ): List<Long>
+
     @Insert
     suspend fun insert(log: WorkoutLog): Long
 

@@ -15,9 +15,19 @@ import kotlin.coroutines.resumeWithException
 
 class SpeechRecognizerSTT(private val context: Context) {
     private var recognizer: SpeechRecognizer? = null
+    private var userStopped = false
+    private var lastPartial = ""
 
     suspend fun transcribe(): String =
         withContext(Dispatchers.Main) {
+            recognizer?.let {
+                it.cancel()
+                it.destroy()
+            }
+            recognizer = null
+            userStopped = false
+            lastPartial = ""
+
             suspendCancellableCoroutine { cont ->
                 val sr = SpeechRecognizer.createSpeechRecognizer(context)
                 recognizer = sr
@@ -34,12 +44,25 @@ class SpeechRecognizerSTT(private val context: Context) {
                             if (cont.isActive) cont.resume(text)
                         }
 
+                        override fun onPartialResults(partialResults: Bundle?) {
+                            val partial =
+                                partialResults
+                                    ?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
+                                    ?.firstOrNull() ?: return
+                            if (partial.isNotBlank()) lastPartial = partial
+                        }
+
                         override fun onError(error: Int) {
+                            val partial = lastPartial
                             sr.destroy()
                             recognizer = null
-                            val msg = "SpeechRecognizer error $error"
-                            Log.e("GymVoice", msg)
-                            if (cont.isActive) cont.resumeWithException(RuntimeException(msg))
+                            Log.e("GymVoice", "STT error $error userStopped=$userStopped partial=\"$partial\"")
+                            if (!cont.isActive) return
+                            if (userStopped && partial.isNotBlank()) {
+                                cont.resume(partial)
+                            } else {
+                                cont.resumeWithException(RuntimeException("SpeechRecognizer error $error"))
+                            }
                         }
 
                         override fun onReadyForSpeech(params: Bundle?) = Unit
@@ -51,8 +74,6 @@ class SpeechRecognizerSTT(private val context: Context) {
                         override fun onBufferReceived(buffer: ByteArray?) = Unit
 
                         override fun onEndOfSpeech() = Unit
-
-                        override fun onPartialResults(partialResults: Bundle?) = Unit
 
                         override fun onEvent(
                             eventType: Int,
@@ -67,6 +88,7 @@ class SpeechRecognizerSTT(private val context: Context) {
                         putExtra(RecognizerIntent.EXTRA_PREFER_OFFLINE, true)
                         putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US")
                         putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1)
+                        putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true)
                     }
 
                 sr.startListening(intent)
@@ -80,6 +102,7 @@ class SpeechRecognizerSTT(private val context: Context) {
         }
 
     fun stop() {
+        userStopped = true
         recognizer?.stopListening()
     }
 
