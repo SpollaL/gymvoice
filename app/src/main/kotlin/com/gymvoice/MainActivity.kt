@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.gymvoice.databinding.ActivityMainBinding
 import com.gymvoice.ui.CalendarFragment
+import com.gymvoice.ui.ProgressFragment
 import com.gymvoice.ui.RecordFragment
 
 class MainActivity : AppCompatActivity() {
@@ -35,6 +36,13 @@ class MainActivity : AppCompatActivity() {
                     )
                     true
                 }
+                R.id.nav_progress -> {
+                    showFragment(
+                        supportFragmentManager.findFragmentByTag(TAG_PROGRESS) ?: ProgressFragment(),
+                        TAG_PROGRESS,
+                    )
+                    true
+                }
                 else -> false
             }
         }
@@ -54,5 +62,6 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val TAG_RECORD = "record"
         private const val TAG_CALENDAR = "calendar"
+        private const val TAG_PROGRESS = "progress"
     }
 }

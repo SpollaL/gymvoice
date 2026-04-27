@@ -10,4 +10,5 @@
     <string name="no_workouts">no workouts logged</string>
     <string name="log_manually">+ manual entry</string>
     <string name="add_log">+ add</string>
+    <string name="nav_progress">Progress</string>
 </resources>

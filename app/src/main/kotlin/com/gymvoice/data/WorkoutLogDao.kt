@@ -24,6 +24,12 @@ interface WorkoutLogDao {
         end: Long,
     ): List<Long>
 
+    @Query("SELECT DISTINCT exerciseName FROM logs ORDER BY exerciseName ASC")
+    fun getDistinctExercises(): Flow<List<String>>
+
+    @Query("SELECT * FROM logs WHERE exerciseName = :exercise ORDER BY timestamp ASC")
+    fun getLogsForExercise(exercise: String): Flow<List<WorkoutLog>>
+
     @Insert
     suspend fun insert(log: WorkoutLog): Long
 

@@ -8,4 +8,8 @@
         android:id="@+id/nav_calendar"
         android:icon="@drawable/ic_calendar"
         android:title="@string/nav_calendar" />
+    <item
+        android:id="@+id/nav_progress"
+        android:icon="@drawable/ic_chart"
+        android:title="@string/nav_progress" />
 </menu>
