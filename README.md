@@ -36,13 +36,26 @@ All inference runs on-device. Your data stays on your phone.
 ./bootstrap.sh
 
 # 2. Push Gemma model to device
-adb push gemma-3-270m-it-int8.litertlm /data/local/tmp/
+make push-model
 
 # 3. Build and install
-./gradlew installDebug
+make flash
 ```
 
-See [CLAUDE.md](CLAUDE.md) for full model setup and architecture details.
+## Dev commands
+
+| Command | Action |
+|---------|--------|
+| `make build` | assemble APK |
+| `make flash` | build + install |
+| `make format` | ktlint autofix |
+| `make check` | ktlint verify |
+| `make lint` | detekt |
+| `make pre-commit` | format + lint + build |
+| `make push-model` | adb push Gemma model |
+| `make clean` | gradle clean |
+
+See [CLAUDE.md](CLAUDE.md) for full architecture details.
 
 ## Tech stack
 

@@ -4,26 +4,23 @@ Offline Android workout logger. Voice input → Android STT → Gemma NLP → Ro
 
 ## Build
 
+Always use the Makefile — do not call `./gradlew` directly.
+
 ```bash
-./bootstrap.sh          # first time only — generates Gradle wrapper
-./gradlew assembleDebug # build APK
-./gradlew installDebug  # build + install on connected device/emulator
+./bootstrap.sh   # first time only — generates Gradle wrapper
+make build       # assemble APK
+make flash       # build + install on connected device/emulator
+make push-model  # adb push Gemma model to device
+make pre-commit  # format + lint + build (run before every commit)
+make clean       # gradle clean
 ```
 
 ## Lint & Format
 
 ```bash
-# Format all Kotlin files (auto-fix)
-./gradlew ktlintFormat
-
-# Check formatting (no fix, fail on violation)
-./gradlew ktlintCheck
-
-# Static analysis
-./gradlew detekt
-
-# Run everything before committing
-./gradlew ktlintFormat detekt assembleDebug
+make format  # ktlint autofix
+make check   # ktlint verify (no fix)
+make lint    # detekt static analysis
 ```
 
 Tools: **ktlint 12.1.0** (formatting) + **detekt 1.23.6** (static analysis).
