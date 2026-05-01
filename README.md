@@ -9,7 +9,7 @@ Offline Android workout logger. Speak your set, GymVoice logs it — no internet
 ## How it works
 
 ```
-Mic → Whisper (STT) → Gemma 3 (NLP) → Room DB
+Mic → Android STT → Gemma 3 (NLP) → Room DB
 ```
 
 All inference runs on-device. Your data stays on your phone.
@@ -26,9 +26,8 @@ All inference runs on-device. Your data stays on your phone.
 ## Requirements
 
 - Android 10+
-- ~500 MB free storage (models)
-- Whisper Tiny TFLite model
-- Gemma 3 270M model (pushed via adb)
+- ~300 MB free storage (Gemma model)
+- Gemma 3 270M INT8 model (pushed via adb)
 
 ## Setup
 
@@ -36,14 +35,10 @@ All inference runs on-device. Your data stays on your phone.
 # 1. Generate Gradle wrapper (first time only)
 ./bootstrap.sh
 
-# 2. Convert Whisper model
-pip install -r scripts/requirements-convert.txt
-python scripts/convert_whisper.py
+# 2. Push Gemma model to device
+adb push gemma-3-270m-it-int8.litertlm /data/local/tmp/
 
-# 3. Push Gemma model to device
-adb push gemma3_270m_int4.bin /data/local/tmp/
-
-# 4. Build and install
+# 3. Build and install
 ./gradlew installDebug
 ```
 
@@ -53,8 +48,8 @@ See [CLAUDE.md](CLAUDE.md) for full model setup and architecture details.
 
 | Layer | Library |
 |-------|---------|
-| STT | Whisper Tiny via LiteRT 1.0 |
-| NLP | Gemma 3 270M via MediaPipe |
+| STT | Android SpeechRecognizer (on-device) |
+| NLP | Gemma 3 270M via LiteRT-LM 0.10.2 |
 | DB | Room 2.6 |
 | UI | ViewBinding, RecyclerView, Material 3 |
 | Theme | Catppuccin Mocha |

@@ -1,6 +1,6 @@
 # GymVoice
 
-Offline Android workout logger. Voice input → Whisper STT → Gemma NLP → Room DB. No internet required.
+Offline Android workout logger. Voice input → Android STT → Gemma NLP → Room DB. No internet required.
 
 ## Build
 
@@ -35,8 +35,8 @@ Config: `.editorconfig` (line length 120, 4-space indent), `detekt.yml`.
 MainActivity
 └── MainViewModel
     ├── AudioRecorder       — 16kHz mono PCM via AudioRecord
-    ├── WhisperInference    — LiteRT interpreter, whisper-tiny-en.tflite
-    ├── GemmaInference      — MediaPipe LLM API, gemma-3-270m-it-int4.bin
+    ├── SpeechRecognizerSTT — Android SpeechRecognizer (on-device)
+    ├── GemmaInference      — LiteRT-LM, gemma-3-270m-it-int8.litertlm
     ├── WorkoutParser       — JSON parse from Gemma + regex fallback
     └── AppDatabase (Room)
         └── WorkoutLogDao
@@ -44,44 +44,29 @@ MainActivity
 
 ## Model Files (required before app runs)
 
-### Whisper Tiny (STT)
-
-Converts `openai/whisper-tiny.en` PyTorch model → TFLite via `ai-edge-torch`.
-Output lands at `app/src/main/assets/models/whisper-tiny-en.tflite`.
+### Gemma 3 270M (NLP)
 
 ```bash
-pip install -r scripts/requirements-convert.txt
-python scripts/convert_whisper.py
+adb push gemma-3-270m-it-int8.litertlm /data/local/tmp/gemma-3-270m-it-int8.litertlm
 ```
 
-Model input:  `float32[1, 80, 3000]` — mel spectrogram (30s audio @ 16kHz)
-Model output: `int32[1, 448]`        — Whisper BPE token IDs
-
-### Gemma 3 1B (NLP)
-
-```bash
-kaggle models instances versions download keras/gemma3/keras/gemma3_1b/3
-adb push <downloaded_file> /data/local/tmp/gemma3_1b.bin
-```
-
-Requires Kaggle account + license acceptance at https://www.kaggle.com/models/google/gemma-3
+Model path expected by app: `/data/local/tmp/gemma-3-270m-it-int8.litertlm`
 
 ## Key Dependencies
 
 | Dep | Purpose |
 |-----|---------|
-| `com.google.ai.edge.litert:litert:1.0.1` | Whisper TFLite inference |
-| `com.google.mediapipe:tasks-genai:0.10.14` | Gemma LLM inference |
+| `com.google.ai.edge.litertlm:litertlm-android:0.10.2` | Gemma LiteRT-LM inference |
 | `androidx.room:room-runtime:2.6.1` | SQLite via Room |
 
 ## Package Structure
 
 ```
 com.gymvoice/
-├── audio/       AudioRecorder
+├── audio/       AudioRecorder, SpeechRecognizerSTT
 ├── data/        WorkoutLog, WorkoutLogDao, AppDatabase
-├── ml/          WhisperInference, GemmaInference, WorkoutParser
-├── ui/          MainViewModel, WorkoutLogAdapter
+├── ml/          GemmaInference, WorkoutParser
+├── ui/          MainViewModel, WorkoutLogAdapter, ProgressViewModel
 └── MainActivity
 ```
 
@@ -89,5 +74,4 @@ com.gymvoice/
 
 - Gemma loads on-demand per recording (model offloading) to save RAM
 - WorkoutParser tries JSON first, falls back to regex if LLM output is malformed
-- WhisperInference.decodeTokens() is a stub — needs real BPE tokenizer
-- Model files are gitignored; push to device separately via adb
+- Model file is gitignored; push to device separately via adb
