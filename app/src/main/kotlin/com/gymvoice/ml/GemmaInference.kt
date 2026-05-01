@@ -49,6 +49,7 @@ class GemmaInference {
 
         private val NUMBER_WORDS =
             mapOf(
+                "once" to "1",
                 "one" to "1",
                 "two" to "2",
                 "three" to "3",

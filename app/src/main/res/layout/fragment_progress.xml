@@ -48,14 +48,54 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/cgMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:singleSelection="true"
+        app:layout_constraintTop_toBottomOf="@id/tilExercise"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipWeight"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="kg"
+            android:textColor="@color/text"
+            android:fontFamily="monospace"
+            android:checked="true" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipReps"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="reps"
+            android:textColor="@color/text"
+            android:fontFamily="monospace" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipVolume"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="vol"
+            android:textColor="@color/text"
+            android:fontFamily="monospace" />
+
+    </com.google.android.material.chip.ChipGroup>
+
     <com.gymvoice.ui.SparklineView
         android:id="@+id/sparkline"
         android:layout_width="0dp"
         android:layout_height="120dp"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:background="@color/surface0"
-        app:layout_constraintTop_toBottomOf="@id/tilExercise"
+        app:layout_constraintTop_toBottomOf="@id/cgMode"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

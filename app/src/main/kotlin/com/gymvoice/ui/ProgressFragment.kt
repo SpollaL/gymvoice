@@ -8,8 +8,12 @@ import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
+import com.gymvoice.R
 import com.gymvoice.databinding.FragmentProgressBinding
 import kotlinx.coroutines.launch
 
@@ -17,7 +21,7 @@ class ProgressFragment : Fragment() {
     private var _binding: FragmentProgressBinding? = null
     private val binding get() = _binding!!
     private val vm: ProgressViewModel by viewModels()
-    private val historyAdapter = ProgressLogAdapter()
+    private val historyAdapter = ProgressLogAdapter().also { it.onClone = { log -> vm.cloneLog(log) } }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentProgressBinding.inflate(inflater, container, false)
@@ -28,6 +32,28 @@ class ProgressFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.rvHistory.layoutManager = LinearLayoutManager(requireContext())
         binding.rvHistory.adapter = historyAdapter
+
+        binding.cgMode.setOnCheckedStateChangeListener { _, checkedIds ->
+            val mode =
+                when (checkedIds.firstOrNull()) {
+                    R.id.chipReps -> ProgressMode.REPS
+                    R.id.chipVolume -> ProgressMode.VOLUME
+                    else -> ProgressMode.WEIGHT
+                }
+            vm.setMode(mode)
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            vm.mode.collect { mode ->
+                val chipId =
+                    when (mode) {
+                        ProgressMode.WEIGHT -> R.id.chipWeight
+                        ProgressMode.REPS -> R.id.chipReps
+                        ProgressMode.VOLUME -> R.id.chipVolume
+                    }
+                binding.cgMode.check(chipId)
+            }
+        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             vm.exercises.collect { exercises ->
@@ -65,15 +91,26 @@ class ProgressFragment : Fragment() {
                     binding.tvTrendValue.text = data.trendLabel
                     binding.tvTrendValue.setTextColor(
                         when (data.trendUp) {
-                            true -> resources.getColor(com.gymvoice.R.color.green, null)
-                            false -> resources.getColor(com.gymvoice.R.color.red, null)
-                            null -> resources.getColor(com.gymvoice.R.color.subtext0, null)
+                            true -> resources.getColor(R.color.green, null)
+                            false -> resources.getColor(R.color.red, null)
+                            null -> resources.getColor(R.color.subtext0, null)
                         },
                     )
 
                     historyAdapter.prValue = data.prValue
                     historyAdapter.hasWeight = data.hasWeight
+                    historyAdapter.mode = data.mode
                     historyAdapter.submitList(data.logs)
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                vm.cloneEvent.collect { cloned ->
+                    Snackbar.make(binding.root, "Cloned ${cloned.exerciseName}", Snackbar.LENGTH_LONG)
+                        .setAction("Undo") { vm.deleteLog(cloned) }
+                        .show()
                 }
             }
         }

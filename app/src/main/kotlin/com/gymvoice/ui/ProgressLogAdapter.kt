@@ -2,6 +2,7 @@ package com.gymvoice.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -18,12 +19,22 @@ import kotlin.math.abs
 class ProgressLogAdapter : ListAdapter<WorkoutLog, ProgressLogAdapter.ViewHolder>(DIFF) {
     var prValue: Float? = null
     var hasWeight: Boolean = true
+    var mode: ProgressMode = ProgressMode.WEIGHT
+    var onClone: ((WorkoutLog) -> Unit)? = null
 
     private val dateFmt = DateTimeFormatter.ofPattern("EEE dd MMM", Locale.ENGLISH)
 
     inner class ViewHolder(private val binding: ItemProgressLogBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(log: WorkoutLog) {
+            binding.root.setOnClickListener { view ->
+                if (onClone != null) {
+                    AlertDialog.Builder(view.context)
+                        .setItems(arrayOf("Clone to today")) { _, _ -> onClone?.invoke(log) }
+                        .show()
+                }
+            }
+            binding.root.setOnLongClickListener(null)
             val zone = ZoneId.systemDefault()
             val date = Instant.ofEpochMilli(log.timestamp).atZone(zone).toLocalDate()
             binding.tvDate.text =
@@ -40,7 +51,12 @@ class ProgressLogAdapter : ListAdapter<WorkoutLog, ProgressLogAdapter.ViewHolder
                     log.setNumber?.let { append("set $it") }
                 }.trim()
 
-            val value = if (hasWeight) log.weight else log.reps?.toFloat()
+            val value =
+                when (mode) {
+                    ProgressMode.WEIGHT -> log.weight
+                    ProgressMode.REPS -> log.reps?.toFloat()
+                    ProgressMode.VOLUME -> null  // PR badge not shown for volume mode
+                }
             val pr = prValue
             binding.tvPr.isVisible = pr != null && value != null && abs(value - pr) < 0.01f
         }

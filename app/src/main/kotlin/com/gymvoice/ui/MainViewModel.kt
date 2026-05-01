@@ -34,6 +34,9 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     private val _lastLogged = MutableSharedFlow<WorkoutLog>(extraBufferCapacity = 1)
     val lastLogged: SharedFlow<WorkoutLog> = _lastLogged.asSharedFlow()
 
+    private val _cloneEvent = MutableSharedFlow<WorkoutLog>(extraBufferCapacity = 1)
+    val cloneEvent: SharedFlow<WorkoutLog> = _cloneEvent.asSharedFlow()
+
     val todayLogs = dao.getTodayLogs(startOfToday())
 
     init {
@@ -58,6 +61,10 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
             _uiState.value = UiState.Recording
             runCatching {
                 val raw = stt.transcribe()
+                if (raw.isBlank()) {
+                    _uiState.value = UiState.Idle
+                    return@launch
+                }
                 val text = GemmaInference.normalize(raw, userCorrections)
 
                 _uiState.value = UiState.Processing("Parsing: $text")
@@ -119,6 +126,13 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         val value = corrected.lowercase().trim()
         correctionDao.upsert(UserCorrection(sttFragment = key, correctedExercise = value))
         userCorrections = userCorrections + (key to value)
+    }
+
+    fun cloneLog(log: WorkoutLog) = viewModelScope.launch {
+        val newId = dao.insert(
+            log.copy(id = 0, sessionId = UUID.randomUUID().toString(), timestamp = System.currentTimeMillis()),
+        )
+        _cloneEvent.emit(log.copy(id = newId))
     }
 
     fun updateLog(log: WorkoutLog) = viewModelScope.launch { dao.update(log) }

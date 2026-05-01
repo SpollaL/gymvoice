@@ -7,15 +7,23 @@ import com.gymvoice.data.AppDatabase
 import com.gymvoice.data.WorkoutLog
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import java.time.Instant
 import java.time.ZoneId
+import java.util.UUID
+
+enum class ProgressMode { WEIGHT, REPS, VOLUME }
 
 data class ProgressData(
     val logs: List<WorkoutLog>,
@@ -26,6 +34,7 @@ data class ProgressData(
     val trendLabel: String,
     val trendUp: Boolean?,
     val hasWeight: Boolean,
+    val mode: ProgressMode,
 )
 
 class ProgressViewModel(app: Application) : AndroidViewModel(app) {
@@ -38,17 +47,33 @@ class ProgressViewModel(app: Application) : AndroidViewModel(app) {
     private val _selectedExercise = MutableStateFlow<String?>(null)
     val selectedExercise: StateFlow<String?> = _selectedExercise
 
+    private val _mode = MutableStateFlow(ProgressMode.WEIGHT)
+    val mode: StateFlow<ProgressMode> = _mode
+
     @OptIn(ExperimentalCoroutinesApi::class)
     val progressData: Flow<ProgressData?> =
         _selectedExercise
             .flatMapLatest { name -> if (name == null) flowOf(emptyList()) else dao.getLogsForExercise(name) }
-            .map { logs -> if (logs.isEmpty()) null else computeProgressData(logs) }
+            .combine(_mode) { logs, mode -> logs to mode }
+            .map { (logs, mode) -> if (logs.isEmpty()) null else computeProgressData(logs, mode) }
 
-    fun selectExercise(name: String) {
-        _selectedExercise.value = name
+    private val _cloneEvent = MutableSharedFlow<WorkoutLog>(extraBufferCapacity = 1)
+    val cloneEvent: SharedFlow<WorkoutLog> = _cloneEvent.asSharedFlow()
+
+    fun cloneLog(log: WorkoutLog) = viewModelScope.launch {
+        val newId = dao.insert(
+            log.copy(id = 0, sessionId = UUID.randomUUID().toString(), timestamp = System.currentTimeMillis()),
+        )
+        _cloneEvent.emit(log.copy(id = newId))
     }
 
-    private fun computeProgressData(logs: List<WorkoutLog>): ProgressData {
+    fun deleteLog(log: WorkoutLog) = viewModelScope.launch { dao.delete(log) }
+
+    fun selectExercise(name: String) { _selectedExercise.value = name }
+
+    fun setMode(mode: ProgressMode) { _mode.value = mode }
+
+    private fun computeProgressData(logs: List<WorkoutLog>, mode: ProgressMode): ProgressData {
         val zone = ZoneId.systemDefault()
         val hasWeight = logs.any { (it.weight ?: 0f) > 0f }
 
@@ -60,19 +85,20 @@ class ProgressViewModel(app: Application) : AndroidViewModel(app) {
 
         val pointsPerDate =
             byDate.map { (_, dayLogs) ->
-                if (hasWeight) {
-                    dayLogs.mapNotNull { it.weight }.maxOrNull() ?: 0f
-                } else {
-                    dayLogs.mapNotNull { it.reps?.toFloat() }.maxOrNull() ?: 0f
+                when (mode) {
+                    ProgressMode.WEIGHT -> dayLogs.mapNotNull { it.weight }.maxOrNull() ?: 0f
+                    ProgressMode.REPS -> dayLogs.mapNotNull { it.reps?.toFloat() }.maxOrNull() ?: 0f
+                    ProgressMode.VOLUME ->
+                        dayLogs.sumOf { ((it.weight ?: 0f) * (it.reps ?: 0)).toDouble() }.toFloat()
                 }
             }
 
         val prValue = pointsPerDate.maxOrNull()
         val prLabel =
-            if (hasWeight) {
-                prValue?.let { "%.1f kg".format(it) } ?: "-"
-            } else {
-                prValue?.toInt()?.let { "$it reps" } ?: "-"
+            when (mode) {
+                ProgressMode.WEIGHT -> prValue?.let { "%.1f kg".format(it) } ?: "-"
+                ProgressMode.REPS -> prValue?.toInt()?.let { "$it reps" } ?: "-"
+                ProgressMode.VOLUME -> prValue?.toInt()?.let { "$it vol" } ?: "-"
             }
 
         val firstVal = pointsPerDate.firstOrNull() ?: 0f
@@ -81,8 +107,18 @@ class ProgressViewModel(app: Application) : AndroidViewModel(app) {
 
         val trendLabel =
             when {
-                diff > 0.01f -> if (hasWeight) "+%.1f kg".format(diff) else "+${diff.toInt()} reps"
-                diff < -0.01f -> if (hasWeight) "%.1f kg".format(diff) else "${diff.toInt()} reps"
+                diff > 0.01f ->
+                    when (mode) {
+                        ProgressMode.WEIGHT -> "+%.1f kg".format(diff)
+                        ProgressMode.REPS -> "+${diff.toInt()} reps"
+                        ProgressMode.VOLUME -> "+${diff.toInt()} vol"
+                    }
+                diff < -0.01f ->
+                    when (mode) {
+                        ProgressMode.WEIGHT -> "%.1f kg".format(diff)
+                        ProgressMode.REPS -> "${diff.toInt()} reps"
+                        ProgressMode.VOLUME -> "${diff.toInt()} vol"
+                    }
                 else -> "stable"
             }
         val trendUp =
@@ -101,6 +137,7 @@ class ProgressViewModel(app: Application) : AndroidViewModel(app) {
             trendLabel = trendLabel,
             trendUp = trendUp,
             hasWeight = hasWeight,
+            mode = mode,
         )
     }
 }

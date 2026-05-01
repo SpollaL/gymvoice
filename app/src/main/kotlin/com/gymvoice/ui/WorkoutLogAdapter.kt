@@ -22,6 +22,7 @@ class WorkoutLogAdapter(
                     log.weight?.let { append("$it ${log.unit}") }
                 }.trim()
             binding.root.setOnClickListener { onEdit(log) }
+            binding.root.setOnLongClickListener(null)
         }
     }
 

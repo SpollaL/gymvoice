@@ -108,6 +108,16 @@ class RecordFragment : Fragment() {
             }
         }
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.cloneEvent.collect { cloned ->
+                    Snackbar.make(binding.root, "Cloned ${cloned.exerciseName}", Snackbar.LENGTH_LONG)
+                        .setAction("Undo") { viewModel.deleteLog(cloned) }
+                        .show()
+                }
+            }
+        }
+
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.RECORD_AUDIO)
             != PackageManager.PERMISSION_GRANTED
         ) {
@@ -191,6 +201,7 @@ class RecordFragment : Fragment() {
                     ),
                 )
             }
+            .setNeutralButton("Clone") { _, _ -> viewModel.cloneLog(log) }
             .setNegativeButton("Delete") { _, _ -> viewModel.deleteLog(log) }
             .show()
     }

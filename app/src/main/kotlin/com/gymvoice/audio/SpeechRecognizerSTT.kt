@@ -58,10 +58,10 @@ class SpeechRecognizerSTT(private val context: Context) {
                             recognizer = null
                             Log.e("GymVoice", "STT error $error userStopped=$userStopped partial=\"$partial\"")
                             if (!cont.isActive) return
-                            if (userStopped && partial.isNotBlank()) {
-                                cont.resume(partial)
-                            } else {
-                                cont.resumeWithException(RuntimeException("SpeechRecognizer error $error"))
+                            when {
+                                userStopped && partial.isNotBlank() -> cont.resume(partial)
+                                userStopped -> cont.resume("")
+                                else -> cont.resumeWithException(RuntimeException("SpeechRecognizer error $error"))
                             }
                         }
 
