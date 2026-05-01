@@ -6,6 +6,8 @@ Offline Android workout logger. Speak your set, GymVoice logs it — no internet
 "bench press 3 sets 8 reps 80 kilos"  →  ✓ Logged
 ```
 
+![Demo](demo.gif)
+
 ## How it works
 
 ```
