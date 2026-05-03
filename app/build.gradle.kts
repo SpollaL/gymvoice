@@ -39,7 +39,7 @@ android {
 
     packaging {
         resources {
-            excludes += setOf(
+            excludes += listOf(
                 "META-INF/DEPENDENCIES",
                 "META-INF/LICENSE",
                 "META-INF/LICENSE.txt",
