@@ -131,6 +131,8 @@ class ExportRepository(
 
         fun buildPdf(logs: List<WorkoutLog>, fromMs: Long, toMs: Long): ByteArray {
             val document = android.graphics.pdf.PdfDocument()
+            val out = ByteArrayOutputStream()
+            try {
             val pageWidth = 595
             val pageHeight = 842
             val margin = 40f
@@ -183,7 +185,7 @@ class ExportRepository(
             }
 
             fun writeLine(text: String, x: Float, paint: android.graphics.Paint) {
-                if (y > bottomLimit) newPage()
+                if (y + lineHeight > bottomLimit) newPage()
                 canvas.drawText(text, x, y, paint)
                 y += lineHeight
             }
@@ -218,9 +220,10 @@ class ExportRepository(
             }
 
             finishPage()
-            val out = ByteArrayOutputStream()
             document.writeTo(out)
-            document.close()
+            } finally {
+                document.close()
+            }
             return out.toByteArray()
         }
 
