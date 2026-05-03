@@ -11,3 +11,4 @@ models/
 *.task
 *.litertlm
 *.db
+.worktrees/
