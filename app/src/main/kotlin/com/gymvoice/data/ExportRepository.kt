@@ -130,8 +130,98 @@ class ExportRepository(
         }
 
         fun buildPdf(logs: List<WorkoutLog>, fromMs: Long, toMs: Long): ByteArray {
-            // Implemented in Task 6
-            throw NotImplementedError("buildPdf not yet implemented")
+            val document = android.graphics.pdf.PdfDocument()
+            val pageWidth = 595
+            val pageHeight = 842
+            val margin = 40f
+            val lineHeight = 16f
+            val bottomLimit = pageHeight - 40f
+
+            val titlePaint = android.graphics.Paint().apply {
+                color = android.graphics.Color.BLACK; textSize = 14f
+                isFakeBoldText = true; isAntiAlias = true
+            }
+            val labelPaint = android.graphics.Paint().apply {
+                color = android.graphics.Color.BLACK; textSize = 12f
+                isFakeBoldText = true; isAntiAlias = true
+            }
+            val bodyPaint = android.graphics.Paint().apply {
+                color = android.graphics.Color.BLACK; textSize = 11f; isAntiAlias = true
+            }
+            val columnPaint = android.graphics.Paint().apply {
+                color = android.graphics.Color.DKGRAY; textSize = 10f; isAntiAlias = true
+            }
+            val footerPaint = android.graphics.Paint().apply {
+                color = android.graphics.Color.DKGRAY; textSize = 9f; isAntiAlias = true
+            }
+
+            var pageNum = 1
+            var page = document.startPage(
+                android.graphics.pdf.PdfDocument.PageInfo.Builder(pageWidth, pageHeight, pageNum).create()
+            )
+            var canvas = page.canvas
+            var y = margin
+
+            fun finishPage() {
+                canvas.drawText(
+                    "$pageNum",
+                    (pageWidth / 2).toFloat(),
+                    bottomLimit + 20f,
+                    footerPaint,
+                )
+                document.finishPage(page)
+            }
+
+            fun newPage() {
+                finishPage()
+                pageNum++
+                page = document.startPage(
+                    android.graphics.pdf.PdfDocument.PageInfo.Builder(pageWidth, pageHeight, pageNum).create()
+                )
+                canvas = page.canvas
+                y = margin
+            }
+
+            fun writeLine(text: String, x: Float, paint: android.graphics.Paint) {
+                if (y > bottomLimit) newPage()
+                canvas.drawText(text, x, y, paint)
+                y += lineHeight
+            }
+
+            val fmt = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val title = if (fromMs == 0L && toMs == Long.MAX_VALUE) {
+                "GymVoice Training Log — All Time"
+            } else {
+                "GymVoice Training Log — ${fmt.format(Date(fromMs))} to ${fmt.format(Date(toMs))}"
+            }
+
+            writeLine(title, margin, titlePaint)
+            y += lineHeight / 2
+
+            for ((date, byExercise) in groupByDateAndExercise(logs)) {
+                y += lineHeight / 2
+                writeLine(date, margin, labelPaint)
+                for ((exercise, sets) in byExercise) {
+                    writeLine("  $exercise", margin + 8f, bodyPaint)
+                    writeLine("  Set  Reps  Weight  Unit  Rest(s)", margin + 16f, columnPaint)
+                    for (log in sets) {
+                        writeLine(
+                            "  ${log.setNumber ?: "—"}     ${log.reps ?: "—"}     " +
+                                "${log.weight ?: "—"}  ${log.unit}     ${log.restSeconds ?: "—"}",
+                            margin + 16f,
+                            bodyPaint,
+                        )
+                    }
+                    y += 4f
+                }
+                y += 8f
+            }
+
+            finishPage()
+            val out = ByteArrayOutputStream()
+            document.writeTo(out)
+            document.close()
+            return out.toByteArray()
         }
 
         fun groupByDateAndExercise(logs: List<WorkoutLog>): Map<String, Map<String, List<WorkoutLog>>> {
