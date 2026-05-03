@@ -45,6 +45,16 @@
             android:contentDescription="@null"
             android:tint="@color/subtext0" />
 
+        <ImageButton
+            android:id="@+id/btnExport"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_export"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@null"
+            android:tint="@color/subtext0"
+            android:layout_marginStart="4dp" />
+
     </LinearLayout>
 
     <LinearLayout

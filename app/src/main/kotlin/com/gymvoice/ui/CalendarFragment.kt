@@ -99,6 +99,9 @@ class CalendarFragment : Fragment() {
         }
 
         binding.btnAddLog.setOnClickListener { showAddLogDialog() }
+        binding.btnExport.setOnClickListener {
+            ExportDialogFragment().show(childFragmentManager, "export")
+        }
 
         viewModel.loadMonth(currentMonth)
     }
