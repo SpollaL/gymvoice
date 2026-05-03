@@ -26,8 +26,6 @@ class ExportDialogFragment : DialogFragment() {
     private lateinit var binding: DialogExportBinding
     private val viewModel: ExportViewModel by viewModels()
 
-    private var fromMs = 0L
-    private var toMs = Long.MAX_VALUE
     private val dateFmt = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -91,24 +89,22 @@ class ExportDialogFragment : DialogFragment() {
     }
 
     private fun triggerExport() {
-        viewModel.fromMs = fromMs
-        viewModel.toMs = toMs
         viewModel.format = if (binding.chipExcel.isChecked) ExportFormat.XLSX else ExportFormat.PDF
         viewModel.export()
     }
 
     private fun pickFromDate() {
         val cal = Calendar.getInstance().apply {
-            timeInMillis = if (fromMs == 0L) System.currentTimeMillis() else fromMs
+            timeInMillis = if (viewModel.fromMs == 0L) System.currentTimeMillis() else viewModel.fromMs
         }
         DatePickerDialog(
             requireContext(),
             { _, year, month, day ->
-                fromMs = Calendar.getInstance().apply {
+                viewModel.fromMs = Calendar.getInstance().apply {
                     set(year, month, day, 0, 0, 0)
                     set(Calendar.MILLISECOND, 0)
                 }.timeInMillis
-                binding.tvFromDate.text = dateFmt.format(Date(fromMs))
+                binding.tvFromDate.text = dateFmt.format(Date(viewModel.fromMs))
             },
             cal.get(Calendar.YEAR),
             cal.get(Calendar.MONTH),
@@ -118,16 +114,16 @@ class ExportDialogFragment : DialogFragment() {
 
     private fun pickToDate() {
         val cal = Calendar.getInstance().apply {
-            timeInMillis = if (toMs == Long.MAX_VALUE) System.currentTimeMillis() else toMs
+            timeInMillis = if (viewModel.toMs == Long.MAX_VALUE) System.currentTimeMillis() else viewModel.toMs
         }
         DatePickerDialog(
             requireContext(),
             { _, year, month, day ->
-                toMs = Calendar.getInstance().apply {
+                viewModel.toMs = Calendar.getInstance().apply {
                     set(year, month, day, 23, 59, 59)
                     set(Calendar.MILLISECOND, 999)
                 }.timeInMillis
-                binding.tvToDate.text = dateFmt.format(Date(toMs))
+                binding.tvToDate.text = dateFmt.format(Date(viewModel.toMs))
             },
             cal.get(Calendar.YEAR),
             cal.get(Calendar.MONTH),
@@ -136,7 +132,7 @@ class ExportDialogFragment : DialogFragment() {
     }
 
     private fun shareFile(uri: Uri) {
-        val mimeType = if (binding.chipExcel.isChecked) {
+        val mimeType = if (viewModel.format == ExportFormat.XLSX) {
             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         } else {
             "application/pdf"
