@@ -20,4 +20,10 @@
     <string name="export_from_date_desc">From date picker</string>
     <string name="export_to_date_desc">To date picker</string>
     <string name="export_to_default">Today</string>
+    <string name="export_title">Export Training Log</string>
+    <string name="export_button">Export</string>
+    <string name="export_exporting">Exporting…</string>
+    <string name="export_all_time">All time</string>
+    <string name="export_saved">Saved to Downloads</string>
+    <string name="export_share_title">Share training log</string>
 </resources>
