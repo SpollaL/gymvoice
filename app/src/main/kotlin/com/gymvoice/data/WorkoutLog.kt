@@ -19,5 +19,6 @@ data class WorkoutLog(
     val reps: Int?,
     val weight: Float?,
     val unit: String,
+    val restSeconds: Int? = null,
     val timestamp: Long = System.currentTimeMillis(),
 )
