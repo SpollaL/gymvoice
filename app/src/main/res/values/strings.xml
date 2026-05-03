@@ -11,4 +11,19 @@
     <string name="log_manually">+ manual entry</string>
     <string name="add_log">+ add</string>
     <string name="nav_progress">Progress</string>
+    <string name="export_from_label">From</string>
+    <string name="export_to_label">To</string>
+    <string name="export_from_default">All time</string>
+    <string name="export_chip_excel">Excel</string>
+    <string name="export_chip_pdf">PDF</string>
+    <string name="export_empty_hint">No logs in selected range</string>
+    <string name="export_from_date_desc">From date picker</string>
+    <string name="export_to_date_desc">To date picker</string>
+    <string name="export_to_default">Today</string>
+    <string name="export_title">Export Training Log</string>
+    <string name="export_button">Export</string>
+    <string name="export_exporting">Exporting…</string>
+    <string name="export_all_time">All time</string>
+    <string name="export_saved">Saved to Downloads</string>
+    <string name="export_share_title">Share training log</string>
 </resources>

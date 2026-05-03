@@ -19,16 +19,24 @@ import kotlinx.coroutines.launch
 
 class ProgressFragment : Fragment() {
     private var _binding: FragmentProgressBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
     private val vm: ProgressViewModel by viewModels()
     private val historyAdapter = ProgressLogAdapter().also { it.onClone = { log -> vm.cloneLog(log) } }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View {
         _binding = FragmentProgressBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    @Suppress("LongMethod", "CyclomaticComplexMethod")
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvHistory.layoutManager = LinearLayoutManager(requireContext())
         binding.rvHistory.adapter = historyAdapter

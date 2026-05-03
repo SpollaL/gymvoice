@@ -16,6 +16,10 @@
         android:paddingBottom="8dp"
         android:gravity="center_vertical">
 
+        <Space
+            android:layout_width="36dp"
+            android:layout_height="32dp" />
+
         <ImageButton
             android:id="@+id/btnPrevMonth"
             android:layout_width="32dp"
@@ -44,6 +48,16 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@null"
             android:tint="@color/subtext0" />
+
+        <ImageButton
+            android:id="@+id/btnExport"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_export"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/export_title"
+            android:tint="@color/subtext0"
+            android:layout_marginStart="4dp" />
 
     </LinearLayout>
 

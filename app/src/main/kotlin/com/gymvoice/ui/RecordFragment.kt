@@ -46,6 +46,7 @@ class RecordFragment : Fragment() {
         return binding.root
     }
 
+    @Suppress("LongMethod")
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?,
