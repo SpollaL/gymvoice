@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.gymvoice.data.AppDatabase
 import com.gymvoice.data.ExportFormat
 import com.gymvoice.data.ExportRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -32,9 +31,13 @@ class ExportViewModel(app: Application) : AndroidViewModel(app) {
     var format: ExportFormat = ExportFormat.XLSX
 
     fun export() {
-        viewModelScope.launch(Dispatchers.IO) {
+        if (_uiState.value is UiState.Loading) return
+        val capturedFromMs = fromMs
+        val capturedToMs = toMs
+        val capturedFormat = format
+        viewModelScope.launch {
             _uiState.value = UiState.Loading
-            _uiState.value = when (val result = repository.export(format, fromMs, toMs)) {
+            _uiState.value = when (val result = repository.export(capturedFormat, capturedFromMs, capturedToMs)) {
                 is ExportRepository.ExportResult.Success -> UiState.Success(result.uri)
                 is ExportRepository.ExportResult.Failure -> UiState.Error(result.message)
             }
