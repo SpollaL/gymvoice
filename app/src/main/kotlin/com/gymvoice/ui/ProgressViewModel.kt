@@ -60,20 +60,30 @@ class ProgressViewModel(app: Application) : AndroidViewModel(app) {
     private val _cloneEvent = MutableSharedFlow<WorkoutLog>(extraBufferCapacity = 1)
     val cloneEvent: SharedFlow<WorkoutLog> = _cloneEvent.asSharedFlow()
 
-    fun cloneLog(log: WorkoutLog) = viewModelScope.launch {
-        val newId = dao.insert(
-            log.copy(id = 0, sessionId = UUID.randomUUID().toString(), timestamp = System.currentTimeMillis()),
-        )
-        _cloneEvent.emit(log.copy(id = newId))
-    }
+    fun cloneLog(log: WorkoutLog) =
+        viewModelScope.launch {
+            val newId =
+                dao.insert(
+                    log.copy(id = 0, sessionId = UUID.randomUUID().toString(), timestamp = System.currentTimeMillis()),
+                )
+            _cloneEvent.emit(log.copy(id = newId))
+        }
 
     fun deleteLog(log: WorkoutLog) = viewModelScope.launch { dao.delete(log) }
 
-    fun selectExercise(name: String) { _selectedExercise.value = name }
+    fun selectExercise(name: String) {
+        _selectedExercise.value = name
+    }
 
-    fun setMode(mode: ProgressMode) { _mode.value = mode }
+    fun setMode(mode: ProgressMode) {
+        _mode.value = mode
+    }
 
-    private fun computeProgressData(logs: List<WorkoutLog>, mode: ProgressMode): ProgressData {
+    @Suppress("LongMethod", "CyclomaticComplexMethod")
+    private fun computeProgressData(
+        logs: List<WorkoutLog>,
+        mode: ProgressMode,
+    ): ProgressData {
         val zone = ZoneId.systemDefault()
         val hasWeight = logs.any { (it.weight ?: 0f) > 0f }
 

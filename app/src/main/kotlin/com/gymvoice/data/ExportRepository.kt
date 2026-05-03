@@ -25,26 +25,34 @@ class ExportRepository(
 ) {
     sealed class ExportResult {
         data class Success(val uri: Uri) : ExportResult()
+
         data class Failure(val message: String) : ExportResult()
     }
 
-    suspend fun export(format: ExportFormat, fromMs: Long, toMs: Long): ExportResult =
+    suspend fun export(
+        format: ExportFormat,
+        fromMs: Long,
+        toMs: Long,
+    ): ExportResult =
         withContext(Dispatchers.IO) {
             try {
                 val logs = dao.getLogsInRange(fromMs, toMs)
                 if (logs.isEmpty()) return@withContext ExportResult.Failure("No logs in selected range")
-                val (bytes, ext, mime) = when (format) {
-                    ExportFormat.XLSX -> Triple(
-                        buildXlsx(logs),
-                        "xlsx",
-                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                    )
-                    ExportFormat.PDF -> Triple(
-                        buildPdf(logs, fromMs, toMs),
-                        "pdf",
-                        "application/pdf",
-                    )
-                }
+                val (bytes, ext, mime) =
+                    when (format) {
+                        ExportFormat.XLSX ->
+                            Triple(
+                                buildXlsx(logs),
+                                "xlsx",
+                                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                            )
+                        ExportFormat.PDF ->
+                            Triple(
+                                buildPdf(logs, fromMs, toMs),
+                                "pdf",
+                                "application/pdf",
+                            )
+                    }
                 val uri = saveToDownloads(bytes, fileName(ext, fromMs, toMs), mime)
                 ExportResult.Success(uri)
             } catch (e: CancellationException) {
@@ -54,16 +62,22 @@ class ExportRepository(
             }
         }
 
-    private fun saveToDownloads(bytes: ByteArray, filename: String, mimeType: String): Uri {
+    private fun saveToDownloads(
+        bytes: ByteArray,
+        filename: String,
+        mimeType: String,
+    ): Uri {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            val values = ContentValues().apply {
-                put(MediaStore.Downloads.DISPLAY_NAME, filename)
-                put(MediaStore.Downloads.MIME_TYPE, mimeType)
-                put(MediaStore.Downloads.IS_PENDING, 1)
-            }
+            val values =
+                ContentValues().apply {
+                    put(MediaStore.Downloads.DISPLAY_NAME, filename)
+                    put(MediaStore.Downloads.MIME_TYPE, mimeType)
+                    put(MediaStore.Downloads.IS_PENDING, 1)
+                }
             val resolver = context.contentResolver
-            val uri = resolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, values)
-                ?: error("MediaStore insert returned null")
+            val uri =
+                resolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, values)
+                    ?: error("MediaStore insert returned null")
             (resolver.openOutputStream(uri) ?: error("openOutputStream returned null for $uri"))
                 .use { it.write(bytes) }
             values.clear()
@@ -84,10 +98,17 @@ class ExportRepository(
     }
 
     companion object {
-        fun fileName(ext: String, fromMs: Long, toMs: Long): String {
+        fun fileName(
+            ext: String,
+            fromMs: Long,
+            toMs: Long,
+        ): String {
             val fmt = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            return if (fromMs == 0L && toMs == Long.MAX_VALUE) "gymvoice_log_all_time.$ext"
-            else "gymvoice_log_${fmt.format(Date(fromMs))}_to_${fmt.format(Date(toMs))}.$ext"
+            return if (fromMs == 0L && toMs == Long.MAX_VALUE) {
+                "gymvoice_log_all_time.$ext"
+            } else {
+                "gymvoice_log_${fmt.format(Date(fromMs))}_to_${fmt.format(Date(toMs))}.$ext"
+            }
         }
 
         fun buildXlsx(logs: List<WorkoutLog>): ByteArray {
@@ -96,11 +117,12 @@ class ExportRepository(
                 val sheet = workbook.createSheet("Training Log")
 
                 val boldFont = workbook.createFont().apply { bold = true }
-                val headerStyle = workbook.createCellStyle().apply {
-                    setFont(boldFont)
-                    fillForegroundColor = IndexedColors.GREY_25_PERCENT.index
-                    fillPattern = FillPatternType.SOLID_FOREGROUND
-                }
+                val headerStyle =
+                    workbook.createCellStyle().apply {
+                        setFont(boldFont)
+                        fillForegroundColor = IndexedColors.GREY_25_PERCENT.index
+                        fillPattern = FillPatternType.SOLID_FOREGROUND
+                    }
 
                 val headers = listOf("Date", "Exercise", "Set", "Reps", "Weight", "Unit", "Rest (s)")
                 val headerRow = sheet.createRow(0)
@@ -129,102 +151,128 @@ class ExportRepository(
             return out.toByteArray()
         }
 
-        fun buildPdf(logs: List<WorkoutLog>, fromMs: Long, toMs: Long): ByteArray {
+        fun buildPdf(
+            logs: List<WorkoutLog>,
+            fromMs: Long,
+            toMs: Long,
+        ): ByteArray {
             val document = android.graphics.pdf.PdfDocument()
             val out = ByteArrayOutputStream()
             try {
-            val pageWidth = 595
-            val pageHeight = 842
-            val margin = 40f
-            val lineHeight = 16f
-            val bottomLimit = pageHeight - 40f
-
-            val titlePaint = android.graphics.Paint().apply {
-                color = android.graphics.Color.BLACK; textSize = 14f
-                isFakeBoldText = true; isAntiAlias = true
-            }
-            val labelPaint = android.graphics.Paint().apply {
-                color = android.graphics.Color.BLACK; textSize = 12f
-                isFakeBoldText = true; isAntiAlias = true
-            }
-            val bodyPaint = android.graphics.Paint().apply {
-                color = android.graphics.Color.BLACK; textSize = 11f; isAntiAlias = true
-            }
-            val columnPaint = android.graphics.Paint().apply {
-                color = android.graphics.Color.DKGRAY; textSize = 10f; isAntiAlias = true
-            }
-            val footerPaint = android.graphics.Paint().apply {
-                color = android.graphics.Color.DKGRAY; textSize = 9f; isAntiAlias = true
-            }
-
-            var pageNum = 1
-            var page = document.startPage(
-                android.graphics.pdf.PdfDocument.PageInfo.Builder(pageWidth, pageHeight, pageNum).create()
-            )
-            var canvas = page.canvas
-            var y = margin
-
-            fun finishPage() {
-                canvas.drawText(
-                    "$pageNum",
-                    (pageWidth / 2).toFloat(),
-                    bottomLimit + 20f,
-                    footerPaint,
-                )
-                document.finishPage(page)
-            }
-
-            fun newPage() {
-                finishPage()
-                pageNum++
-                page = document.startPage(
-                    android.graphics.pdf.PdfDocument.PageInfo.Builder(pageWidth, pageHeight, pageNum).create()
-                )
-                canvas = page.canvas
-                y = margin
-            }
-
-            fun writeLine(text: String, x: Float, paint: android.graphics.Paint) {
-                if (y + lineHeight > bottomLimit) newPage()
-                canvas.drawText(text, x, y, paint)
-                y += lineHeight
-            }
-
-            val fmt = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            val title = if (fromMs == 0L && toMs == Long.MAX_VALUE) {
-                "GymVoice Training Log — All Time"
-            } else {
-                "GymVoice Training Log — ${fmt.format(Date(fromMs))} to ${fmt.format(Date(toMs))}"
-            }
-
-            writeLine(title, margin, titlePaint)
-            y += lineHeight / 2
-
-            for ((date, byExercise) in groupByDateAndExercise(logs)) {
-                y += lineHeight / 2
-                writeLine(date, margin, labelPaint)
-                for ((exercise, sets) in byExercise) {
-                    writeLine("  $exercise", margin + 8f, bodyPaint)
-                    writeLine("  Set  Reps  Weight  Unit  Rest(s)", margin + 16f, columnPaint)
-                    for (log in sets) {
-                        writeLine(
-                            "  ${log.setNumber ?: "—"}     ${log.reps ?: "—"}     " +
-                                "${log.weight ?: "—"}  ${log.unit}     ${log.restSeconds ?: "—"}",
-                            margin + 16f,
-                            bodyPaint,
-                        )
+                val state = PdfState(document)
+                val fmt = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                val title =
+                    if (fromMs == 0L && toMs == Long.MAX_VALUE) {
+                        "GymVoice Training Log — All Time"
+                    } else {
+                        "GymVoice Training Log — ${fmt.format(Date(fromMs))} to ${fmt.format(Date(toMs))}"
                     }
-                    y += 4f
-                }
-                y += 8f
-            }
-
-            finishPage()
-            document.writeTo(out)
+                state.writeLine(title, state.margin, state.titlePaint)
+                state.y += state.lineHeight / 2
+                renderGroups(state, groupByDateAndExercise(logs))
+                state.finishPage()
+                document.writeTo(out)
             } finally {
                 document.close()
             }
             return out.toByteArray()
+        }
+
+        private fun renderGroups(
+            state: PdfState,
+            groups: Map<String, Map<String, List<WorkoutLog>>>,
+        ) {
+            for ((date, byExercise) in groups) {
+                state.y += state.lineHeight / 2
+                state.writeLine(date, state.margin, state.labelPaint)
+                for ((exercise, sets) in byExercise) {
+                    state.writeLine("  $exercise", state.margin + 8f, state.bodyPaint)
+                    state.writeLine("  Set  Reps  Weight  Unit  Rest(s)", state.margin + 16f, state.columnPaint)
+                    for (log in sets) {
+                        state.writeLine(formatLogRow(log), state.margin + 16f, state.bodyPaint)
+                    }
+                    state.y += 4f
+                }
+                state.y += 8f
+            }
+        }
+
+        private fun formatLogRow(log: WorkoutLog): String =
+            "  ${log.setNumber ?: "—"}     ${log.reps ?: "—"}     " +
+                "${log.weight ?: "—"}  ${log.unit}     ${log.restSeconds ?: "—"}"
+
+        private class PdfState(private val doc: android.graphics.pdf.PdfDocument) {
+            val margin = 40f
+            val lineHeight = 16f
+            private val pageWidth = 595
+            private val pageHeight = 842
+            private val bottomLimit = pageHeight - 40f
+            private var pageNum = 1
+            private var page =
+                doc.startPage(
+                    android.graphics.pdf.PdfDocument.PageInfo.Builder(pageWidth, pageHeight, pageNum).create(),
+                )
+            private var canvas = page.canvas
+            var y = margin
+
+            val titlePaint =
+                android.graphics.Paint().apply {
+                    color = android.graphics.Color.BLACK
+                    textSize = 14f
+                    isFakeBoldText = true
+                    isAntiAlias = true
+                }
+            val labelPaint =
+                android.graphics.Paint().apply {
+                    color = android.graphics.Color.BLACK
+                    textSize = 12f
+                    isFakeBoldText = true
+                    isAntiAlias = true
+                }
+            val bodyPaint =
+                android.graphics.Paint().apply {
+                    color = android.graphics.Color.BLACK
+                    textSize = 11f
+                    isAntiAlias = true
+                }
+            val columnPaint =
+                android.graphics.Paint().apply {
+                    color = android.graphics.Color.DKGRAY
+                    textSize = 10f
+                    isAntiAlias = true
+                }
+            private val footerPaint =
+                android.graphics.Paint().apply {
+                    color = android.graphics.Color.DKGRAY
+                    textSize = 9f
+                    isAntiAlias = true
+                }
+
+            fun finishPage() {
+                canvas.drawText("$pageNum", (pageWidth / 2).toFloat(), bottomLimit + 20f, footerPaint)
+                doc.finishPage(page)
+            }
+
+            private fun newPage() {
+                finishPage()
+                pageNum++
+                page =
+                    doc.startPage(
+                        android.graphics.pdf.PdfDocument.PageInfo.Builder(pageWidth, pageHeight, pageNum).create(),
+                    )
+                canvas = page.canvas
+                y = margin
+            }
+
+            fun writeLine(
+                text: String,
+                x: Float,
+                paint: android.graphics.Paint,
+            ) {
+                if (y + lineHeight > bottomLimit) newPage()
+                canvas.drawText(text, x, y, paint)
+                y += lineHeight
+            }
         }
 
         fun groupByDateAndExercise(logs: List<WorkoutLog>): Map<String, Map<String, List<WorkoutLog>>> {
