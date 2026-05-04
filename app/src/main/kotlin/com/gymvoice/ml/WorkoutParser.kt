@@ -8,6 +8,7 @@ data class ParsedWorkout(
     val reps: Int?,
     val weight: Float?,
     val unit: String,
+    val restSeconds: Int? = null,
 )
 
 object WorkoutParser {
@@ -15,6 +16,11 @@ object WorkoutParser {
     private val WEIGHT_KEYWORD = Regex("""kg|lbs|lb|kilos?|pounds?""", RegexOption.IGNORE_CASE)
     private val REPS_REGEX = Regex("""(\d+)\s*(reps?|repetitions?)""", RegexOption.IGNORE_CASE)
     private val SET_REGEX = Regex("""(\d+)\s*sets?""", RegexOption.IGNORE_CASE)
+    private val REST_REGEX =
+        Regex(
+            """(?:rest|break)\s+(\d+)\s*(min(?:utes?)?|sec(?:onds?)?)|(\d+)\s*(min(?:utes?)?|sec(?:onds?)?)\s+(?:rest|break)""",
+            RegexOption.IGNORE_CASE,
+        )
     private val STOP_WORDS = setOf("set", "sets", "rep", "reps", "kg", "lbs", "lb", "kilo", "kilos", "pound", "pounds")
 
     private val KNOWN_EXERCISES =
@@ -115,6 +121,13 @@ object WorkoutParser {
         return if (levenshtein(lower, best) <= threshold) best else lower
     }
 
+    private fun parseRestSeconds(text: String): Int? {
+        val m = REST_REGEX.find(text) ?: return null
+        val value = m.groupValues[1].toIntOrNull() ?: m.groupValues[3].toIntOrNull() ?: return null
+        val unit = m.groupValues[2].ifBlank { m.groupValues[4] }
+        return if (unit.startsWith("min", ignoreCase = true)) value * 60 else value
+    }
+
     fun parse(
         llmOutput: String,
         rawText: String,
@@ -154,12 +167,20 @@ object WorkoutParser {
                     ?.toFloat()
                     ?.takeIf { hasWeightWord }
 
+            val restFromJson =
+                listOf("rest_seconds", "rest", "rest_sec")
+                    .firstNotNullOfOrNull { key -> obj.optInt(key).takeIf { it > 0 } }
+                    ?: listOf("rest_minutes", "rest_min")
+                        .firstNotNullOfOrNull { key -> obj.optInt(key).takeIf { it > 0 } }
+                        ?.let { it * 60 }
+
             ParsedWorkout(
                 exercise = closestExercise(cleanExerciseName(exercise, rawText)),
                 set = set,
                 reps = reps,
                 weight = weight,
                 unit = normalizeUnit(obj.optString("unit", "kg")),
+                restSeconds = restFromJson ?: parseRestSeconds(rawText),
             )
         }.getOrNull()
 
@@ -184,6 +205,7 @@ object WorkoutParser {
             unit =
                 weightMatch?.groupValues?.get(2)?.lowercase()
                     ?.replace(Regex("^lb$"), "lbs") ?: "kg",
+            restSeconds = parseRestSeconds(text),
         )
     }
 

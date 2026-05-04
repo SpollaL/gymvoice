@@ -121,6 +121,12 @@ class GemmaInference {
                 Regex("\\bshould\\s+her\\s+press\\b", RegexOption.IGNORE_CASE) to "shoulder press",
                 Regex("\\bsplit\\s+squat\\b", RegexOption.IGNORE_CASE) to "split squat",
                 Regex("\\bjust\\s+press\\b", RegexOption.IGNORE_CASE) to "chest press",
+                // rest duration mishearings: "two minutes" → "to minus/minute"
+                Regex("\\bto\\s+minus(?:es)?(?:\\s+(?:rest|break))?\\b", RegexOption.IGNORE_CASE) to "2 minutes rest",
+                Regex("\\bto\\s+minutes?(?:\\s+(?:rest|break))?\\b", RegexOption.IGNORE_CASE) to "2 minutes rest",
+                Regex("\\b(\\d+)\\s+minus(?:es)?\\b", RegexOption.IGNORE_CASE) to "$1 minutes",
+                Regex("\\bfor\\s+minutes?(?:\\s+(?:rest|break))?\\b", RegexOption.IGNORE_CASE) to "4 minutes rest",
+                Regex("\\b(\\d+)\\s+seconds?\\s+res[dt]\\b", RegexOption.IGNORE_CASE) to "$1 seconds rest",
             )
 
         fun normalize(
@@ -131,12 +137,12 @@ class GemmaInference {
                 userCorrections.entries.fold(text) { acc, (fragment, fix) ->
                     acc.replace(Regex("\\b${Regex.escape(fragment)}\\b", RegexOption.IGNORE_CASE), fix)
                 }
-            val withExercises =
-                EXERCISE_CORRECTIONS.fold(withUserFixes) { acc, (regex, fix) ->
-                    regex.replace(acc, fix)
+            val withNumbers =
+                NUMBER_WORDS.entries.fold(withUserFixes) { acc, (word, digit) ->
+                    acc.replace(Regex("\\b$word\\b", RegexOption.IGNORE_CASE), digit)
                 }
-            return NUMBER_WORDS.entries.fold(withExercises) { acc, (word, digit) ->
-                acc.replace(Regex("\\b$word\\b", RegexOption.IGNORE_CASE), digit)
+            return EXERCISE_CORRECTIONS.fold(withNumbers) { acc, (regex, fix) ->
+                regex.replace(acc, fix)
             }
         }
     }

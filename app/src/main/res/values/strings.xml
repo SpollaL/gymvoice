@@ -9,6 +9,7 @@
     <string name="today_logs">TODAY</string>
     <string name="no_workouts">no workouts logged</string>
     <string name="log_manually">+ manual entry</string>
+    <string name="voice_format_hint">e.g. "bench press, 3 sets, 10 reps, 60 kg, 2 minutes rest"</string>
     <string name="add_log">+ add</string>
     <string name="nav_progress">Progress</string>
     <string name="export_from_label">From</string>

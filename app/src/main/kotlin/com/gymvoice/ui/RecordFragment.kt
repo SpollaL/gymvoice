@@ -146,6 +146,7 @@ class RecordFragment : Fragment() {
                         reps = dialogBinding.etReps.text.toString().toIntOrNull(),
                         weight = dialogBinding.etWeight.text.toString().toFloatOrNull(),
                         unit = unit,
+                        restSeconds = dialogBinding.etRest.text.toString().toIntOrNull(),
                     )
                 }
             }
@@ -181,6 +182,7 @@ class RecordFragment : Fragment() {
         dialogBinding.etSet.setText(log.setNumber?.toString() ?: "")
         dialogBinding.etReps.setText(log.reps?.toString() ?: "")
         dialogBinding.etWeight.setText(log.weight?.toString() ?: "")
+        dialogBinding.etRest.setText(log.restSeconds?.toString() ?: "")
         if (log.unit == "lbs") dialogBinding.rbLbs.isChecked = true else dialogBinding.rbKg.isChecked = true
 
         AlertDialog.Builder(requireContext())
@@ -199,6 +201,7 @@ class RecordFragment : Fragment() {
                         reps = dialogBinding.etReps.text.toString().toIntOrNull(),
                         weight = dialogBinding.etWeight.text.toString().toFloatOrNull(),
                         unit = unit,
+                        restSeconds = dialogBinding.etRest.text.toString().toIntOrNull(),
                     ),
                 )
             }

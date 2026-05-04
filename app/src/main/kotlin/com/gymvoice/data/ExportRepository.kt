@@ -145,7 +145,9 @@ class ExportRepository(
                     row.createCell(6).setCellValue((log.restSeconds ?: 0).toDouble())
                 }
 
-                headers.indices.forEach { sheet.autoSizeColumn(it) }
+                // autoSizeColumn uses java.awt (not available on Android) — set widths manually
+                val colWidths = intArrayOf(5000, 6000, 2000, 2000, 3000, 2000, 3000)
+                colWidths.forEachIndexed { i, w -> sheet.setColumnWidth(i, w) }
                 workbook.write(out)
             }
             return out.toByteArray()

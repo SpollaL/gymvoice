@@ -55,23 +55,35 @@ class ProgressLogAdapter : ListAdapter<WorkoutLog, ProgressLogAdapter.ViewHolder
                 when (mode) {
                     ProgressMode.WEIGHT -> log.weight
                     ProgressMode.REPS -> log.reps?.toFloat()
-                    ProgressMode.VOLUME -> null  // PR badge not shown for volume mode
+                    ProgressMode.VOLUME -> null // PR badge not shown for volume mode
                 }
             val pr = prValue
             binding.tvPr.isVisible = pr != null && value != null && abs(value - pr) < 0.01f
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(ItemProgressLogBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ) = ViewHolder(ItemProgressLogBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(getItem(position))
+    override fun onBindViewHolder(
+        holder: ViewHolder,
+        position: Int,
+    ) = holder.bind(getItem(position))
 
     companion object {
         private val DIFF =
             object : DiffUtil.ItemCallback<WorkoutLog>() {
-                override fun areItemsTheSame(a: WorkoutLog, b: WorkoutLog) = a.id == b.id
-                override fun areContentsTheSame(a: WorkoutLog, b: WorkoutLog) = a == b
+                override fun areItemsTheSame(
+                    a: WorkoutLog,
+                    b: WorkoutLog,
+                ) = a.id == b.id
+
+                override fun areContentsTheSame(
+                    a: WorkoutLog,
+                    b: WorkoutLog,
+                ) = a == b
             }
     }
 }
