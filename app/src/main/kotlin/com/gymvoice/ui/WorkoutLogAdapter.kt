@@ -19,7 +19,17 @@ class WorkoutLogAdapter(
                 buildString {
                     log.setNumber?.let { append("Set $it  ") }
                     log.reps?.let { append("$it reps  ") }
-                    log.weight?.let { append("$it ${log.unit}") }
+                    log.weight?.let { append("$it ${log.unit}  ") }
+                    log.restSeconds?.let { s ->
+                        append("rest ")
+                        if (s >= 60) {
+                            val m = s / 60
+                            val rem = s % 60
+                            if (rem > 0) append("${m}m${rem}s") else append("${m}m")
+                        } else {
+                            append("${s}s")
+                        }
+                    }
                 }.trim()
             binding.root.setOnClickListener { onEdit(log) }
             binding.root.setOnLongClickListener(null)

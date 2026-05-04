@@ -20,6 +20,8 @@ import kotlinx.coroutines.launch
 import java.util.Calendar
 import java.util.UUID
 
+private const val MAX_INFERRED_REST = 1800
+
 class MainViewModel(app: Application) : AndroidViewModel(app) {
     private val dao = AppDatabase.getInstance(app).workoutLogDao()
     private val correctionDao = AppDatabase.getInstance(app).userCorrectionDao()
@@ -77,6 +79,18 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
                     WorkoutParser.parse(llmOutput, text)
                         ?: error("Could not parse: \"$text\"")
 
+                val now = System.currentTimeMillis()
+                val restSeconds =
+                    parsed.restSeconds ?: run {
+                        val prev = dao.getLatestTimestamp()
+                        if (prev != null) {
+                            val gapSeconds = ((now - prev) / 1000).toInt()
+                            if (gapSeconds in 1..MAX_INFERRED_REST) gapSeconds else null
+                        } else {
+                            null
+                        }
+                    }
+
                 val log =
                     WorkoutLog(
                         sessionId = UUID.randomUUID().toString(),
@@ -85,6 +99,8 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
                         reps = parsed.reps,
                         weight = parsed.weight,
                         unit = parsed.unit,
+                        restSeconds = restSeconds,
+                        timestamp = now,
                     )
                 val logId = dao.insert(log)
                 _lastLogged.emit(log.copy(id = logId))
@@ -103,6 +119,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         reps: Int?,
         weight: Float?,
         unit: String,
+        restSeconds: Int? = null,
     ) = viewModelScope.launch {
         if (exercise.isBlank()) return@launch
         dao.insert(
@@ -113,6 +130,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
                 reps = reps,
                 weight = weight,
                 unit = unit,
+                restSeconds = restSeconds,
             ),
         )
     }
@@ -128,12 +146,14 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         userCorrections = userCorrections + (key to value)
     }
 
-    fun cloneLog(log: WorkoutLog) = viewModelScope.launch {
-        val newId = dao.insert(
-            log.copy(id = 0, sessionId = UUID.randomUUID().toString(), timestamp = System.currentTimeMillis()),
-        )
-        _cloneEvent.emit(log.copy(id = newId))
-    }
+    fun cloneLog(log: WorkoutLog) =
+        viewModelScope.launch {
+            val newId =
+                dao.insert(
+                    log.copy(id = 0, sessionId = UUID.randomUUID().toString(), timestamp = System.currentTimeMillis()),
+                )
+            _cloneEvent.emit(log.copy(id = newId))
+        }
 
     fun updateLog(log: WorkoutLog) = viewModelScope.launch { dao.update(log) }
 
