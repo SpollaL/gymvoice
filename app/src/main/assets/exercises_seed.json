@@ -1,1003 +1,11 @@
 [
   {
-    "sourceId": "Barbell_Ab_Rollout",
-    "name": "Barbell Ab Rollout",
-    "muscleGroup": "Core",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Barbell_Ab_Rollout.jpg"
-  },
-  {
-    "sourceId": "Barbell_Deadlift",
-    "name": "Barbell Deadlift",
-    "muscleGroup": "Back",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Barbell_Deadlift.jpg"
-  },
-  {
-    "sourceId": "Barbell_Full_Squat",
-    "name": "Barbell Full Squat",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Barbell_Full_Squat.jpg"
-  },
-  {
-    "sourceId": "Barbell_Glute_Bridge",
-    "name": "Barbell Glute Bridge",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Barbell_Glute_Bridge.jpg"
-  },
-  {
-    "sourceId": "Barbell_Guillotine_Bench_Press",
-    "name": "Barbell Guillotine Bench Press",
-    "muscleGroup": "Chest",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Barbell_Guillotine_Bench_Press.jpg"
-  },
-  {
-    "sourceId": "Barbell_Hack_Squat",
-    "name": "Barbell Hack Squat",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Barbell_Hack_Squat.jpg"
-  },
-  {
-    "sourceId": "Barbell_Hip_Thrust",
-    "name": "Barbell Hip Thrust",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Barbell_Hip_Thrust.jpg"
-  },
-  {
-    "sourceId": "Barbell_Lunge",
-    "name": "Barbell Lunge",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Barbell_Lunge.jpg"
-  },
-  {
-    "sourceId": "Barbell_Rollout_from_Bench",
-    "name": "Barbell Rollout from Bench",
-    "muscleGroup": "Core",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Barbell_Rollout_from_Bench.jpg"
-  },
-  {
-    "sourceId": "Barbell_Shoulder_Press",
-    "name": "Barbell Shoulder Press",
+    "sourceId": "Anti-Gravity_Press",
+    "name": "Anti-Gravity Press",
     "muscleGroup": "Shoulders",
     "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Barbell_Shoulder_Press.jpg"
-  },
-  {
-    "sourceId": "Barbell_Step_Ups",
-    "name": "Barbell Step Ups",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Barbell_Step_Ups.jpg"
-  },
-  {
-    "sourceId": "Bench_Press_-_Powerlifting",
-    "name": "Bench Press - Powerlifting",
-    "muscleGroup": "Arms",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Bench_Press_-_Powerlifting.jpg"
-  },
-  {
-    "sourceId": "Bent_Over_Two-Arm_Long_Bar_Row",
-    "name": "Bent Over Two-Arm Long Bar Row",
-    "muscleGroup": "Back",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Bent_Over_Two-Arm_Long_Bar_Row.jpg"
-  },
-  {
-    "sourceId": "Bent-Arm_Barbell_Pullover",
-    "name": "Bent-Arm Barbell Pullover",
-    "muscleGroup": "Back",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Bent-Arm_Barbell_Pullover.jpg"
-  },
-  {
-    "sourceId": "Board_Press",
-    "name": "Board Press",
-    "muscleGroup": "Arms",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Board_Press.jpg"
-  },
-  {
-    "sourceId": "Box_Squat",
-    "name": "Box Squat",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Box_Squat.jpg"
-  },
-  {
-    "sourceId": "Clean",
-    "name": "Clean",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Clean.jpg"
-  },
-  {
-    "sourceId": "Clean_Pull",
-    "name": "Clean Pull",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Clean_Pull.jpg"
-  },
-  {
-    "sourceId": "Clean_and_Press",
-    "name": "Clean and Press",
-    "muscleGroup": "Shoulders",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Clean_and_Press.jpg"
-  },
-  {
-    "sourceId": "Clean_from_Blocks",
-    "name": "Clean from Blocks",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Clean_from_Blocks.jpg"
-  },
-  {
-    "sourceId": "Decline_Close-Grip_Bench_To_Skull_Crusher",
-    "name": "Decline Close-Grip Bench To Skull Crusher",
-    "muscleGroup": "Arms",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Decline_Close-Grip_Bench_To_Skull_Crusher.jpg"
-  },
-  {
-    "sourceId": "Deficit_Deadlift",
-    "name": "Deficit Deadlift",
-    "muscleGroup": "Back",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Deficit_Deadlift.jpg"
-  },
-  {
-    "sourceId": "Drag_Curl",
-    "name": "Drag Curl",
-    "muscleGroup": "Arms",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Drag_Curl.jpg"
-  },
-  {
-    "sourceId": "Elevated_Back_Lunge",
-    "name": "Elevated Back Lunge",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Elevated_Back_Lunge.jpg"
-  },
-  {
-    "sourceId": "Floor_Press",
-    "name": "Floor Press",
-    "muscleGroup": "Arms",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Floor_Press.jpg"
-  },
-  {
-    "sourceId": "Floor_Press_with_Chains",
-    "name": "Floor Press with Chains",
-    "muscleGroup": "Arms",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Floor_Press_with_Chains.jpg"
-  },
-  {
-    "sourceId": "Frankenstein_Squat",
-    "name": "Frankenstein Squat",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Frankenstein_Squat.jpg"
-  },
-  {
-    "sourceId": "Front_Squat_Clean_Grip",
-    "name": "Front Squat (Clean Grip)",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Front_Squat_Clean_Grip.jpg"
-  },
-  {
-    "sourceId": "Good_Morning",
-    "name": "Good Morning",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Good_Morning.jpg"
-  },
-  {
-    "sourceId": "Good_Morning_off_Pins",
-    "name": "Good Morning off Pins",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Good_Morning_off_Pins.jpg"
-  },
-  {
-    "sourceId": "Hang_Clean",
-    "name": "Hang Clean",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Hang_Clean.jpg"
-  },
-  {
-    "sourceId": "Hang_Clean_-_Below_the_Knees",
-    "name": "Hang Clean - Below the Knees",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Hang_Clean_-_Below_the_Knees.jpg"
-  },
-  {
-    "sourceId": "Hanging_Bar_Good_Morning",
-    "name": "Hanging Bar Good Morning",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Hanging_Bar_Good_Morning.jpg"
-  },
-  {
-    "sourceId": "Heaving_Snatch_Balance",
-    "name": "Heaving Snatch Balance",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Heaving_Snatch_Balance.jpg"
-  },
-  {
-    "sourceId": "Incline_Barbell_Triceps_Extension",
-    "name": "Incline Barbell Triceps Extension",
-    "muscleGroup": "Arms",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Incline_Barbell_Triceps_Extension.jpg"
-  },
-  {
-    "sourceId": "Jefferson_Squats",
-    "name": "Jefferson Squats",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Jefferson_Squats.jpg"
-  },
-  {
-    "sourceId": "Jerk_Balance",
-    "name": "Jerk Balance",
-    "muscleGroup": "Shoulders",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Jerk_Balance.jpg"
-  },
-  {
-    "sourceId": "Jerk_Dip_Squat",
-    "name": "Jerk Dip Squat",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Jerk_Dip_Squat.jpg"
-  },
-  {
-    "sourceId": "Kneeling_Squat",
-    "name": "Kneeling Squat",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Kneeling_Squat.jpg"
-  },
-  {
-    "sourceId": "Landmine_Linear_Jammer",
-    "name": "Landmine Linear Jammer",
-    "muscleGroup": "Shoulders",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Landmine_Linear_Jammer.jpg"
-  },
-  {
-    "sourceId": "Lying_Close-Grip_Barbell_Triceps_Extension_Behind_The_Head",
-    "name": "Lying Close-Grip Barbell Triceps Extension Behind The Head",
-    "muscleGroup": "Arms",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Lying_Close-Grip_Barbell_Triceps_Extension_Behind_The_Head.jpg"
-  },
-  {
-    "sourceId": "Lying_High_Bench_Barbell_Curl",
-    "name": "Lying High Bench Barbell Curl",
-    "muscleGroup": "Arms",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Lying_High_Bench_Barbell_Curl.jpg"
-  },
-  {
-    "sourceId": "Muscle_Snatch",
-    "name": "Muscle Snatch",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Muscle_Snatch.jpg"
-  },
-  {
-    "sourceId": "Narrow_Stance_Squats",
-    "name": "Narrow Stance Squats",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Narrow_Stance_Squats.jpg"
-  },
-  {
-    "sourceId": "Neck_Press",
-    "name": "Neck Press",
-    "muscleGroup": "Chest",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Neck_Press.jpg"
-  },
-  {
-    "sourceId": "Olympic_Squat",
-    "name": "Olympic Squat",
-    "muscleGroup": "Legs",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Olympic_Squat.jpg"
-  },
-  {
-    "sourceId": "One_Arm_Floor_Press",
-    "name": "One Arm Floor Press",
-    "muscleGroup": "Arms",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "One_Arm_Floor_Press.jpg"
-  },
-  {
-    "sourceId": "Pin_Presses",
-    "name": "Pin Presses",
-    "muscleGroup": "Arms",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Pin_Presses.jpg"
-  },
-  {
-    "sourceId": "Push_Press_-_Behind_the_Neck",
-    "name": "Push Press - Behind the Neck",
-    "muscleGroup": "Shoulders",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Push_Press_-_Behind_the_Neck.jpg"
-  },
-  {
-    "sourceId": "Rack_Delivery",
-    "name": "Rack Delivery",
-    "muscleGroup": "Shoulders",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Rack_Delivery.jpg"
-  },
-  {
-    "sourceId": "Rack_Pull_with_Bands",
-    "name": "Rack Pull with Bands",
-    "muscleGroup": "Back",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Rack_Pull_with_Bands.jpg"
-  },
-  {
-    "sourceId": "Rack_Pulls",
-    "name": "Rack Pulls",
-    "muscleGroup": "Back",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Rack_Pulls.jpg"
-  },
-  {
-    "sourceId": "Reverse_Band_Bench_Press",
-    "name": "Reverse Band Bench Press",
-    "muscleGroup": "Arms",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Reverse_Band_Bench_Press.jpg"
-  },
-  {
-    "sourceId": "Reverse_Grip_Bent-Over_Rows",
-    "name": "Reverse Grip Bent-Over Rows",
-    "muscleGroup": "Back",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Reverse_Grip_Bent-Over_Rows.jpg"
-  },
-  {
-    "sourceId": "Reverse_Triceps_Bench_Press",
-    "name": "Reverse Triceps Bench Press",
-    "muscleGroup": "Arms",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Reverse_Triceps_Bench_Press.jpg"
-  },
-  {
-    "sourceId": "Seated_Barbell_Military_Press",
-    "name": "Seated Barbell Military Press",
-    "muscleGroup": "Shoulders",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Seated_Barbell_Military_Press.jpg"
-  },
-  {
-    "sourceId": "Seated_Close-Grip_Concentration_Barbell_Curl",
-    "name": "Seated Close-Grip Concentration Barbell Curl",
-    "muscleGroup": "Arms",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Seated_Close-Grip_Concentration_Barbell_Curl.jpg"
-  },
-  {
-    "sourceId": "Seated_Good_Mornings",
-    "name": "Seated Good Mornings",
-    "muscleGroup": "Back",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Seated_Good_Mornings.jpg"
-  },
-  {
-    "sourceId": "Single-Arm_Linear_Jammer",
-    "name": "Single-Arm Linear Jammer",
-    "muscleGroup": "Shoulders",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Single-Arm_Linear_Jammer.jpg"
-  },
-  {
-    "sourceId": "Snatch_Shrug",
-    "name": "Snatch Shrug",
-    "muscleGroup": "Back",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Snatch_Shrug.jpg"
-  },
-  {
-    "sourceId": "Standing_Barbell_Press_Behind_Neck",
-    "name": "Standing Barbell Press Behind Neck",
-    "muscleGroup": "Shoulders",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Standing_Barbell_Press_Behind_Neck.jpg"
-  },
-  {
-    "sourceId": "Standing_Front_Barbell_Raise_Over_Head",
-    "name": "Standing Front Barbell Raise Over Head",
-    "muscleGroup": "Shoulders",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Standing_Front_Barbell_Raise_Over_Head.jpg"
-  },
-  {
-    "sourceId": "Wide-Grip_Barbell_Bench_Press",
-    "name": "Wide-Grip Barbell Bench Press",
-    "muscleGroup": "Chest",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Wide-Grip_Barbell_Bench_Press.jpg"
-  },
-  {
-    "sourceId": "Wide-Grip_Decline_Barbell_Bench_Press",
-    "name": "Wide-Grip Decline Barbell Bench Press",
-    "muscleGroup": "Chest",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Wide-Grip_Decline_Barbell_Bench_Press.jpg"
-  },
-  {
-    "sourceId": "Wide-Grip_Decline_Barbell_Pullover",
-    "name": "Wide-Grip Decline Barbell Pullover",
-    "muscleGroup": "Chest",
-    "equipment": "barbell",
-    "level": "intermediate",
-    "imageName": "Wide-Grip_Decline_Barbell_Pullover.jpg"
-  },
-  {
-    "sourceId": "Arnold_Dumbbell_Press",
-    "name": "Arnold Dumbbell Press",
-    "muscleGroup": "Shoulders",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Arnold_Dumbbell_Press.jpg"
-  },
-  {
-    "sourceId": "Around_The_Worlds",
-    "name": "Around The Worlds",
-    "muscleGroup": "Chest",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Around_The_Worlds.jpg"
-  },
-  {
-    "sourceId": "Bent-Arm_Dumbbell_Pullover",
-    "name": "Bent-Arm Dumbbell Pullover",
-    "muscleGroup": "Chest",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Bent-Arm_Dumbbell_Pullover.jpg"
-  },
-  {
-    "sourceId": "Cuban_Press",
-    "name": "Cuban Press",
-    "muscleGroup": "Shoulders",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Cuban_Press.jpg"
-  },
-  {
-    "sourceId": "Dumbbell_Floor_Press",
-    "name": "Dumbbell Floor Press",
-    "muscleGroup": "Arms",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Dumbbell_Floor_Press.jpg"
-  },
-  {
-    "sourceId": "Dumbbell_Lying_One-Arm_Rear_Lateral_Raise",
-    "name": "Dumbbell Lying One-Arm Rear Lateral Raise",
-    "muscleGroup": "Shoulders",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Dumbbell_Lying_One-Arm_Rear_Lateral_Raise.jpg"
-  },
-  {
-    "sourceId": "Dumbbell_Lying_Pronation",
-    "name": "Dumbbell Lying Pronation",
-    "muscleGroup": "Arms",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Dumbbell_Lying_Pronation.jpg"
-  },
-  {
-    "sourceId": "Dumbbell_Lying_Rear_Lateral_Raise",
-    "name": "Dumbbell Lying Rear Lateral Raise",
-    "muscleGroup": "Shoulders",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Dumbbell_Lying_Rear_Lateral_Raise.jpg"
-  },
-  {
-    "sourceId": "Dumbbell_Lying_Supination",
-    "name": "Dumbbell Lying Supination",
-    "muscleGroup": "Arms",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Dumbbell_Lying_Supination.jpg"
-  },
-  {
-    "sourceId": "Dumbbell_One-Arm_Shoulder_Press",
-    "name": "Dumbbell One-Arm Shoulder Press",
-    "muscleGroup": "Shoulders",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Dumbbell_One-Arm_Shoulder_Press.jpg"
-  },
-  {
-    "sourceId": "Dumbbell_One-Arm_Triceps_Extension",
-    "name": "Dumbbell One-Arm Triceps Extension",
-    "muscleGroup": "Arms",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Dumbbell_One-Arm_Triceps_Extension.jpg"
-  },
-  {
-    "sourceId": "Dumbbell_One-Arm_Upright_Row",
-    "name": "Dumbbell One-Arm Upright Row",
-    "muscleGroup": "Shoulders",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Dumbbell_One-Arm_Upright_Row.jpg"
-  },
-  {
-    "sourceId": "Dumbbell_Prone_Incline_Curl",
-    "name": "Dumbbell Prone Incline Curl",
-    "muscleGroup": "Arms",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Dumbbell_Prone_Incline_Curl.jpg"
-  },
-  {
-    "sourceId": "Dumbbell_Shoulder_Press",
-    "name": "Dumbbell Shoulder Press",
-    "muscleGroup": "Shoulders",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Dumbbell_Shoulder_Press.jpg"
-  },
-  {
-    "sourceId": "Iron_Cross",
-    "name": "Iron Cross",
-    "muscleGroup": "Shoulders",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Iron_Cross.jpg"
-  },
-  {
-    "sourceId": "Lying_Dumbbell_Tricep_Extension",
-    "name": "Lying Dumbbell Tricep Extension",
-    "muscleGroup": "Arms",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Lying_Dumbbell_Tricep_Extension.jpg"
-  },
-  {
-    "sourceId": "Lying_One-Arm_Lateral_Raise",
-    "name": "Lying One-Arm Lateral Raise",
-    "muscleGroup": "Shoulders",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Lying_One-Arm_Lateral_Raise.jpg"
-  },
-  {
-    "sourceId": "Lying_Rear_Delt_Raise",
-    "name": "Lying Rear Delt Raise",
-    "muscleGroup": "Shoulders",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Lying_Rear_Delt_Raise.jpg"
-  },
-  {
-    "sourceId": "Middle_Back_Shrug",
-    "name": "Middle Back Shrug",
-    "muscleGroup": "Back",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Middle_Back_Shrug.jpg"
-  },
-  {
-    "sourceId": "Reverse_Flyes_With_External_Rotation",
-    "name": "Reverse Flyes With External Rotation",
-    "muscleGroup": "Shoulders",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Reverse_Flyes_With_External_Rotation.jpg"
-  },
-  {
-    "sourceId": "Seated_Bent-Over_Rear_Delt_Raise",
-    "name": "Seated Bent-Over Rear Delt Raise",
-    "muscleGroup": "Shoulders",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Seated_Bent-Over_Rear_Delt_Raise.jpg"
-  },
-  {
-    "sourceId": "Seated_Bent-Over_Two-Arm_Dumbbell_Triceps_Extension",
-    "name": "Seated Bent-Over Two-Arm Dumbbell Triceps Extension",
-    "muscleGroup": "Arms",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Seated_Bent-Over_Two-Arm_Dumbbell_Triceps_Extension.jpg"
-  },
-  {
-    "sourceId": "Seated_One-Arm_Dumbbell_Palms-Down_Wrist_Curl",
-    "name": "Seated One-Arm Dumbbell Palms-Down Wrist Curl",
-    "muscleGroup": "Arms",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Seated_One-Arm_Dumbbell_Palms-Down_Wrist_Curl.jpg"
-  },
-  {
-    "sourceId": "See-Saw_Press_Alternating_Side_Press",
-    "name": "See-Saw Press (Alternating Side Press)",
-    "muscleGroup": "Shoulders",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "See-Saw_Press_Alternating_Side_Press.jpg"
-  },
-  {
-    "sourceId": "Standing_Dumbbell_Reverse_Curl",
-    "name": "Standing Dumbbell Reverse Curl",
-    "muscleGroup": "Arms",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Standing_Dumbbell_Reverse_Curl.jpg"
-  },
-  {
-    "sourceId": "Standing_Dumbbell_Straight-Arm_Front_Delt_Raise_Above_Head",
-    "name": "Standing Dumbbell Straight-Arm Front Delt Raise Above Head",
-    "muscleGroup": "Shoulders",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Standing_Dumbbell_Straight-Arm_Front_Delt_Raise_Above_Head.jpg"
-  },
-  {
-    "sourceId": "Standing_Inner-Biceps_Curl",
-    "name": "Standing Inner-Biceps Curl",
-    "muscleGroup": "Arms",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Standing_Inner-Biceps_Curl.jpg"
-  },
-  {
-    "sourceId": "Standing_Palms-In_Dumbbell_Press",
-    "name": "Standing Palms-In Dumbbell Press",
-    "muscleGroup": "Shoulders",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Standing_Palms-In_Dumbbell_Press.jpg"
-  },
-  {
-    "sourceId": "Straight-Arm_Dumbbell_Pullover",
-    "name": "Straight-Arm Dumbbell Pullover",
-    "muscleGroup": "Chest",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Straight-Arm_Dumbbell_Pullover.jpg"
-  },
-  {
-    "sourceId": "Tate_Press",
-    "name": "Tate Press",
-    "muscleGroup": "Arms",
-    "equipment": "dumbbell",
-    "level": "intermediate",
-    "imageName": "Tate_Press.jpg"
-  },
-  {
-    "sourceId": "Elevated_Cable_Rows",
-    "name": "Elevated Cable Rows",
-    "muscleGroup": "Back",
-    "equipment": "cable",
-    "level": "intermediate",
-    "imageName": "Elevated_Cable_Rows.jpg"
-  },
-  {
-    "sourceId": "Flat_Bench_Cable_Flyes",
-    "name": "Flat Bench Cable Flyes",
-    "muscleGroup": "Chest",
-    "equipment": "cable",
-    "level": "intermediate",
-    "imageName": "Flat_Bench_Cable_Flyes.jpg"
-  },
-  {
-    "sourceId": "Full_Range-Of-Motion_Lat_Pulldown",
-    "name": "Full Range-Of-Motion Lat Pulldown",
-    "muscleGroup": "Back",
-    "equipment": "cable",
-    "level": "intermediate",
-    "imageName": "Full_Range-Of-Motion_Lat_Pulldown.jpg"
-  },
-  {
-    "sourceId": "Incline_Cable_Flye",
-    "name": "Incline Cable Flye",
-    "muscleGroup": "Chest",
-    "equipment": "cable",
-    "level": "intermediate",
-    "imageName": "Incline_Cable_Flye.jpg"
-  },
-  {
-    "sourceId": "Seated_One-arm_Cable_Pulley_Rows",
-    "name": "Seated One-arm Cable Pulley Rows",
-    "muscleGroup": "Back",
-    "equipment": "cable",
-    "level": "intermediate",
-    "imageName": "Seated_One-arm_Cable_Pulley_Rows.jpg"
-  },
-  {
-    "sourceId": "Upright_Cable_Row",
-    "name": "Upright Cable Row",
-    "muscleGroup": "Back",
-    "equipment": "cable",
-    "level": "intermediate",
-    "imageName": "Upright_Cable_Row.jpg"
-  },
-  {
-    "sourceId": "V-Bar_Pulldown",
-    "name": "V-Bar Pulldown",
-    "muscleGroup": "Back",
-    "equipment": "cable",
-    "level": "intermediate",
-    "imageName": "V-Bar_Pulldown.jpg"
-  },
-  {
-    "sourceId": "Wide-Grip_Pulldown_Behind_The_Neck",
-    "name": "Wide-Grip Pulldown Behind The Neck",
-    "muscleGroup": "Back",
-    "equipment": "cable",
-    "level": "intermediate",
-    "imageName": "Wide-Grip_Pulldown_Behind_The_Neck.jpg"
-  },
-  {
-    "sourceId": "Ab_Crunch_Machine",
-    "name": "Ab Crunch Machine",
-    "muscleGroup": "Core",
-    "equipment": "machine",
-    "level": "intermediate",
-    "imageName": "Ab_Crunch_Machine.jpg"
-  },
-  {
-    "sourceId": "Lying_T-Bar_Row",
-    "name": "Lying T-Bar Row",
-    "muscleGroup": "Back",
-    "equipment": "machine",
-    "level": "intermediate",
-    "imageName": "Lying_T-Bar_Row.jpg"
-  },
-  {
-    "sourceId": "Clock_Push-Up",
-    "name": "Clock Push-Up",
-    "muscleGroup": "Chest",
-    "equipment": "body only",
-    "level": "intermediate",
-    "imageName": "Clock_Push-Up.jpg"
-  },
-  {
-    "sourceId": "Decline_Crunch",
-    "name": "Decline Crunch",
-    "muscleGroup": "Core",
-    "equipment": "body only",
-    "level": "intermediate",
-    "imageName": "Decline_Crunch.jpg"
-  },
-  {
-    "sourceId": "Frog_Sit-Ups",
-    "name": "Frog Sit-Ups",
-    "muscleGroup": "Core",
-    "equipment": "body only",
-    "level": "intermediate",
-    "imageName": "Frog_Sit-Ups.jpg"
-  },
-  {
-    "sourceId": "Gorilla_Chin_Crunch",
-    "name": "Gorilla Chin/Crunch",
-    "muscleGroup": "Core",
-    "equipment": "body only",
-    "level": "intermediate",
-    "imageName": "Gorilla_Chin_Crunch.jpg"
-  },
-  {
-    "sourceId": "Hyperextensions_With_No_Hyperextension_Bench",
-    "name": "Hyperextensions With No Hyperextension Bench",
-    "muscleGroup": "Back",
-    "equipment": "body only",
-    "level": "intermediate",
-    "imageName": "Hyperextensions_With_No_Hyperextension_Bench.jpg"
-  },
-  {
-    "sourceId": "Russian_Twist",
-    "name": "Russian Twist",
-    "muscleGroup": "Core",
-    "equipment": "body only",
-    "level": "intermediate",
-    "imageName": "Russian_Twist.jpg"
-  },
-  {
-    "sourceId": "Single-Arm_Push-Up",
-    "name": "Single-Arm Push-Up",
-    "muscleGroup": "Chest",
-    "equipment": "body only",
-    "level": "intermediate",
-    "imageName": "Single-Arm_Push-Up.jpg"
-  },
-  {
-    "sourceId": "Wide-Grip_Rear_Pull-Up",
-    "name": "Wide-Grip Rear Pull-Up",
-    "muscleGroup": "Back",
-    "equipment": "body only",
-    "level": "intermediate",
-    "imageName": "Wide-Grip_Rear_Pull-Up.jpg"
-  },
-  {
-    "sourceId": "Bodyweight_Flyes",
-    "name": "Bodyweight Flyes",
-    "muscleGroup": "Chest",
-    "equipment": "e-z curl bar",
-    "level": "intermediate",
-    "imageName": "Bodyweight_Flyes.jpg"
-  },
-  {
-    "sourceId": "Advanced_Kettlebell_Windmill",
-    "name": "Advanced Kettlebell Windmill",
-    "muscleGroup": "Core",
-    "equipment": "kettlebells",
-    "level": "intermediate",
-    "imageName": "Advanced_Kettlebell_Windmill.jpg"
-  },
-  {
-    "sourceId": "Alternating_Kettlebell_Row",
-    "name": "Alternating Kettlebell Row",
-    "muscleGroup": "Back",
-    "equipment": "kettlebells",
-    "level": "intermediate",
-    "imageName": "Alternating_Kettlebell_Row.jpg"
-  },
-  {
-    "sourceId": "Double_Kettlebell_Windmill",
-    "name": "Double Kettlebell Windmill",
-    "muscleGroup": "Core",
-    "equipment": "kettlebells",
-    "level": "intermediate",
-    "imageName": "Double_Kettlebell_Windmill.jpg"
-  },
-  {
-    "sourceId": "Kettlebell_Figure_8",
-    "name": "Kettlebell Figure 8",
-    "muscleGroup": "Core",
-    "equipment": "kettlebells",
-    "level": "intermediate",
-    "imageName": "Kettlebell_Figure_8.jpg"
-  },
-  {
-    "sourceId": "Kettlebell_Pass_Between_The_Legs",
-    "name": "Kettlebell Pass Between The Legs",
-    "muscleGroup": "Core",
-    "equipment": "kettlebells",
-    "level": "intermediate",
-    "imageName": "Kettlebell_Pass_Between_The_Legs.jpg"
-  },
-  {
-    "sourceId": "Kettlebell_Sumo_High_Pull",
-    "name": "Kettlebell Sumo High Pull",
-    "muscleGroup": "Back",
-    "equipment": "kettlebells",
-    "level": "intermediate",
-    "imageName": "Kettlebell_Sumo_High_Pull.jpg"
-  },
-  {
-    "sourceId": "Kettlebell_Windmill",
-    "name": "Kettlebell Windmill",
-    "muscleGroup": "Core",
-    "equipment": "kettlebells",
-    "level": "intermediate",
-    "imageName": "Kettlebell_Windmill.jpg"
-  },
-  {
-    "sourceId": "Leg-Over_Floor_Press",
-    "name": "Leg-Over Floor Press",
-    "muscleGroup": "Chest",
-    "equipment": "kettlebells",
-    "level": "intermediate",
-    "imageName": "Leg-Over_Floor_Press.jpg"
-  },
-  {
-    "sourceId": "One-Arm_Kettlebell_Floor_Press",
-    "name": "One-Arm Kettlebell Floor Press",
-    "muscleGroup": "Chest",
-    "equipment": "kettlebells",
-    "level": "intermediate",
-    "imageName": "One-Arm_Kettlebell_Floor_Press.jpg"
-  },
-  {
-    "sourceId": "One-Arm_Kettlebell_Row",
-    "name": "One-Arm Kettlebell Row",
-    "muscleGroup": "Back",
-    "equipment": "kettlebells",
-    "level": "intermediate",
-    "imageName": "One-Arm_Kettlebell_Row.jpg"
-  },
-  {
-    "sourceId": "Two-Arm_Kettlebell_Row",
-    "name": "Two-Arm Kettlebell Row",
-    "muscleGroup": "Back",
-    "equipment": "kettlebells",
-    "level": "intermediate",
-    "imageName": "Two-Arm_Kettlebell_Row.jpg"
+    "level": "beginner",
+    "imageName": "Anti-Gravity_Press.jpg"
   },
   {
     "sourceId": "Barbell_Bench_Press_-_Medium_Grip",
@@ -1008,12 +16,52 @@
     "imageName": "Barbell_Bench_Press_-_Medium_Grip.jpg"
   },
   {
+    "sourceId": "Barbell_Curl",
+    "name": "Barbell Curl",
+    "muscleGroup": "Arms",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Barbell_Curl.jpg"
+  },
+  {
+    "sourceId": "Barbell_Curls_Lying_Against_An_Incline",
+    "name": "Barbell Curls Lying Against An Incline",
+    "muscleGroup": "Arms",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Barbell_Curls_Lying_Against_An_Incline.jpg"
+  },
+  {
     "sourceId": "Barbell_Incline_Bench_Press_-_Medium_Grip",
     "name": "Barbell Incline Bench Press - Medium Grip",
     "muscleGroup": "Chest",
     "equipment": "barbell",
     "level": "beginner",
     "imageName": "Barbell_Incline_Bench_Press_-_Medium_Grip.jpg"
+  },
+  {
+    "sourceId": "Barbell_Incline_Shoulder_Raise",
+    "name": "Barbell Incline Shoulder Raise",
+    "muscleGroup": "Shoulders",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Barbell_Incline_Shoulder_Raise.jpg"
+  },
+  {
+    "sourceId": "Barbell_Rear_Delt_Row",
+    "name": "Barbell Rear Delt Row",
+    "muscleGroup": "Shoulders",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Barbell_Rear_Delt_Row.jpg"
+  },
+  {
+    "sourceId": "Barbell_Seated_Calf_Raise",
+    "name": "Barbell Seated Calf Raise",
+    "muscleGroup": "Legs",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Barbell_Seated_Calf_Raise.jpg"
   },
   {
     "sourceId": "Barbell_Shrug",
@@ -1040,12 +88,108 @@
     "imageName": "Barbell_Side_Bend.jpg"
   },
   {
+    "sourceId": "Barbell_Side_Split_Squat",
+    "name": "Barbell Side Split Squat",
+    "muscleGroup": "Legs",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Barbell_Side_Split_Squat.jpg"
+  },
+  {
+    "sourceId": "Barbell_Squat",
+    "name": "Barbell Squat",
+    "muscleGroup": "Legs",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Barbell_Squat.jpg"
+  },
+  {
+    "sourceId": "Barbell_Walking_Lunge",
+    "name": "Barbell Walking Lunge",
+    "muscleGroup": "Legs",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Barbell_Walking_Lunge.jpg"
+  },
+  {
+    "sourceId": "Bent_Over_Barbell_Row",
+    "name": "Bent Over Barbell Row",
+    "muscleGroup": "Back",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Bent_Over_Barbell_Row.jpg"
+  },
+  {
+    "sourceId": "Bent_Over_One-Arm_Long_Bar_Row",
+    "name": "Bent Over One-Arm Long Bar Row",
+    "muscleGroup": "Back",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Bent_Over_One-Arm_Long_Bar_Row.jpg"
+  },
+  {
+    "sourceId": "Bradford_Rocky_Presses",
+    "name": "Bradford/Rocky Presses",
+    "muscleGroup": "Shoulders",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Bradford_Rocky_Presses.jpg"
+  },
+  {
+    "sourceId": "Car_Drivers",
+    "name": "Car Drivers",
+    "muscleGroup": "Shoulders",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Car_Drivers.jpg"
+  },
+  {
+    "sourceId": "Close-Grip_Barbell_Bench_Press",
+    "name": "Close-Grip Barbell Bench Press",
+    "muscleGroup": "Arms",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Close-Grip_Barbell_Bench_Press.jpg"
+  },
+  {
+    "sourceId": "Close-Grip_EZ_Bar_Curl",
+    "name": "Close-Grip EZ Bar Curl",
+    "muscleGroup": "Arms",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Close-Grip_EZ_Bar_Curl.jpg"
+  },
+  {
+    "sourceId": "Close-Grip_Standing_Barbell_Curl",
+    "name": "Close-Grip Standing Barbell Curl",
+    "muscleGroup": "Arms",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Close-Grip_Standing_Barbell_Curl.jpg"
+  },
+  {
     "sourceId": "Decline_Barbell_Bench_Press",
     "name": "Decline Barbell Bench Press",
     "muscleGroup": "Chest",
     "equipment": "barbell",
     "level": "beginner",
     "imageName": "Decline_Barbell_Bench_Press.jpg"
+  },
+  {
+    "sourceId": "Decline_EZ_Bar_Triceps_Extension",
+    "name": "Decline EZ Bar Triceps Extension",
+    "muscleGroup": "Arms",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Decline_EZ_Bar_Triceps_Extension.jpg"
+  },
+  {
+    "sourceId": "Finger_Curls",
+    "name": "Finger Curls",
+    "muscleGroup": "Arms",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Finger_Curls.jpg"
   },
   {
     "sourceId": "Front_Raise_And_Pullover",
@@ -1056,6 +200,22 @@
     "imageName": "Front_Raise_And_Pullover.jpg"
   },
   {
+    "sourceId": "Incline_Bench_Pull",
+    "name": "Incline Bench Pull",
+    "muscleGroup": "Back",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Incline_Bench_Pull.jpg"
+  },
+  {
+    "sourceId": "JM_Press",
+    "name": "JM Press",
+    "muscleGroup": "Arms",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "JM_Press.jpg"
+  },
+  {
     "sourceId": "Landmine_180s",
     "name": "Landmine 180's",
     "muscleGroup": "Core",
@@ -1064,12 +224,260 @@
     "imageName": "Landmine_180s.jpg"
   },
   {
+    "sourceId": "Lying_Cambered_Barbell_Row",
+    "name": "Lying Cambered Barbell Row",
+    "muscleGroup": "Back",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Lying_Cambered_Barbell_Row.jpg"
+  },
+  {
+    "sourceId": "One-Arm_Long_Bar_Row",
+    "name": "One-Arm Long Bar Row",
+    "muscleGroup": "Back",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "One-Arm_Long_Bar_Row.jpg"
+  },
+  {
+    "sourceId": "Palms-Down_Wrist_Curl_Over_A_Bench",
+    "name": "Palms-Down Wrist Curl Over A Bench",
+    "muscleGroup": "Arms",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Palms-Down_Wrist_Curl_Over_A_Bench.jpg"
+  },
+  {
+    "sourceId": "Palms-Up_Barbell_Wrist_Curl_Over_A_Bench",
+    "name": "Palms-Up Barbell Wrist Curl Over A Bench",
+    "muscleGroup": "Arms",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Palms-Up_Barbell_Wrist_Curl_Over_A_Bench.jpg"
+  },
+  {
+    "sourceId": "Preacher_Curl",
+    "name": "Preacher Curl",
+    "muscleGroup": "Arms",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Preacher_Curl.jpg"
+  },
+  {
+    "sourceId": "Reverse_Barbell_Curl",
+    "name": "Reverse Barbell Curl",
+    "muscleGroup": "Arms",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Reverse_Barbell_Curl.jpg"
+  },
+  {
+    "sourceId": "Rocking_Standing_Calf_Raise",
+    "name": "Rocking Standing Calf Raise",
+    "muscleGroup": "Legs",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Rocking_Standing_Calf_Raise.jpg"
+  },
+  {
     "sourceId": "Seated_Barbell_Twist",
     "name": "Seated Barbell Twist",
     "muscleGroup": "Core",
     "equipment": "barbell",
     "level": "beginner",
     "imageName": "Seated_Barbell_Twist.jpg"
+  },
+  {
+    "sourceId": "Seated_Palm-Up_Barbell_Wrist_Curl",
+    "name": "Seated Palm-Up Barbell Wrist Curl",
+    "muscleGroup": "Arms",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Seated_Palm-Up_Barbell_Wrist_Curl.jpg"
+  },
+  {
+    "sourceId": "Seated_Palms-Down_Barbell_Wrist_Curl",
+    "name": "Seated Palms-Down Barbell Wrist Curl",
+    "muscleGroup": "Arms",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Seated_Palms-Down_Barbell_Wrist_Curl.jpg"
+  },
+  {
+    "sourceId": "Smith_Incline_Shoulder_Raise",
+    "name": "Smith Incline Shoulder Raise",
+    "muscleGroup": "Shoulders",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Smith_Incline_Shoulder_Raise.jpg"
+  },
+  {
+    "sourceId": "Standing_Barbell_Calf_Raise",
+    "name": "Standing Barbell Calf Raise",
+    "muscleGroup": "Legs",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Standing_Barbell_Calf_Raise.jpg"
+  },
+  {
+    "sourceId": "Standing_Bradford_Press",
+    "name": "Standing Bradford Press",
+    "muscleGroup": "Shoulders",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Standing_Bradford_Press.jpg"
+  },
+  {
+    "sourceId": "Standing_Military_Press",
+    "name": "Standing Military Press",
+    "muscleGroup": "Shoulders",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Standing_Military_Press.jpg"
+  },
+  {
+    "sourceId": "Standing_Overhead_Barbell_Triceps_Extension",
+    "name": "Standing Overhead Barbell Triceps Extension",
+    "muscleGroup": "Arms",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Standing_Overhead_Barbell_Triceps_Extension.jpg"
+  },
+  {
+    "sourceId": "Standing_Palms-Up_Barbell_Behind_The_Back_Wrist_Curl",
+    "name": "Standing Palms-Up Barbell Behind The Back Wrist Curl",
+    "muscleGroup": "Arms",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Standing_Palms-Up_Barbell_Behind_The_Back_Wrist_Curl.jpg"
+  },
+  {
+    "sourceId": "Stiff_Leg_Barbell_Good_Morning",
+    "name": "Stiff Leg Barbell Good Morning",
+    "muscleGroup": "Back",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Stiff_Leg_Barbell_Good_Morning.jpg"
+  },
+  {
+    "sourceId": "Straight_Bar_Bench_Mid_Rows",
+    "name": "Straight Bar Bench Mid Rows",
+    "muscleGroup": "Back",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Straight_Bar_Bench_Mid_Rows.jpg"
+  },
+  {
+    "sourceId": "Straight_Raises_on_Incline_Bench",
+    "name": "Straight Raises on Incline Bench",
+    "muscleGroup": "Shoulders",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Straight_Raises_on_Incline_Bench.jpg"
+  },
+  {
+    "sourceId": "T-Bar_Row_with_Handle",
+    "name": "T-Bar Row with Handle",
+    "muscleGroup": "Back",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "T-Bar_Row_with_Handle.jpg"
+  },
+  {
+    "sourceId": "Upright_Barbell_Row",
+    "name": "Upright Barbell Row",
+    "muscleGroup": "Shoulders",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Upright_Barbell_Row.jpg"
+  },
+  {
+    "sourceId": "Wide-Grip_Standing_Barbell_Curl",
+    "name": "Wide-Grip Standing Barbell Curl",
+    "muscleGroup": "Arms",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Wide-Grip_Standing_Barbell_Curl.jpg"
+  },
+  {
+    "sourceId": "Wrist_Rotations_with_Straight_Bar",
+    "name": "Wrist Rotations with Straight Bar",
+    "muscleGroup": "Arms",
+    "equipment": "barbell",
+    "level": "beginner",
+    "imageName": "Wrist_Rotations_with_Straight_Bar.jpg"
+  },
+  {
+    "sourceId": "Alternate_Hammer_Curl",
+    "name": "Alternate Hammer Curl",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Alternate_Hammer_Curl.jpg"
+  },
+  {
+    "sourceId": "Alternate_Incline_Dumbbell_Curl",
+    "name": "Alternate Incline Dumbbell Curl",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Alternate_Incline_Dumbbell_Curl.jpg"
+  },
+  {
+    "sourceId": "Alternating_Deltoid_Raise",
+    "name": "Alternating Deltoid Raise",
+    "muscleGroup": "Shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Alternating_Deltoid_Raise.jpg"
+  },
+  {
+    "sourceId": "Bent_Over_Dumbbell_Rear_Delt_Raise_With_Head_On_Bench",
+    "name": "Bent Over Dumbbell Rear Delt Raise With Head On Bench",
+    "muscleGroup": "Shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Bent_Over_Dumbbell_Rear_Delt_Raise_With_Head_On_Bench.jpg"
+  },
+  {
+    "sourceId": "Bent_Over_Two-Dumbbell_Row",
+    "name": "Bent Over Two-Dumbbell Row",
+    "muscleGroup": "Back",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Bent_Over_Two-Dumbbell_Row.jpg"
+  },
+  {
+    "sourceId": "Bent_Over_Two-Dumbbell_Row_With_Palms_In",
+    "name": "Bent Over Two-Dumbbell Row With Palms In",
+    "muscleGroup": "Back",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Bent_Over_Two-Dumbbell_Row_With_Palms_In.jpg"
+  },
+  {
+    "sourceId": "Close-Grip_Dumbbell_Press",
+    "name": "Close-Grip Dumbbell Press",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Close-Grip_Dumbbell_Press.jpg"
+  },
+  {
+    "sourceId": "Concentration_Curls",
+    "name": "Concentration Curls",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Concentration_Curls.jpg"
+  },
+  {
+    "sourceId": "Cross_Body_Hammer_Curl",
+    "name": "Cross Body Hammer Curl",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Cross_Body_Hammer_Curl.jpg"
   },
   {
     "sourceId": "Decline_Dumbbell_Bench_Press",
@@ -1088,6 +496,22 @@
     "imageName": "Decline_Dumbbell_Flyes.jpg"
   },
   {
+    "sourceId": "Decline_Dumbbell_Triceps_Extension",
+    "name": "Decline Dumbbell Triceps Extension",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Decline_Dumbbell_Triceps_Extension.jpg"
+  },
+  {
+    "sourceId": "Dumbbell_Alternate_Bicep_Curl",
+    "name": "Dumbbell Alternate Bicep Curl",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Dumbbell_Alternate_Bicep_Curl.jpg"
+  },
+  {
     "sourceId": "Dumbbell_Bench_Press",
     "name": "Dumbbell Bench Press",
     "muscleGroup": "Chest",
@@ -1104,12 +528,76 @@
     "imageName": "Dumbbell_Bench_Press_with_Neutral_Grip.jpg"
   },
   {
+    "sourceId": "Dumbbell_Bicep_Curl",
+    "name": "Dumbbell Bicep Curl",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Dumbbell_Bicep_Curl.jpg"
+  },
+  {
     "sourceId": "Dumbbell_Flyes",
     "name": "Dumbbell Flyes",
     "muscleGroup": "Chest",
     "equipment": "dumbbell",
     "level": "beginner",
     "imageName": "Dumbbell_Flyes.jpg"
+  },
+  {
+    "sourceId": "Dumbbell_Incline_Row",
+    "name": "Dumbbell Incline Row",
+    "muscleGroup": "Back",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Dumbbell_Incline_Row.jpg"
+  },
+  {
+    "sourceId": "Dumbbell_Incline_Shoulder_Raise",
+    "name": "Dumbbell Incline Shoulder Raise",
+    "muscleGroup": "Shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Dumbbell_Incline_Shoulder_Raise.jpg"
+  },
+  {
+    "sourceId": "Dumbbell_Lunges",
+    "name": "Dumbbell Lunges",
+    "muscleGroup": "Legs",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Dumbbell_Lunges.jpg"
+  },
+  {
+    "sourceId": "Dumbbell_Raise",
+    "name": "Dumbbell Raise",
+    "muscleGroup": "Shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Dumbbell_Raise.jpg"
+  },
+  {
+    "sourceId": "Dumbbell_Scaption",
+    "name": "Dumbbell Scaption",
+    "muscleGroup": "Shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Dumbbell_Scaption.jpg"
+  },
+  {
+    "sourceId": "Dumbbell_Seated_One-Leg_Calf_Raise",
+    "name": "Dumbbell Seated One-Leg Calf Raise",
+    "muscleGroup": "Legs",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Dumbbell_Seated_One-Leg_Calf_Raise.jpg"
+  },
+  {
+    "sourceId": "Dumbbell_Shrug",
+    "name": "Dumbbell Shrug",
+    "muscleGroup": "Back",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Dumbbell_Shrug.jpg"
   },
   {
     "sourceId": "Dumbbell_Side_Bend",
@@ -1120,12 +608,284 @@
     "imageName": "Dumbbell_Side_Bend.jpg"
   },
   {
+    "sourceId": "Dumbbell_Squat",
+    "name": "Dumbbell Squat",
+    "muscleGroup": "Legs",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Dumbbell_Squat.jpg"
+  },
+  {
+    "sourceId": "Dumbbell_Tricep_Extension_-Pronated_Grip",
+    "name": "Dumbbell Tricep Extension -Pronated Grip",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Dumbbell_Tricep_Extension_-Pronated_Grip.jpg"
+  },
+  {
+    "sourceId": "External_Rotation",
+    "name": "External Rotation",
+    "muscleGroup": "Shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "External_Rotation.jpg"
+  },
+  {
+    "sourceId": "Flexor_Incline_Dumbbell_Curls",
+    "name": "Flexor Incline Dumbbell Curls",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Flexor_Incline_Dumbbell_Curls.jpg"
+  },
+  {
+    "sourceId": "Front_Dumbbell_Raise",
+    "name": "Front Dumbbell Raise",
+    "muscleGroup": "Shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Front_Dumbbell_Raise.jpg"
+  },
+  {
+    "sourceId": "Front_Incline_Dumbbell_Raise",
+    "name": "Front Incline Dumbbell Raise",
+    "muscleGroup": "Shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Front_Incline_Dumbbell_Raise.jpg"
+  },
+  {
+    "sourceId": "Front_Two-Dumbbell_Raise",
+    "name": "Front Two-Dumbbell Raise",
+    "muscleGroup": "Shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Front_Two-Dumbbell_Raise.jpg"
+  },
+  {
+    "sourceId": "Hammer_Curls",
+    "name": "Hammer Curls",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Hammer_Curls.jpg"
+  },
+  {
     "sourceId": "Hammer_Grip_Incline_DB_Bench_Press",
     "name": "Hammer Grip Incline DB Bench Press",
     "muscleGroup": "Chest",
     "equipment": "dumbbell",
     "level": "beginner",
     "imageName": "Hammer_Grip_Incline_DB_Bench_Press.jpg"
+  },
+  {
+    "sourceId": "Incline_Dumbbell_Bench_With_Palms_Facing_In",
+    "name": "Incline Dumbbell Bench With Palms Facing In",
+    "muscleGroup": "Chest",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Incline_Dumbbell_Bench_With_Palms_Facing_In.jpg"
+  },
+  {
+    "sourceId": "Incline_Dumbbell_Curl",
+    "name": "Incline Dumbbell Curl",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Incline_Dumbbell_Curl.jpg"
+  },
+  {
+    "sourceId": "Incline_Dumbbell_Flyes",
+    "name": "Incline Dumbbell Flyes",
+    "muscleGroup": "Chest",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Incline_Dumbbell_Flyes.jpg"
+  },
+  {
+    "sourceId": "Incline_Dumbbell_Flyes_-_With_A_Twist",
+    "name": "Incline Dumbbell Flyes - With A Twist",
+    "muscleGroup": "Chest",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Incline_Dumbbell_Flyes_-_With_A_Twist.jpg"
+  },
+  {
+    "sourceId": "Incline_Dumbbell_Press",
+    "name": "Incline Dumbbell Press",
+    "muscleGroup": "Chest",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Incline_Dumbbell_Press.jpg"
+  },
+  {
+    "sourceId": "Incline_Hammer_Curls",
+    "name": "Incline Hammer Curls",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Incline_Hammer_Curls.jpg"
+  },
+  {
+    "sourceId": "Incline_Inner_Biceps_Curl",
+    "name": "Incline Inner Biceps Curl",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Incline_Inner_Biceps_Curl.jpg"
+  },
+  {
+    "sourceId": "Lying_Supine_Dumbbell_Curl",
+    "name": "Lying Supine Dumbbell Curl",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Lying_Supine_Dumbbell_Curl.jpg"
+  },
+  {
+    "sourceId": "One_Arm_Dumbbell_Bench_Press",
+    "name": "One Arm Dumbbell Bench Press",
+    "muscleGroup": "Chest",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "One_Arm_Dumbbell_Bench_Press.jpg"
+  },
+  {
+    "sourceId": "One_Arm_Dumbbell_Preacher_Curl",
+    "name": "One Arm Dumbbell Preacher Curl",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "One_Arm_Dumbbell_Preacher_Curl.jpg"
+  },
+  {
+    "sourceId": "One_Arm_Pronated_Dumbbell_Triceps_Extension",
+    "name": "One Arm Pronated Dumbbell Triceps Extension",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "One_Arm_Pronated_Dumbbell_Triceps_Extension.jpg"
+  },
+  {
+    "sourceId": "One_Arm_Supinated_Dumbbell_Triceps_Extension",
+    "name": "One Arm Supinated Dumbbell Triceps Extension",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "One_Arm_Supinated_Dumbbell_Triceps_Extension.jpg"
+  },
+  {
+    "sourceId": "One-Arm_Dumbbell_Row",
+    "name": "One-Arm Dumbbell Row",
+    "muscleGroup": "Back",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "One-Arm_Dumbbell_Row.jpg"
+  },
+  {
+    "sourceId": "One-Arm_Flat_Bench_Dumbbell_Flye",
+    "name": "One-Arm Flat Bench Dumbbell Flye",
+    "muscleGroup": "Chest",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "One-Arm_Flat_Bench_Dumbbell_Flye.jpg"
+  },
+  {
+    "sourceId": "One-Arm_Incline_Lateral_Raise",
+    "name": "One-Arm Incline Lateral Raise",
+    "muscleGroup": "Shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "One-Arm_Incline_Lateral_Raise.jpg"
+  },
+  {
+    "sourceId": "One-Arm_Side_Laterals",
+    "name": "One-Arm Side Laterals",
+    "muscleGroup": "Shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "One-Arm_Side_Laterals.jpg"
+  },
+  {
+    "sourceId": "Palms-Down_Dumbbell_Wrist_Curl_Over_A_Bench",
+    "name": "Palms-Down Dumbbell Wrist Curl Over A Bench",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Palms-Down_Dumbbell_Wrist_Curl_Over_A_Bench.jpg"
+  },
+  {
+    "sourceId": "Palms-Up_Dumbbell_Wrist_Curl_Over_A_Bench",
+    "name": "Palms-Up Dumbbell Wrist Curl Over A Bench",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Palms-Up_Dumbbell_Wrist_Curl_Over_A_Bench.jpg"
+  },
+  {
+    "sourceId": "Plie_Dumbbell_Squat",
+    "name": "Plie Dumbbell Squat",
+    "muscleGroup": "Legs",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Plie_Dumbbell_Squat.jpg"
+  },
+  {
+    "sourceId": "Power_Partials",
+    "name": "Power Partials",
+    "muscleGroup": "Shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Power_Partials.jpg"
+  },
+  {
+    "sourceId": "Preacher_Hammer_Dumbbell_Curl",
+    "name": "Preacher Hammer Dumbbell Curl",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Preacher_Hammer_Dumbbell_Curl.jpg"
+  },
+  {
+    "sourceId": "Reverse_Flyes",
+    "name": "Reverse Flyes",
+    "muscleGroup": "Shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Reverse_Flyes.jpg"
+  },
+  {
+    "sourceId": "Seated_Dumbbell_Curl",
+    "name": "Seated Dumbbell Curl",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Seated_Dumbbell_Curl.jpg"
+  },
+  {
+    "sourceId": "Seated_Side_Lateral_Raise",
+    "name": "Seated Side Lateral Raise",
+    "muscleGroup": "Shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Seated_Side_Lateral_Raise.jpg"
+  },
+  {
+    "sourceId": "Side_Lateral_Raise",
+    "name": "Side Lateral Raise",
+    "muscleGroup": "Shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Side_Lateral_Raise.jpg"
+  },
+  {
+    "sourceId": "Side_Laterals_to_Front_Raise",
+    "name": "Side Laterals to Front Raise",
+    "muscleGroup": "Shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Side_Laterals_to_Front_Raise.jpg"
   },
   {
     "sourceId": "Spell_Caster",
@@ -1136,12 +896,76 @@
     "imageName": "Spell_Caster.jpg"
   },
   {
+    "sourceId": "Split_Squat_with_Dumbbells",
+    "name": "Split Squat with Dumbbells",
+    "muscleGroup": "Legs",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Split_Squat_with_Dumbbells.jpg"
+  },
+  {
+    "sourceId": "Standing_Concentration_Curl",
+    "name": "Standing Concentration Curl",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Standing_Concentration_Curl.jpg"
+  },
+  {
+    "sourceId": "Standing_Dumbbell_Upright_Row",
+    "name": "Standing Dumbbell Upright Row",
+    "muscleGroup": "Back",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Standing_Dumbbell_Upright_Row.jpg"
+  },
+  {
+    "sourceId": "Standing_One-Arm_Dumbbell_Curl_Over_Incline_Bench",
+    "name": "Standing One-Arm Dumbbell Curl Over Incline Bench",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Standing_One-Arm_Dumbbell_Curl_Over_Incline_Bench.jpg"
+  },
+  {
+    "sourceId": "Stiff-Legged_Dumbbell_Deadlift",
+    "name": "Stiff-Legged Dumbbell Deadlift",
+    "muscleGroup": "Legs",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Stiff-Legged_Dumbbell_Deadlift.jpg"
+  },
+  {
+    "sourceId": "Two-Arm_Dumbbell_Preacher_Curl",
+    "name": "Two-Arm Dumbbell Preacher Curl",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": "Two-Arm_Dumbbell_Preacher_Curl.jpg"
+  },
+  {
     "sourceId": "Bosu_Ball_Cable_Crunch_With_Side_Bends",
     "name": "Bosu Ball Cable Crunch With Side Bends",
     "muscleGroup": "Core",
     "equipment": "cable",
     "level": "beginner",
     "imageName": "Bosu_Ball_Cable_Crunch_With_Side_Bends.jpg"
+  },
+  {
+    "sourceId": "Cable_Chest_Press",
+    "name": "Cable Chest Press",
+    "muscleGroup": "Chest",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Cable_Chest_Press.jpg"
+  },
+  {
+    "sourceId": "Cable_Crossover",
+    "name": "Cable Crossover",
+    "muscleGroup": "Chest",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Cable_Crossover.jpg"
   },
   {
     "sourceId": "Cable_Crunch",
@@ -1152,12 +976,60 @@
     "imageName": "Cable_Crunch.jpg"
   },
   {
+    "sourceId": "Cable_Deadlifts",
+    "name": "Cable Deadlifts",
+    "muscleGroup": "Legs",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Cable_Deadlifts.jpg"
+  },
+  {
+    "sourceId": "Cable_Hammer_Curls_-_Rope_Attachment",
+    "name": "Cable Hammer Curls - Rope Attachment",
+    "muscleGroup": "Arms",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Cable_Hammer_Curls_-_Rope_Attachment.jpg"
+  },
+  {
+    "sourceId": "Cable_Hip_Adduction",
+    "name": "Cable Hip Adduction",
+    "muscleGroup": "Legs",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Cable_Hip_Adduction.jpg"
+  },
+  {
+    "sourceId": "Cable_Incline_Pushdown",
+    "name": "Cable Incline Pushdown",
+    "muscleGroup": "Back",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Cable_Incline_Pushdown.jpg"
+  },
+  {
+    "sourceId": "Cable_Iron_Cross",
+    "name": "Cable Iron Cross",
+    "muscleGroup": "Chest",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Cable_Iron_Cross.jpg"
+  },
+  {
     "sourceId": "Cable_Judo_Flip",
     "name": "Cable Judo Flip",
     "muscleGroup": "Core",
     "equipment": "cable",
     "level": "beginner",
     "imageName": "Cable_Judo_Flip.jpg"
+  },
+  {
+    "sourceId": "Cable_Preacher_Curl",
+    "name": "Cable Preacher Curl",
+    "muscleGroup": "Arms",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Cable_Preacher_Curl.jpg"
   },
   {
     "sourceId": "Cable_Reverse_Crunch",
@@ -1184,6 +1056,38 @@
     "imageName": "Cable_Seated_Crunch.jpg"
   },
   {
+    "sourceId": "Cable_Seated_Lateral_Raise",
+    "name": "Cable Seated Lateral Raise",
+    "muscleGroup": "Shoulders",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Cable_Seated_Lateral_Raise.jpg"
+  },
+  {
+    "sourceId": "Cable_Shrugs",
+    "name": "Cable Shrugs",
+    "muscleGroup": "Back",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Cable_Shrugs.jpg"
+  },
+  {
+    "sourceId": "Close-Grip_Front_Lat_Pulldown",
+    "name": "Close-Grip Front Lat Pulldown",
+    "muscleGroup": "Back",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Close-Grip_Front_Lat_Pulldown.jpg"
+  },
+  {
+    "sourceId": "Incline_Cable_Chest_Press",
+    "name": "Incline Cable Chest Press",
+    "muscleGroup": "Chest",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Incline_Cable_Chest_Press.jpg"
+  },
+  {
     "sourceId": "Kneeling_Cable_Crunch_With_Alternating_Oblique_Twists",
     "name": "Kneeling Cable Crunch With Alternating Oblique Twists",
     "muscleGroup": "Core",
@@ -1192,11 +1096,995 @@
     "imageName": "Kneeling_Cable_Crunch_With_Alternating_Oblique_Twists.jpg"
   },
   {
+    "sourceId": "Kneeling_High_Pulley_Row",
+    "name": "Kneeling High Pulley Row",
+    "muscleGroup": "Back",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Kneeling_High_Pulley_Row.jpg"
+  },
+  {
+    "sourceId": "Kneeling_Single-Arm_High_Pulley_Row",
+    "name": "Kneeling Single-Arm High Pulley Row",
+    "muscleGroup": "Back",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Kneeling_Single-Arm_High_Pulley_Row.jpg"
+  },
+  {
+    "sourceId": "Low_Cable_Crossover",
+    "name": "Low Cable Crossover",
+    "muscleGroup": "Chest",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Low_Cable_Crossover.jpg"
+  },
+  {
+    "sourceId": "One_Arm_Lat_Pulldown",
+    "name": "One Arm Lat Pulldown",
+    "muscleGroup": "Back",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "One_Arm_Lat_Pulldown.jpg"
+  },
+  {
     "sourceId": "One-Arm_High-Pulley_Cable_Side_Bends",
     "name": "One-Arm High-Pulley Cable Side Bends",
     "muscleGroup": "Core",
     "equipment": "cable",
     "level": "beginner",
     "imageName": "One-Arm_High-Pulley_Cable_Side_Bends.jpg"
+  },
+  {
+    "sourceId": "Pallof_Press",
+    "name": "Pallof Press",
+    "muscleGroup": "Core",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Pallof_Press.jpg"
+  },
+  {
+    "sourceId": "Pallof_Press_With_Rotation",
+    "name": "Pallof Press With Rotation",
+    "muscleGroup": "Core",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Pallof_Press_With_Rotation.jpg"
+  },
+  {
+    "sourceId": "Pull_Through",
+    "name": "Pull Through",
+    "muscleGroup": "Legs",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Pull_Through.jpg"
+  },
+  {
+    "sourceId": "Reverse_Cable_Curl",
+    "name": "Reverse Cable Curl",
+    "muscleGroup": "Arms",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Reverse_Cable_Curl.jpg"
+  },
+  {
+    "sourceId": "Rope_Crunch",
+    "name": "Rope Crunch",
+    "muscleGroup": "Core",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Rope_Crunch.jpg"
+  },
+  {
+    "sourceId": "Rope_Straight-Arm_Pulldown",
+    "name": "Rope Straight-Arm Pulldown",
+    "muscleGroup": "Back",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Rope_Straight-Arm_Pulldown.jpg"
+  },
+  {
+    "sourceId": "Seated_Cable_Rows",
+    "name": "Seated Cable Rows",
+    "muscleGroup": "Back",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Seated_Cable_Rows.jpg"
+  },
+  {
+    "sourceId": "Shotgun_Row",
+    "name": "Shotgun Row",
+    "muscleGroup": "Back",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Shotgun_Row.jpg"
+  },
+  {
+    "sourceId": "Single-Arm_Cable_Crossover",
+    "name": "Single-Arm Cable Crossover",
+    "muscleGroup": "Chest",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Single-Arm_Cable_Crossover.jpg"
+  },
+  {
+    "sourceId": "Standing_Biceps_Cable_Curl",
+    "name": "Standing Biceps Cable Curl",
+    "muscleGroup": "Arms",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Standing_Biceps_Cable_Curl.jpg"
+  },
+  {
+    "sourceId": "Standing_Cable_Chest_Press",
+    "name": "Standing Cable Chest Press",
+    "muscleGroup": "Chest",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Standing_Cable_Chest_Press.jpg"
+  },
+  {
+    "sourceId": "Standing_Cable_Lift",
+    "name": "Standing Cable Lift",
+    "muscleGroup": "Core",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Standing_Cable_Lift.jpg"
+  },
+  {
+    "sourceId": "Standing_Cable_Wood_Chop",
+    "name": "Standing Cable Wood Chop",
+    "muscleGroup": "Core",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Standing_Cable_Wood_Chop.jpg"
+  },
+  {
+    "sourceId": "Standing_Rope_Crunch",
+    "name": "Standing Rope Crunch",
+    "muscleGroup": "Core",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Standing_Rope_Crunch.jpg"
+  },
+  {
+    "sourceId": "Straight-Arm_Pulldown",
+    "name": "Straight-Arm Pulldown",
+    "muscleGroup": "Back",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Straight-Arm_Pulldown.jpg"
+  },
+  {
+    "sourceId": "Underhand_Cable_Pulldowns",
+    "name": "Underhand Cable Pulldowns",
+    "muscleGroup": "Back",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Underhand_Cable_Pulldowns.jpg"
+  },
+  {
+    "sourceId": "Wide-Grip_Lat_Pulldown",
+    "name": "Wide-Grip Lat Pulldown",
+    "muscleGroup": "Back",
+    "equipment": "cable",
+    "level": "beginner",
+    "imageName": "Wide-Grip_Lat_Pulldown.jpg"
+  },
+  {
+    "sourceId": "Butterfly",
+    "name": "Butterfly",
+    "muscleGroup": "Chest",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Butterfly.jpg"
+  },
+  {
+    "sourceId": "Calf_Press",
+    "name": "Calf Press",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Calf_Press.jpg"
+  },
+  {
+    "sourceId": "Calf_Press_On_The_Leg_Press_Machine",
+    "name": "Calf Press On The Leg Press Machine",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Calf_Press_On_The_Leg_Press_Machine.jpg"
+  },
+  {
+    "sourceId": "Calf-Machine_Shoulder_Shrug",
+    "name": "Calf-Machine Shoulder Shrug",
+    "muscleGroup": "Back",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Calf-Machine_Shoulder_Shrug.jpg"
+  },
+  {
+    "sourceId": "Chair_Squat",
+    "name": "Chair Squat",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Chair_Squat.jpg"
+  },
+  {
+    "sourceId": "Decline_Smith_Press",
+    "name": "Decline Smith Press",
+    "muscleGroup": "Chest",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Decline_Smith_Press.jpg"
+  },
+  {
+    "sourceId": "Dip_Machine",
+    "name": "Dip Machine",
+    "muscleGroup": "Arms",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Dip_Machine.jpg"
+  },
+  {
+    "sourceId": "Hack_Squat",
+    "name": "Hack Squat",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Hack_Squat.jpg"
+  },
+  {
+    "sourceId": "Leg_Extensions",
+    "name": "Leg Extensions",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Leg_Extensions.jpg"
+  },
+  {
+    "sourceId": "Leg_Press",
+    "name": "Leg Press",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Leg_Press.jpg"
+  },
+  {
+    "sourceId": "Leverage_Chest_Press",
+    "name": "Leverage Chest Press",
+    "muscleGroup": "Chest",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Leverage_Chest_Press.jpg"
+  },
+  {
+    "sourceId": "Leverage_Deadlift",
+    "name": "Leverage Deadlift",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Leverage_Deadlift.jpg"
+  },
+  {
+    "sourceId": "Leverage_Decline_Chest_Press",
+    "name": "Leverage Decline Chest Press",
+    "muscleGroup": "Chest",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Leverage_Decline_Chest_Press.jpg"
+  },
+  {
+    "sourceId": "Leverage_High_Row",
+    "name": "Leverage High Row",
+    "muscleGroup": "Back",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Leverage_High_Row.jpg"
+  },
+  {
+    "sourceId": "Leverage_Incline_Chest_Press",
+    "name": "Leverage Incline Chest Press",
+    "muscleGroup": "Chest",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Leverage_Incline_Chest_Press.jpg"
+  },
+  {
+    "sourceId": "Leverage_Iso_Row",
+    "name": "Leverage Iso Row",
+    "muscleGroup": "Back",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Leverage_Iso_Row.jpg"
+  },
+  {
+    "sourceId": "Leverage_Shoulder_Press",
+    "name": "Leverage Shoulder Press",
+    "muscleGroup": "Shoulders",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Leverage_Shoulder_Press.jpg"
+  },
+  {
+    "sourceId": "Leverage_Shrug",
+    "name": "Leverage Shrug",
+    "muscleGroup": "Back",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Leverage_Shrug.jpg"
+  },
+  {
+    "sourceId": "Lying_Leg_Curls",
+    "name": "Lying Leg Curls",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Lying_Leg_Curls.jpg"
+  },
+  {
+    "sourceId": "Machine_Bench_Press",
+    "name": "Machine Bench Press",
+    "muscleGroup": "Chest",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Machine_Bench_Press.jpg"
+  },
+  {
+    "sourceId": "Machine_Bicep_Curl",
+    "name": "Machine Bicep Curl",
+    "muscleGroup": "Arms",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Machine_Bicep_Curl.jpg"
+  },
+  {
+    "sourceId": "Machine_Preacher_Curls",
+    "name": "Machine Preacher Curls",
+    "muscleGroup": "Arms",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Machine_Preacher_Curls.jpg"
+  },
+  {
+    "sourceId": "Machine_Shoulder_Military_Press",
+    "name": "Machine Shoulder (Military) Press",
+    "muscleGroup": "Shoulders",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Machine_Shoulder_Military_Press.jpg"
+  },
+  {
+    "sourceId": "Machine_Triceps_Extension",
+    "name": "Machine Triceps Extension",
+    "muscleGroup": "Arms",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Machine_Triceps_Extension.jpg"
+  },
+  {
+    "sourceId": "Reverse_Machine_Flyes",
+    "name": "Reverse Machine Flyes",
+    "muscleGroup": "Shoulders",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Reverse_Machine_Flyes.jpg"
+  },
+  {
+    "sourceId": "Seated_Calf_Raise",
+    "name": "Seated Calf Raise",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Seated_Calf_Raise.jpg"
+  },
+  {
+    "sourceId": "Seated_Leg_Curl",
+    "name": "Seated Leg Curl",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Seated_Leg_Curl.jpg"
+  },
+  {
+    "sourceId": "Single-Leg_Leg_Extension",
+    "name": "Single-Leg Leg Extension",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Single-Leg_Leg_Extension.jpg"
+  },
+  {
+    "sourceId": "Smith_Machine_Behind_the_Back_Shrug",
+    "name": "Smith Machine Behind the Back Shrug",
+    "muscleGroup": "Back",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Smith_Machine_Behind_the_Back_Shrug.jpg"
+  },
+  {
+    "sourceId": "Smith_Machine_Bench_Press",
+    "name": "Smith Machine Bench Press",
+    "muscleGroup": "Chest",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Smith_Machine_Bench_Press.jpg"
+  },
+  {
+    "sourceId": "Smith_Machine_Bent_Over_Row",
+    "name": "Smith Machine Bent Over Row",
+    "muscleGroup": "Back",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Smith_Machine_Bent_Over_Row.jpg"
+  },
+  {
+    "sourceId": "Smith_Machine_Calf_Raise",
+    "name": "Smith Machine Calf Raise",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Smith_Machine_Calf_Raise.jpg"
+  },
+  {
+    "sourceId": "Smith_Machine_Close-Grip_Bench_Press",
+    "name": "Smith Machine Close-Grip Bench Press",
+    "muscleGroup": "Arms",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Smith_Machine_Close-Grip_Bench_Press.jpg"
+  },
+  {
+    "sourceId": "Smith_Machine_Decline_Press",
+    "name": "Smith Machine Decline Press",
+    "muscleGroup": "Chest",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Smith_Machine_Decline_Press.jpg"
+  },
+  {
+    "sourceId": "Smith_Machine_Hip_Raise",
+    "name": "Smith Machine Hip Raise",
+    "muscleGroup": "Core",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Smith_Machine_Hip_Raise.jpg"
+  },
+  {
+    "sourceId": "Smith_Machine_One-Arm_Upright_Row",
+    "name": "Smith Machine One-Arm Upright Row",
+    "muscleGroup": "Shoulders",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Smith_Machine_One-Arm_Upright_Row.jpg"
+  },
+  {
+    "sourceId": "Smith_Machine_Overhead_Shoulder_Press",
+    "name": "Smith Machine Overhead Shoulder Press",
+    "muscleGroup": "Shoulders",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Smith_Machine_Overhead_Shoulder_Press.jpg"
+  },
+  {
+    "sourceId": "Smith_Machine_Reverse_Calf_Raises",
+    "name": "Smith Machine Reverse Calf Raises",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Smith_Machine_Reverse_Calf_Raises.jpg"
+  },
+  {
+    "sourceId": "Smith_Machine_Squat",
+    "name": "Smith Machine Squat",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Smith_Machine_Squat.jpg"
+  },
+  {
+    "sourceId": "Smith_Machine_Stiff-Legged_Deadlift",
+    "name": "Smith Machine Stiff-Legged Deadlift",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Smith_Machine_Stiff-Legged_Deadlift.jpg"
+  },
+  {
+    "sourceId": "Smith_Machine_Upright_Row",
+    "name": "Smith Machine Upright Row",
+    "muscleGroup": "Back",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Smith_Machine_Upright_Row.jpg"
+  },
+  {
+    "sourceId": "Smith_Single-Leg_Split_Squat",
+    "name": "Smith Single-Leg Split Squat",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Smith_Single-Leg_Split_Squat.jpg"
+  },
+  {
+    "sourceId": "Standing_Calf_Raises",
+    "name": "Standing Calf Raises",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Standing_Calf_Raises.jpg"
+  },
+  {
+    "sourceId": "Standing_Leg_Curl",
+    "name": "Standing Leg Curl",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Standing_Leg_Curl.jpg"
+  },
+  {
+    "sourceId": "Thigh_Abductor",
+    "name": "Thigh Abductor",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": "Thigh_Abductor.jpg"
+  },
+  {
+    "sourceId": "3_4_Sit-Up",
+    "name": "3/4 Sit-Up",
+    "muscleGroup": "Core",
+    "equipment": "body only",
+    "level": "beginner",
+    "imageName": "3_4_Sit-Up.jpg"
+  },
+  {
+    "sourceId": "Air_Bike",
+    "name": "Air Bike",
+    "muscleGroup": "Core",
+    "equipment": "body only",
+    "level": "beginner",
+    "imageName": "Air_Bike.jpg"
+  },
+  {
+    "sourceId": "Alternate_Heel_Touchers",
+    "name": "Alternate Heel Touchers",
+    "muscleGroup": "Core",
+    "equipment": "body only",
+    "level": "beginner",
+    "imageName": "Alternate_Heel_Touchers.jpg"
+  },
+  {
+    "sourceId": "Bench_Dips",
+    "name": "Bench Dips",
+    "muscleGroup": "Arms",
+    "equipment": "body only",
+    "level": "beginner",
+    "imageName": "Bench_Dips.jpg"
+  },
+  {
+    "sourceId": "Bodyweight_Squat",
+    "name": "Bodyweight Squat",
+    "muscleGroup": "Legs",
+    "equipment": "body only",
+    "level": "beginner",
+    "imageName": "Bodyweight_Squat.jpg"
+  },
+  {
+    "sourceId": "Butt_Lift_Bridge",
+    "name": "Butt Lift (Bridge)",
+    "muscleGroup": "Legs",
+    "equipment": "body only",
+    "level": "beginner",
+    "imageName": "Butt_Lift_Bridge.jpg"
+  },
+  {
+    "sourceId": "Chin-Up",
+    "name": "Chin-Up",
+    "muscleGroup": "Back",
+    "equipment": "body only",
+    "level": "beginner",
+    "imageName": "Chin-Up.jpg"
+  },
+  {
+    "sourceId": "Dips_-_Triceps_Version",
+    "name": "Dips - Triceps Version",
+    "muscleGroup": "Arms",
+    "equipment": "body only",
+    "level": "beginner",
+    "imageName": "Dips_-_Triceps_Version.jpg"
+  },
+  {
+    "sourceId": "Flutter_Kicks",
+    "name": "Flutter Kicks",
+    "muscleGroup": "Legs",
+    "equipment": "body only",
+    "level": "beginner",
+    "imageName": "Flutter_Kicks.jpg"
+  },
+  {
+    "sourceId": "Glute_Kickback",
+    "name": "Glute Kickback",
+    "muscleGroup": "Legs",
+    "equipment": "body only",
+    "level": "beginner",
+    "imageName": "Glute_Kickback.jpg"
+  },
+  {
+    "sourceId": "Isometric_Neck_Exercise_-_Front_And_Back",
+    "name": "Isometric Neck Exercise - Front And Back",
+    "muscleGroup": "Back",
+    "equipment": "body only",
+    "level": "beginner",
+    "imageName": "Isometric_Neck_Exercise_-_Front_And_Back.jpg"
+  },
+  {
+    "sourceId": "Isometric_Neck_Exercise_-_Sides",
+    "name": "Isometric Neck Exercise - Sides",
+    "muscleGroup": "Back",
+    "equipment": "body only",
+    "level": "beginner",
+    "imageName": "Isometric_Neck_Exercise_-_Sides.jpg"
+  },
+  {
+    "sourceId": "Leg_Lift",
+    "name": "Leg Lift",
+    "muscleGroup": "Legs",
+    "equipment": "body only",
+    "level": "beginner",
+    "imageName": "Leg_Lift.jpg"
+  },
+  {
+    "sourceId": "Pullups",
+    "name": "Pullups",
+    "muscleGroup": "Back",
+    "equipment": "body only",
+    "level": "beginner",
+    "imageName": "Pullups.jpg"
+  },
+  {
+    "sourceId": "Single_Leg_Glute_Bridge",
+    "name": "Single Leg Glute Bridge",
+    "muscleGroup": "Legs",
+    "equipment": "body only",
+    "level": "beginner",
+    "imageName": "Single_Leg_Glute_Bridge.jpg"
+  },
+  {
+    "sourceId": "Step-up_with_Knee_Raise",
+    "name": "Step-up with Knee Raise",
+    "muscleGroup": "Legs",
+    "equipment": "body only",
+    "level": "beginner",
+    "imageName": "Step-up_with_Knee_Raise.jpg"
+  },
+  {
+    "sourceId": "V-Bar_Pullup",
+    "name": "V-Bar Pullup",
+    "muscleGroup": "Back",
+    "equipment": "body only",
+    "level": "beginner",
+    "imageName": "V-Bar_Pullup.jpg"
+  },
+  {
+    "sourceId": "Goblet_Squat",
+    "name": "Goblet Squat",
+    "muscleGroup": "Legs",
+    "equipment": "kettlebells",
+    "level": "beginner",
+    "imageName": "Goblet_Squat.jpg"
+  },
+  {
+    "sourceId": "Barbell_Full_Squat",
+    "name": "Barbell Full Squat",
+    "muscleGroup": "Legs",
+    "equipment": "barbell",
+    "level": "intermediate",
+    "imageName": "Barbell_Full_Squat.jpg"
+  },
+  {
+    "sourceId": "Barbell_Hack_Squat",
+    "name": "Barbell Hack Squat",
+    "muscleGroup": "Legs",
+    "equipment": "barbell",
+    "level": "intermediate",
+    "imageName": "Barbell_Hack_Squat.jpg"
+  },
+  {
+    "sourceId": "Barbell_Lunge",
+    "name": "Barbell Lunge",
+    "muscleGroup": "Legs",
+    "equipment": "barbell",
+    "level": "intermediate",
+    "imageName": "Barbell_Lunge.jpg"
+  },
+  {
+    "sourceId": "Barbell_Step_Ups",
+    "name": "Barbell Step Ups",
+    "muscleGroup": "Legs",
+    "equipment": "barbell",
+    "level": "intermediate",
+    "imageName": "Barbell_Step_Ups.jpg"
+  },
+  {
+    "sourceId": "Elevated_Back_Lunge",
+    "name": "Elevated Back Lunge",
+    "muscleGroup": "Legs",
+    "equipment": "barbell",
+    "level": "intermediate",
+    "imageName": "Elevated_Back_Lunge.jpg"
+  },
+  {
+    "sourceId": "Front_Squat_Clean_Grip",
+    "name": "Front Squat (Clean Grip)",
+    "muscleGroup": "Legs",
+    "equipment": "barbell",
+    "level": "intermediate",
+    "imageName": "Front_Squat_Clean_Grip.jpg"
+  },
+  {
+    "sourceId": "Jefferson_Squats",
+    "name": "Jefferson Squats",
+    "muscleGroup": "Legs",
+    "equipment": "barbell",
+    "level": "intermediate",
+    "imageName": "Jefferson_Squats.jpg"
+  },
+  {
+    "sourceId": "Lying_High_Bench_Barbell_Curl",
+    "name": "Lying High Bench Barbell Curl",
+    "muscleGroup": "Arms",
+    "equipment": "barbell",
+    "level": "intermediate",
+    "imageName": "Lying_High_Bench_Barbell_Curl.jpg"
+  },
+  {
+    "sourceId": "Narrow_Stance_Squats",
+    "name": "Narrow Stance Squats",
+    "muscleGroup": "Legs",
+    "equipment": "barbell",
+    "level": "intermediate",
+    "imageName": "Narrow_Stance_Squats.jpg"
+  },
+  {
+    "sourceId": "Power_Clean",
+    "name": "Power Clean",
+    "muscleGroup": "Legs",
+    "equipment": "barbell",
+    "level": "intermediate",
+    "imageName": "Power_Clean.jpg"
+  },
+  {
+    "sourceId": "Romanian_Deadlift",
+    "name": "Romanian Deadlift",
+    "muscleGroup": "Legs",
+    "equipment": "barbell",
+    "level": "intermediate",
+    "imageName": "Romanian_Deadlift.jpg"
+  },
+  {
+    "sourceId": "Seated_Close-Grip_Concentration_Barbell_Curl",
+    "name": "Seated Close-Grip Concentration Barbell Curl",
+    "muscleGroup": "Arms",
+    "equipment": "barbell",
+    "level": "intermediate",
+    "imageName": "Seated_Close-Grip_Concentration_Barbell_Curl.jpg"
+  },
+  {
+    "sourceId": "Calf_Raise_On_A_Dumbbell",
+    "name": "Calf Raise On A Dumbbell",
+    "muscleGroup": "Legs",
+    "equipment": "dumbbell",
+    "level": "intermediate",
+    "imageName": "Calf_Raise_On_A_Dumbbell.jpg"
+  },
+  {
+    "sourceId": "Dumbbell_Lying_One-Arm_Rear_Lateral_Raise",
+    "name": "Dumbbell Lying One-Arm Rear Lateral Raise",
+    "muscleGroup": "Shoulders",
+    "equipment": "dumbbell",
+    "level": "intermediate",
+    "imageName": "Dumbbell_Lying_One-Arm_Rear_Lateral_Raise.jpg"
+  },
+  {
+    "sourceId": "Dumbbell_Lying_Rear_Lateral_Raise",
+    "name": "Dumbbell Lying Rear Lateral Raise",
+    "muscleGroup": "Shoulders",
+    "equipment": "dumbbell",
+    "level": "intermediate",
+    "imageName": "Dumbbell_Lying_Rear_Lateral_Raise.jpg"
+  },
+  {
+    "sourceId": "Dumbbell_Rear_Lunge",
+    "name": "Dumbbell Rear Lunge",
+    "muscleGroup": "Legs",
+    "equipment": "dumbbell",
+    "level": "intermediate",
+    "imageName": "Dumbbell_Rear_Lunge.jpg"
+  },
+  {
+    "sourceId": "Lying_One-Arm_Lateral_Raise",
+    "name": "Lying One-Arm Lateral Raise",
+    "muscleGroup": "Shoulders",
+    "equipment": "dumbbell",
+    "level": "intermediate",
+    "imageName": "Lying_One-Arm_Lateral_Raise.jpg"
+  },
+  {
+    "sourceId": "Middle_Back_Shrug",
+    "name": "Middle Back Shrug",
+    "muscleGroup": "Back",
+    "equipment": "dumbbell",
+    "level": "intermediate",
+    "imageName": "Middle_Back_Shrug.jpg"
+  },
+  {
+    "sourceId": "Standing_Dumbbell_Calf_Raise",
+    "name": "Standing Dumbbell Calf Raise",
+    "muscleGroup": "Legs",
+    "equipment": "dumbbell",
+    "level": "intermediate",
+    "imageName": "Standing_Dumbbell_Calf_Raise.jpg"
+  },
+  {
+    "sourceId": "Zottman_Preacher_Curl",
+    "name": "Zottman Preacher Curl",
+    "muscleGroup": "Arms",
+    "equipment": "dumbbell",
+    "level": "intermediate",
+    "imageName": "Zottman_Preacher_Curl.jpg"
+  },
+  {
+    "sourceId": "Elevated_Cable_Rows",
+    "name": "Elevated Cable Rows",
+    "muscleGroup": "Back",
+    "equipment": "cable",
+    "level": "intermediate",
+    "imageName": "Elevated_Cable_Rows.jpg"
+  },
+  {
+    "sourceId": "Face_Pull",
+    "name": "Face Pull",
+    "muscleGroup": "Shoulders",
+    "equipment": "cable",
+    "level": "intermediate",
+    "imageName": "Face_Pull.jpg"
+  },
+  {
+    "sourceId": "Flat_Bench_Cable_Flyes",
+    "name": "Flat Bench Cable Flyes",
+    "muscleGroup": "Chest",
+    "equipment": "cable",
+    "level": "intermediate",
+    "imageName": "Flat_Bench_Cable_Flyes.jpg"
+  },
+  {
+    "sourceId": "Full_Range-Of-Motion_Lat_Pulldown",
+    "name": "Full Range-Of-Motion Lat Pulldown",
+    "muscleGroup": "Back",
+    "equipment": "cable",
+    "level": "intermediate",
+    "imageName": "Full_Range-Of-Motion_Lat_Pulldown.jpg"
+  },
+  {
+    "sourceId": "High_Cable_Curls",
+    "name": "High Cable Curls",
+    "muscleGroup": "Arms",
+    "equipment": "cable",
+    "level": "intermediate",
+    "imageName": "High_Cable_Curls.jpg"
+  },
+  {
+    "sourceId": "Incline_Cable_Flye",
+    "name": "Incline Cable Flye",
+    "muscleGroup": "Chest",
+    "equipment": "cable",
+    "level": "intermediate",
+    "imageName": "Incline_Cable_Flye.jpg"
+  },
+  {
+    "sourceId": "Lying_Cable_Curl",
+    "name": "Lying Cable Curl",
+    "muscleGroup": "Arms",
+    "equipment": "cable",
+    "level": "intermediate",
+    "imageName": "Lying_Cable_Curl.jpg"
+  },
+  {
+    "sourceId": "Overhead_Cable_Curl",
+    "name": "Overhead Cable Curl",
+    "muscleGroup": "Arms",
+    "equipment": "cable",
+    "level": "intermediate",
+    "imageName": "Overhead_Cable_Curl.jpg"
+  },
+  {
+    "sourceId": "Standing_One-Arm_Cable_Curl",
+    "name": "Standing One-Arm Cable Curl",
+    "muscleGroup": "Arms",
+    "equipment": "cable",
+    "level": "intermediate",
+    "imageName": "Standing_One-Arm_Cable_Curl.jpg"
+  },
+  {
+    "sourceId": "Upright_Cable_Row",
+    "name": "Upright Cable Row",
+    "muscleGroup": "Back",
+    "equipment": "cable",
+    "level": "intermediate",
+    "imageName": "Upright_Cable_Row.jpg"
+  },
+  {
+    "sourceId": "Ab_Crunch_Machine",
+    "name": "Ab Crunch Machine",
+    "muscleGroup": "Core",
+    "equipment": "machine",
+    "level": "intermediate",
+    "imageName": "Ab_Crunch_Machine.jpg"
+  },
+  {
+    "sourceId": "Lunge_Sprint",
+    "name": "Lunge Sprint",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "intermediate",
+    "imageName": "Lunge_Sprint.jpg"
+  },
+  {
+    "sourceId": "Lying_T-Bar_Row",
+    "name": "Lying T-Bar Row",
+    "muscleGroup": "Back",
+    "equipment": "machine",
+    "level": "intermediate",
+    "imageName": "Lying_T-Bar_Row.jpg"
+  },
+  {
+    "sourceId": "Narrow_Stance_Leg_Press",
+    "name": "Narrow Stance Leg Press",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "intermediate",
+    "imageName": "Narrow_Stance_Leg_Press.jpg"
+  },
+  {
+    "sourceId": "Smith_Machine_Leg_Press",
+    "name": "Smith Machine Leg Press",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "intermediate",
+    "imageName": "Smith_Machine_Leg_Press.jpg"
+  },
+  {
+    "sourceId": "Wide-Grip_Rear_Pull-Up",
+    "name": "Wide-Grip Rear Pull-Up",
+    "muscleGroup": "Back",
+    "equipment": "body only",
+    "level": "intermediate",
+    "imageName": "Wide-Grip_Rear_Pull-Up.jpg"
+  },
+  {
+    "sourceId": "Reverse_Barbell_Preacher_Curls",
+    "name": "Reverse Barbell Preacher Curls",
+    "muscleGroup": "Arms",
+    "equipment": "e-z curl bar",
+    "level": "intermediate",
+    "imageName": "Reverse_Barbell_Preacher_Curls.jpg"
+  },
+  {
+    "sourceId": "Kettlebell_Turkish_Get-Up_Lunge_style",
+    "name": "Kettlebell Turkish Get-Up (Lunge style)",
+    "muscleGroup": "Shoulders",
+    "equipment": "kettlebells",
+    "level": "intermediate",
+    "imageName": "Kettlebell_Turkish_Get-Up_Lunge_style.jpg"
+  },
+  {
+    "sourceId": "Lunge_Pass_Through",
+    "name": "Lunge Pass Through",
+    "muscleGroup": "Legs",
+    "equipment": "kettlebells",
+    "level": "intermediate",
+    "imageName": "Lunge_Pass_Through.jpg"
   }
 ]

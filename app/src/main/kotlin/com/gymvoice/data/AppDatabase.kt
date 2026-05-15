@@ -10,7 +10,7 @@ import org.json.JSONArray
 
 @Database(
     entities = [WorkoutLog::class, Exercise::class, UserCorrection::class],
-    version = 4,
+    version = 5,
     exportSchema = false,
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -47,6 +47,13 @@ abstract class AppDatabase : RoomDatabase() {
                     database.execSQL("ALTER TABLE `exercises` ADD COLUMN `equipment` TEXT NOT NULL DEFAULT ''")
                     database.execSQL("ALTER TABLE `exercises` ADD COLUMN `level` TEXT NOT NULL DEFAULT ''")
                     database.execSQL("ALTER TABLE `exercises` ADD COLUMN `imageName` TEXT NOT NULL DEFAULT ''")
+                }
+            }
+
+        private val migration4To5 =
+            object : Migration(4, 5) {
+                override fun migrate(database: SupportSQLiteDatabase) {
+                    database.execSQL("DELETE FROM `exercises`")
                 }
             }
 
@@ -101,7 +108,7 @@ abstract class AppDatabase : RoomDatabase() {
         fun getInstance(context: Context): AppDatabase =
             instance ?: synchronized(this) {
                 instance ?: Room.databaseBuilder(context, AppDatabase::class.java, "gymvoice.db")
-                    .addMigrations(migration1To2, migration2To3, migration3To4)
+                    .addMigrations(migration1To2, migration2To3, migration3To4, migration4To5)
                     .addCallback(seedCallback(context.applicationContext))
                     .build().also { instance = it }
             }

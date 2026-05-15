@@ -22,17 +22,57 @@ OUTPUT_DIR = os.path.join(PROJECT_ROOT, "app/src/main/assets")
 IMAGES_DIR = os.path.join(OUTPUT_DIR, "exercises")
 SEED_FILE = os.path.join(OUTPUT_DIR, "exercises_seed.json")
 
-INCLUDE_CATEGORIES = {"strength", "powerlifting", "olympic weightlifting", "strongman"}
+# Only "strength" — powerlifting/olympic/strongman have odd primary-muscle assignments
+# (e.g. bench press variants classified as triceps → appear in Arms)
+INCLUDE_CATEGORIES = {"strength"}
 
 INCLUDE_EQUIPMENT = {
     "barbell", "dumbbell", "cable", "machine",
-    "body only", "kettlebells", "bands", "e-z curl bar",
+    "body only", "kettlebells", "e-z curl bar",
 }
 
-MAX_PER_GROUP = 25
+# Machines always get reserved slots so they can't be squeezed out
+MACHINE_MAX_PER_GROUP = 8
+# Non-machine cap per group (applied after machines are placed)
+OTHER_MAX_PER_GROUP = 22
 
-EQUIPMENT_PRIORITY = ["barbell", "dumbbell", "cable", "machine", "body only", "e-z curl bar", "kettlebells", "bands"]
-LEVEL_PRIORITY = ["intermediate", "beginner", "expert"]
+# These exercises are always included regardless of cap (name substring, case-insensitive)
+MUST_INCLUDE_PATTERNS = [
+    "lat pulldown",
+    "barbell curl",
+    "dumbbell curl",
+    "cable curl",
+    "preacher curl",
+    "hammer curl",
+    "concentration curl",
+    "leg press",
+    "leg extension",
+    "leg curl",
+    "seated cable row",
+    "cable row",
+    "face pull",
+    "tricep pushdown",
+    "cable pushdown",
+    "romanian deadlift",
+    "hip thrust",
+    "pull-up",
+    "pullup",
+    "chin-up",
+    "chinup",
+    "dip",
+    "chest fly",
+    "cable fly",
+    "lateral raise",
+    "front raise",
+    "shrug",
+    "calf raise",
+    "lunge",
+    "step-up",
+    "glute bridge",
+]
+
+EQUIPMENT_PRIORITY = ["barbell", "dumbbell", "cable", "machine", "body only", "e-z curl bar", "kettlebells"]
+LEVEL_PRIORITY = ["beginner", "intermediate", "expert"]
 
 MUSCLE_GROUP_MAP = {
     "chest": "Chest",
@@ -64,6 +104,17 @@ def download_file(url, dest):
         return False
 
 
+def sort_key(ex):
+    lvl = LEVEL_PRIORITY.index(ex.get("level", "intermediate")) if ex.get("level") in LEVEL_PRIORITY else 99
+    equip = EQUIPMENT_PRIORITY.index(ex.get("equipment", "")) if ex.get("equipment") in EQUIPMENT_PRIORITY else 99
+    return (lvl, equip, ex["name"])
+
+
+def is_must_include(name):
+    lower = name.lower()
+    return any(p in lower for p in MUST_INCLUDE_PATTERNS)
+
+
 def main():
     os.makedirs(IMAGES_DIR, exist_ok=True)
 
@@ -80,32 +131,58 @@ def main():
     ]
     print(f"After filter: {len(filtered)} exercises")
 
-    # Sort: intermediate first, then by equipment priority, then alphabetically
-    def sort_key(ex):
-        lvl = LEVEL_PRIORITY.index(ex.get("level", "beginner")) if ex.get("level") in LEVEL_PRIORITY else 99
-        equip = EQUIPMENT_PRIORITY.index(ex.get("equipment", "")) if ex.get("equipment") in EQUIPMENT_PRIORITY else 99
-        return (lvl, equip, ex["name"])
-
     filtered.sort(key=sort_key)
 
-    # Cap per muscle group
-    group_counts = {}
-    capped = []
+    # Tag each exercise with its muscle group
     for ex in filtered:
         primary = ex["primaryMuscles"][0]
-        group = MUSCLE_GROUP_MAP.get(primary.lower(), primary.title())
-        if group_counts.get(group, 0) < MAX_PER_GROUP:
-            capped.append(ex)
-            group_counts[group] = group_counts.get(group, 0) + 1
+        ex["_group"] = MUSCLE_GROUP_MAP.get(primary.lower(), primary.title())
 
-    filtered = capped
-    print(f"After cap ({MAX_PER_GROUP}/group): {len(filtered)} exercises")
+    # Pass 1: must-include exercises (always in, don't count against cap)
+    must_set = set()
+    must_list = []
+    for ex in filtered:
+        if is_must_include(ex["name"]):
+            must_set.add(ex["id"])
+            must_list.append(ex)
+    print(f"Must-include: {len(must_list)}")
+
+    # Pass 2: machine exercises not already in must-include (reserved quota)
+    machine_counts = {}
+    machine_list = []
+    for ex in filtered:
+        if ex["id"] in must_set:
+            continue
+        if ex.get("equipment") == "machine":
+            group = ex["_group"]
+            if machine_counts.get(group, 0) < MACHINE_MAX_PER_GROUP:
+                machine_list.append(ex)
+                machine_counts[group] = machine_counts.get(group, 0) + 1
+    print(f"Machine exercises: {len(machine_list)}")
+
+    # Pass 3: remaining non-machine exercises up to OTHER_MAX_PER_GROUP
+    selected_ids = must_set | {ex["id"] for ex in machine_list}
+    other_counts = {}
+    other_list = []
+    for ex in filtered:
+        if ex["id"] in selected_ids:
+            continue
+        if ex.get("equipment") == "machine":
+            continue
+        group = ex["_group"]
+        if other_counts.get(group, 0) < OTHER_MAX_PER_GROUP:
+            other_list.append(ex)
+            other_counts[group] = other_counts.get(group, 0) + 1
+    print(f"Other exercises: {len(other_list)}")
+
+    combined = must_list + machine_list + other_list
+    combined.sort(key=sort_key)
+    print(f"Total after cap: {len(combined)}")
 
     curated = []
-    for i, ex in enumerate(filtered, 1):
+    for i, ex in enumerate(combined, 1):
         ex_id = ex["id"]
-        primary_muscle = ex["primaryMuscles"][0]
-        muscle_group = MUSCLE_GROUP_MAP.get(primary_muscle.lower(), primary_muscle.title())
+        muscle_group = ex["_group"]
         image_filename = f"{ex_id}.jpg"
         image_dest = os.path.join(IMAGES_DIR, image_filename)
 
@@ -115,9 +192,9 @@ def main():
             if not ok:
                 image_filename = ""
             else:
-                print(f"  [{i}/{len(filtered)}] {ex['name']}")
+                print(f"  [{i}/{len(combined)}] {ex['name']}")
         else:
-            print(f"  [{i}/{len(filtered)}] {ex['name']} (cached)")
+            print(f"  [{i}/{len(combined)}] {ex['name']} (cached)")
 
         curated.append({
             "sourceId": ex_id,
@@ -135,10 +212,13 @@ def main():
         os.path.getsize(os.path.join(IMAGES_DIR, e["imageName"]))
         for e in curated if e["imageName"]
     )
-    print(f"\nDone: {len(curated)} exercises")
-    print(f"Seed file: {SEED_FILE}")
-    print(f"Images dir: {IMAGES_DIR}")
-    print(f"Total image size: {total_image_size / 1_048_576:.1f} MB")
+    print(f"\nDone: {len(curated)} exercises, {total_image_size / 1_048_576:.1f} MB images")
+
+    by_group = {}
+    for e in curated:
+        by_group.setdefault(e["muscleGroup"], []).append(e["name"])
+    for g in sorted(by_group):
+        print(f"  {g}: {len(by_group[g])}")
 
 
 if __name__ == "__main__":
