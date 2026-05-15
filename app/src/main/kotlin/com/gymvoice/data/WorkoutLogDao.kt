@@ -31,7 +31,10 @@ interface WorkoutLogDao {
     fun getLogsForExercise(exercise: String): Flow<List<WorkoutLog>>
 
     @Query("SELECT * FROM logs WHERE timestamp >= :start AND timestamp <= :end ORDER BY timestamp ASC")
-    suspend fun getLogsInRange(start: Long, end: Long): List<WorkoutLog>
+    suspend fun getLogsInRange(
+        start: Long,
+        end: Long,
+    ): List<WorkoutLog>
 
     @Query("SELECT timestamp FROM logs ORDER BY timestamp DESC LIMIT 1")
     suspend fun getLatestTimestamp(): Long?

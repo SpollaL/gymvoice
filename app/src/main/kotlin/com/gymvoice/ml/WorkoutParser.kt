@@ -16,11 +16,12 @@ object WorkoutParser {
     private val WEIGHT_KEYWORD = Regex("""kg|lbs|lb|kilos?|pounds?""", RegexOption.IGNORE_CASE)
     private val REPS_REGEX = Regex("""(\d+)\s*(reps?|repetitions?)""", RegexOption.IGNORE_CASE)
     private val SET_REGEX = Regex("""(\d+)\s*sets?""", RegexOption.IGNORE_CASE)
-    private val REST_REGEX =
-        Regex(
-            """(?:rest|break)\s+(\d+)\s*(min(?:utes?)?|sec(?:onds?)?)|(\d+)\s*(min(?:utes?)?|sec(?:onds?)?)\s+(?:rest|break)""",
-            RegexOption.IGNORE_CASE,
-        )
+
+    @Suppress("MaxLineLength", "ktlint:standard:max-line-length")
+    private val REST_PATTERN =
+        """(?:rest|break)\s+(\d+)\s*(min(?:utes?)?|sec(?:onds?)?)|(\d+)\s*(min(?:utes?)?|sec(?:onds?)?)\s+(?:rest|break)"""
+
+    private val REST_REGEX = Regex(REST_PATTERN, RegexOption.IGNORE_CASE)
     private val STOP_WORDS = setOf("set", "sets", "rep", "reps", "kg", "lbs", "lb", "kilo", "kilos", "pound", "pounds")
 
     private val KNOWN_EXERCISES =
@@ -121,6 +122,7 @@ object WorkoutParser {
         return if (levenshtein(lower, best) <= threshold) best else lower
     }
 
+    @Suppress("ReturnCount")
     private fun parseRestSeconds(text: String): Int? {
         val m = REST_REGEX.find(text) ?: return null
         val value = m.groupValues[1].toIntOrNull() ?: m.groupValues[3].toIntOrNull() ?: return null

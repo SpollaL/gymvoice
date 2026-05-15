@@ -37,12 +37,13 @@ class ExportDialogFragment : DialogFragment() {
         binding.tvFromDate.setOnClickListener { pickFromDate() }
         binding.tvToDate.setOnClickListener { pickToDate() }
 
-        val dialog = AlertDialog.Builder(requireContext())
-            .setTitle(R.string.export_title)
-            .setView(binding.root)
-            .setPositiveButton(R.string.export_button, null)
-            .setNegativeButton(android.R.string.cancel, null)
-            .create()
+        val dialog =
+            AlertDialog.Builder(requireContext())
+                .setTitle(R.string.export_title)
+                .setView(binding.root)
+                .setPositiveButton(R.string.export_button, null)
+                .setNegativeButton(android.R.string.cancel, null)
+                .create()
 
         dialog.setOnShowListener {
             val exportBtn = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
@@ -53,7 +54,10 @@ class ExportDialogFragment : DialogFragment() {
         return dialog
     }
 
-    private fun observeState(dialog: AlertDialog, exportBtn: Button) {
+    private fun observeState(
+        dialog: AlertDialog,
+        exportBtn: Button,
+    ) {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { state ->
@@ -94,16 +98,18 @@ class ExportDialogFragment : DialogFragment() {
     }
 
     private fun pickFromDate() {
-        val cal = Calendar.getInstance().apply {
-            timeInMillis = if (viewModel.fromMs == 0L) System.currentTimeMillis() else viewModel.fromMs
-        }
+        val cal =
+            Calendar.getInstance().apply {
+                timeInMillis = if (viewModel.fromMs == 0L) System.currentTimeMillis() else viewModel.fromMs
+            }
         DatePickerDialog(
             requireContext(),
             { _, year, month, day ->
-                viewModel.fromMs = Calendar.getInstance().apply {
-                    set(year, month, day, 0, 0, 0)
-                    set(Calendar.MILLISECOND, 0)
-                }.timeInMillis
+                viewModel.fromMs =
+                    Calendar.getInstance().apply {
+                        set(year, month, day, 0, 0, 0)
+                        set(Calendar.MILLISECOND, 0)
+                    }.timeInMillis
                 binding.tvFromDate.text = dateFmt.format(Date(viewModel.fromMs))
             },
             cal.get(Calendar.YEAR),
@@ -113,16 +119,18 @@ class ExportDialogFragment : DialogFragment() {
     }
 
     private fun pickToDate() {
-        val cal = Calendar.getInstance().apply {
-            timeInMillis = if (viewModel.toMs == Long.MAX_VALUE) System.currentTimeMillis() else viewModel.toMs
-        }
+        val cal =
+            Calendar.getInstance().apply {
+                timeInMillis = if (viewModel.toMs == Long.MAX_VALUE) System.currentTimeMillis() else viewModel.toMs
+            }
         DatePickerDialog(
             requireContext(),
             { _, year, month, day ->
-                viewModel.toMs = Calendar.getInstance().apply {
-                    set(year, month, day, 23, 59, 59)
-                    set(Calendar.MILLISECOND, 999)
-                }.timeInMillis
+                viewModel.toMs =
+                    Calendar.getInstance().apply {
+                        set(year, month, day, 23, 59, 59)
+                        set(Calendar.MILLISECOND, 999)
+                    }.timeInMillis
                 binding.tvToDate.text = dateFmt.format(Date(viewModel.toMs))
             },
             cal.get(Calendar.YEAR),
@@ -132,16 +140,18 @@ class ExportDialogFragment : DialogFragment() {
     }
 
     private fun shareFile(uri: Uri) {
-        val mimeType = if (viewModel.format == ExportFormat.XLSX) {
-            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        } else {
-            "application/pdf"
-        }
-        val intent = Intent(Intent.ACTION_SEND).apply {
-            type = mimeType
-            putExtra(Intent.EXTRA_STREAM, uri)
-            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        }
+        val mimeType =
+            if (viewModel.format == ExportFormat.XLSX) {
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            } else {
+                "application/pdf"
+            }
+        val intent =
+            Intent(Intent.ACTION_SEND).apply {
+                type = mimeType
+                putExtra(Intent.EXTRA_STREAM, uri)
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
         startActivity(Intent.createChooser(intent, getString(R.string.export_share_title)))
     }
 }

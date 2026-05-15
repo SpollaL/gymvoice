@@ -113,6 +113,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     fun stopRecording() = stt.stop()
 
+    @Suppress("LongParameterList")
     fun logManual(
         exercise: String,
         sets: Int?,

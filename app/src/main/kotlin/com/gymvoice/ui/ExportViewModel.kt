@@ -18,8 +18,11 @@ class ExportViewModel(app: Application) : AndroidViewModel(app) {
 
     sealed class UiState {
         object Idle : UiState()
+
         object Loading : UiState()
+
         data class Success(val uri: Uri) : UiState()
+
         data class Error(val message: String) : UiState()
     }
 
@@ -37,10 +40,11 @@ class ExportViewModel(app: Application) : AndroidViewModel(app) {
         val capturedFormat = format
         viewModelScope.launch {
             _uiState.value = UiState.Loading
-            _uiState.value = when (val result = repository.export(capturedFormat, capturedFromMs, capturedToMs)) {
-                is ExportRepository.ExportResult.Success -> UiState.Success(result.uri)
-                is ExportRepository.ExportResult.Failure -> UiState.Error(result.message)
-            }
+            _uiState.value =
+                when (val result = repository.export(capturedFormat, capturedFromMs, capturedToMs)) {
+                    is ExportRepository.ExportResult.Success -> UiState.Success(result.uri)
+                    is ExportRepository.ExportResult.Failure -> UiState.Error(result.message)
+                }
         }
     }
 

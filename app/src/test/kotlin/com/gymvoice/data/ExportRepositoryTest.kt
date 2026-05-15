@@ -7,17 +7,42 @@ import org.junit.Test
 import java.io.ByteArrayInputStream
 
 class ExportRepositoryTest {
-    private val sampleLogs = listOf(
-        WorkoutLog(id = 1, sessionId = "s1", exerciseName = "bench press",
-            setNumber = 1, reps = 10, weight = 80f, unit = "kg",
-            restSeconds = 120, timestamp = 1_000_000L),
-        WorkoutLog(id = 2, sessionId = "s1", exerciseName = "bench press",
-            setNumber = 2, reps = 8, weight = 85f, unit = "kg",
-            restSeconds = 90, timestamp = 2_000_000L),
-        WorkoutLog(id = 3, sessionId = "s2", exerciseName = "squat",
-            setNumber = 1, reps = 5, weight = 100f, unit = "kg",
-            restSeconds = null, timestamp = 3_000_000L),
-    )
+    private val sampleLogs =
+        listOf(
+            WorkoutLog(
+                id = 1,
+                sessionId = "s1",
+                exerciseName = "bench press",
+                setNumber = 1,
+                reps = 10,
+                weight = 80f,
+                unit = "kg",
+                restSeconds = 120,
+                timestamp = 1_000_000L,
+            ),
+            WorkoutLog(
+                id = 2,
+                sessionId = "s1",
+                exerciseName = "bench press",
+                setNumber = 2,
+                reps = 8,
+                weight = 85f,
+                unit = "kg",
+                restSeconds = 90,
+                timestamp = 2_000_000L,
+            ),
+            WorkoutLog(
+                id = 3,
+                sessionId = "s2",
+                exerciseName = "squat",
+                setNumber = 1,
+                reps = 5,
+                weight = 100f,
+                unit = "kg",
+                restSeconds = null,
+                timestamp = 3_000_000L,
+            ),
+        )
 
     @Test
     fun buildXlsx_producesValidSheetWithHeaderAndDataRows() {
@@ -53,9 +78,17 @@ class ExportRepositoryTest {
 
     @Test
     fun buildXlsx_nullFieldsWriteZero() {
-        val log = WorkoutLog(sessionId = "s1", exerciseName = "run",
-            setNumber = null, reps = null, weight = null, unit = "kg",
-            restSeconds = null, timestamp = 1_000_000L)
+        val log =
+            WorkoutLog(
+                sessionId = "s1",
+                exerciseName = "run",
+                setNumber = null,
+                reps = null,
+                weight = null,
+                unit = "kg",
+                restSeconds = null,
+                timestamp = 1_000_000L,
+            )
 
         val bytes = ExportRepository.buildXlsx(listOf(log))
 
