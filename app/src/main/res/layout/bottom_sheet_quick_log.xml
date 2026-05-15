@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/tvExerciseName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/mauve"
+        android:textSize="16sp"
+        android:fontFamily="monospace"
+        android:letterSpacing="0.05"
+        android:layout_marginBottom="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="12dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilSets"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            app:boxStrokeColor="@color/surface1"
+            app:boxBackgroundColor="@color/surface0"
+            app:hintTextColor="@color/subtext0"
+            android:hint="@string/quick_log_sets_hint">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textColor="@color/text"
+                android:textSize="13sp"
+                android:fontFamily="monospace" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilReps"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            app:boxStrokeColor="@color/surface1"
+            app:boxBackgroundColor="@color/surface0"
+            app:hintTextColor="@color/subtext0"
+            android:hint="@string/quick_log_reps_hint">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etReps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textColor="@color/text"
+                android:textSize="13sp"
+                android:fontFamily="monospace" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilWeight"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            app:boxStrokeColor="@color/surface1"
+            app:boxBackgroundColor="@color/surface0"
+            app:hintTextColor="@color/subtext0"
+            android:hint="@string/quick_log_weight_hint">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etWeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:textColor="@color/text"
+                android:textSize="13sp"
+                android:fontFamily="monospace" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/rgUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <RadioButton
+            android:id="@+id/rbKg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="kg"
+            android:textColor="@color/text"
+            android:fontFamily="monospace"
+            android:buttonTint="@color/mauve"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/rbLbs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="lbs"
+            android:textColor="@color/text"
+            android:fontFamily="monospace"
+            android:buttonTint="@color/mauve"
+            android:layout_marginStart="16dp" />
+
+    </RadioGroup>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/quick_log_log"
+        android:textColor="@color/base"
+        android:fontFamily="monospace"
+        app:backgroundTint="@color/mauve" />
+
+</LinearLayout>

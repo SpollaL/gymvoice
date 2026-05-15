@@ -27,4 +27,13 @@
     <string name="export_all_time">All time</string>
     <string name="export_saved">Saved to Downloads</string>
     <string name="export_share_title">Share training log</string>
+    <string name="nav_library">Library</string>
+    <string name="library_title">LIBRARY</string>
+    <string name="library_search_hint">search exercises</string>
+    <string name="library_empty">no exercises found</string>
+    <string name="chip_all">all</string>
+    <string name="quick_log_sets_hint">sets</string>
+    <string name="quick_log_reps_hint">reps</string>
+    <string name="quick_log_weight_hint">weight</string>
+    <string name="quick_log_log">log</string>
 </resources>

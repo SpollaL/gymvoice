@@ -23,6 +23,9 @@ interface ExerciseDao {
     @Query("SELECT COUNT(*) FROM exercises")
     suspend fun count(): Int
 
+    @Query("SELECT DISTINCT muscleGroup FROM exercises WHERE muscleGroup != '' ORDER BY muscleGroup ASC")
+    fun getMuscleGroups(): Flow<List<String>>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(exercises: List<Exercise>)
 }

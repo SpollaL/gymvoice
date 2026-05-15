@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.gymvoice.databinding.ActivityMainBinding
 import com.gymvoice.ui.CalendarFragment
+import com.gymvoice.ui.LibraryFragment
 import com.gymvoice.ui.ProgressFragment
 import com.gymvoice.ui.RecordFragment
 
@@ -43,6 +44,13 @@ class MainActivity : AppCompatActivity() {
                     )
                     true
                 }
+                R.id.nav_library -> {
+                    showFragment(
+                        supportFragmentManager.findFragmentByTag(TAG_LIBRARY) ?: LibraryFragment(),
+                        TAG_LIBRARY,
+                    )
+                    true
+                }
                 else -> false
             }
         }
@@ -63,5 +71,6 @@ class MainActivity : AppCompatActivity() {
         private const val TAG_RECORD = "record"
         private const val TAG_CALENDAR = "calendar"
         private const val TAG_PROGRESS = "progress"
+        private const val TAG_LIBRARY = "library"
     }
 }

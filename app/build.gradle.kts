@@ -81,6 +81,9 @@ dependencies {
     // Export
     implementation(libs.poi.ooxml)
 
+    // Image loading
+    implementation(libs.coil)
+
     // Tests
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
