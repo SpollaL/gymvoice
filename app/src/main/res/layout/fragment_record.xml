@@ -118,6 +118,19 @@
             android:background="@drawable/bg_record_ring"
             android:alpha="0" />
 
+        <!-- Processing spinner, orbits around inner circle -->
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressSpinner"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:indicatorSize="88dp"
+            app:trackThickness="2dp"
+            app:indicatorColor="@color/accent"
+            app:trackColor="@android:color/transparent" />
+
         <!-- Inner circle with icon -->
         <ImageView
             android:id="@+id/ivRecordIcon"

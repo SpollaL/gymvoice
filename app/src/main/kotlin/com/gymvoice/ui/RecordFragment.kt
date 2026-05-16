@@ -92,10 +92,11 @@ class RecordFragment : Fragment() {
                             binding.tvStatus.text = ""
                         }
                         is MainViewModel.UiState.Processing -> {
-                            binding.ivRecordIcon.alpha = 0.4f
-                            binding.tvRecordLabel.text = ""
+                            binding.ivRecordIcon.alpha = 0.35f
+                            binding.tvRecordLabel.text = state.status
+                            binding.progressSpinner.visibility = View.VISIBLE
                             stopPulse()
-                            binding.tvStatus.text = state.status
+                            binding.tvStatus.text = ""
                         }
                         is MainViewModel.UiState.Error -> {
                             setButtonIdle()
@@ -168,6 +169,7 @@ class RecordFragment : Fragment() {
     }
 
     private fun setButtonIdle() {
+        binding.progressSpinner.visibility = View.GONE
         binding.ivRecordIcon.setImageResource(R.drawable.ic_mic)
         binding.ivRecordIcon.backgroundTintList =
             ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.accent))
@@ -177,6 +179,7 @@ class RecordFragment : Fragment() {
     }
 
     private fun setButtonRecording() {
+        binding.progressSpinner.visibility = View.GONE
         binding.ivRecordIcon.setImageResource(R.drawable.ic_stop)
         binding.ivRecordIcon.backgroundTintList =
             ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.red))
