@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.gymvoice.R
 import com.gymvoice.databinding.FragmentProgressBinding
+import com.gymvoice.databinding.ItemMuscleVolumeBinding
 import kotlinx.coroutines.launch
 
 class ProgressFragment : Fragment() {
@@ -124,6 +125,26 @@ class ProgressFragment : Fragment() {
                     historyAdapter.hasWeight = data.hasWeight
                     historyAdapter.mode = data.mode
                     historyAdapter.submitList(data.logs)
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            vm.weeklyVolume.collect { entries ->
+                binding.llMuscleGroups.removeAllViews()
+                entries.forEach { entry ->
+                    val row = ItemMuscleVolumeBinding.inflate(layoutInflater, binding.llMuscleGroups, false)
+                    row.tvMuscleName.text = entry.muscle
+                    row.tvSets.text = "${entry.sets}"
+                    val (label, color) =
+                        when (entry.status) {
+                            VolumeStatus.BELOW_MEV -> "below MEV" to R.color.red
+                            VolumeStatus.IN_MAV -> "MAV" to R.color.green
+                            VolumeStatus.ABOVE_MRV -> "over MRV" to R.color.red
+                        }
+                    row.tvStatus.text = label
+                    row.tvStatus.setTextColor(resources.getColor(color, null))
+                    binding.llMuscleGroups.addView(row.root)
                 }
             }
         }

@@ -153,8 +153,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
                     restSeconds = restSeconds,
                     timestamp = now,
                 )
-            val logId = dao.insert(log)
-            _lastLogged.emit(log.copy(id = logId))
+            _lastLogged.emit(log.copy(id = dao.insert(log)))
             _uiState.value = UiState.Idle
         } else {
             _pendingLog.value =
@@ -326,9 +325,8 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
                 restSeconds = pending.restSeconds,
                 timestamp = now,
             )
-        val logId = dao.insert(log)
         _pendingLog.value = null
-        _lastLogged.emit(log.copy(id = logId))
+        _lastLogged.emit(log.copy(id = dao.insert(log)))
     }
 
     override fun onCleared() {

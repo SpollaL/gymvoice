@@ -77,6 +77,7 @@ abstract class AppDatabase : RoomDatabase() {
             object : Callback() {
                 override fun onOpen(db: SupportSQLiteDatabase) {
                     super.onOpen(db)
+                    collapseExpandedSetRows(db)
                     val cursor = db.query("SELECT COUNT(*) FROM exercises")
                     cursor.moveToFirst()
                     val count = cursor.getInt(0)
@@ -85,6 +86,23 @@ abstract class AppDatabase : RoomDatabase() {
                     seedExercises(context, db)
                 }
             }
+
+        private fun collapseExpandedSetRows(db: SupportSQLiteDatabase) {
+            // Removes rows added by the short-lived expansion migration.
+            // Those rows share sessionId/exerciseName/reps/weight/timestamp with another row
+            // but have a lower setNumber — only the max-setNumber row (the original) is kept.
+            db.execSQL(
+                "DELETE FROM logs WHERE id IN (" +
+                    "SELECT l1.id FROM logs l1 " +
+                    "INNER JOIN logs l2 ON l1.sessionId = l2.sessionId " +
+                    "AND l1.exerciseName = l2.exerciseName " +
+                    "AND COALESCE(l1.reps, -1) = COALESCE(l2.reps, -1) " +
+                    "AND COALESCE(l1.weight, -1.0) = COALESCE(l2.weight, -1.0) " +
+                    "AND l1.timestamp = l2.timestamp " +
+                    "AND l1.id != l2.id " +
+                    "WHERE l1.setNumber < l2.setNumber)",
+            )
+        }
 
         private fun seedExercises(
             context: Context,

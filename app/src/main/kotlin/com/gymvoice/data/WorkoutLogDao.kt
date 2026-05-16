@@ -49,6 +49,9 @@ interface WorkoutLogDao {
         newName: String,
     ): Int
 
+    @Query("SELECT * FROM logs WHERE timestamp >= :since ORDER BY timestamp ASC")
+    fun getLogsAfter(since: Long): Flow<List<WorkoutLog>>
+
     @Insert
     suspend fun insert(log: WorkoutLog): Long
 
