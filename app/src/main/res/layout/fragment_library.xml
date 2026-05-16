@@ -72,12 +72,26 @@
         android:id="@+id/rvExercises"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:padding="8dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="88dp"
+        android:paddingHorizontal="8dp"
         android:clipToPadding="false"
         app:layout_constraintTop_toBottomOf="@id/hsvMuscle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddExercise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:contentDescription="Add exercise"
+        android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="@color/mauve"
+        app:tint="@color/base"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
         android:id="@+id/tvEmpty"

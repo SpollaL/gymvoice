@@ -10,7 +10,7 @@ import org.json.JSONArray
 
 @Database(
     entities = [WorkoutLog::class, Exercise::class, UserCorrection::class],
-    version = 5,
+    version = 6,
     exportSchema = false,
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -54,6 +54,22 @@ abstract class AppDatabase : RoomDatabase() {
             object : Migration(4, 5) {
                 override fun migrate(database: SupportSQLiteDatabase) {
                     database.execSQL("DELETE FROM `exercises`")
+                }
+            }
+
+        private val migration5To6 =
+            object : Migration(5, 6) {
+                override fun migrate(database: SupportSQLiteDatabase) {
+                    val sql =
+                        "INSERT OR IGNORE INTO exercises " +
+                            "(name, muscleGroup, equipment, level, imageName) VALUES (?, ?, ?, ?, '')"
+                    arrayOf(
+                        arrayOf("Leverage Leg Press", "Legs", "machine", "beginner"),
+                        arrayOf("Leverage Leg Press Unilateral", "Legs", "machine", "intermediate"),
+                        arrayOf("Leverage Squat", "Legs", "machine", "intermediate"),
+                        arrayOf("Leverage Seated Row", "Back", "machine", "beginner"),
+                        arrayOf("Dumbbell Front Raise", "Shoulders", "dumbbell", "beginner"),
+                    ).forEach { database.execSQL(sql, it) }
                 }
             }
 
@@ -108,7 +124,7 @@ abstract class AppDatabase : RoomDatabase() {
         fun getInstance(context: Context): AppDatabase =
             instance ?: synchronized(this) {
                 instance ?: Room.databaseBuilder(context, AppDatabase::class.java, "gymvoice.db")
-                    .addMigrations(migration1To2, migration2To3, migration3To4, migration4To5)
+                    .addMigrations(migration1To2, migration2To3, migration3To4, migration4To5, migration5To6)
                     .addCallback(seedCallback(context.applicationContext))
                     .build().also { instance = it }
             }

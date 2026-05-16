@@ -22,10 +22,16 @@ class LibraryFragment : Fragment() {
     private val vm: LibraryViewModel by viewModels()
 
     private val adapter =
-        ExerciseAdapter { exercise ->
-            QuickLogBottomSheet.newInstance(exercise.name)
-                .show(childFragmentManager, "quick_log")
-        }
+        ExerciseAdapter(
+            onClick = { exercise ->
+                QuickLogBottomSheet.newInstance(exercise.name)
+                    .show(childFragmentManager, "quick_log")
+            },
+            onLongClick = { exercise ->
+                AddExerciseBottomSheet().also { it.existingExercise = exercise }
+                    .show(childFragmentManager, "edit_exercise")
+            },
+        )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,6 +72,10 @@ class LibraryFragment : Fragment() {
                 }
             },
         )
+
+        binding.fabAddExercise.setOnClickListener {
+            AddExerciseBottomSheet().show(childFragmentManager, "add_exercise")
+        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             vm.muscleGroups.collect { groups -> buildMuscleChips(groups) }

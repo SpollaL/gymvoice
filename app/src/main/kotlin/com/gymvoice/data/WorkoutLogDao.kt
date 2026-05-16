@@ -7,6 +7,7 @@ import androidx.room.Query
 import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
+@Suppress("TooManyFunctions")
 @Dao
 interface WorkoutLogDao {
     @Query("SELECT * FROM logs WHERE timestamp > :startOfDay ORDER BY timestamp DESC")
@@ -38,6 +39,15 @@ interface WorkoutLogDao {
 
     @Query("SELECT timestamp FROM logs ORDER BY timestamp DESC LIMIT 1")
     suspend fun getLatestTimestamp(): Long?
+
+    @Query("SELECT DISTINCT exerciseName FROM logs ORDER BY exerciseName ASC")
+    suspend fun getDistinctExerciseNamesOnce(): List<String>
+
+    @Query("UPDATE logs SET exerciseName = :newName WHERE exerciseName = :oldName")
+    suspend fun renameExercise(
+        oldName: String,
+        newName: String,
+    ): Int
 
     @Insert
     suspend fun insert(log: WorkoutLog): Long

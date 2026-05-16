@@ -11,6 +11,12 @@ import com.gymvoice.databinding.ItemWorkoutLogBinding
 class WorkoutLogAdapter(
     private val onEdit: (WorkoutLog) -> Unit,
 ) : ListAdapter<WorkoutLog, WorkoutLogAdapter.ViewHolder>(DIFF) {
+    var imageMap: Map<String, String> = emptyMap()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
     inner class ViewHolder(private val binding: ItemWorkoutLogBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(log: WorkoutLog) {
@@ -31,6 +37,9 @@ class WorkoutLogAdapter(
                         }
                     }
                 }.trim()
+
+            binding.ivExercise.loadExerciseImage(imageMap[log.exerciseName.lowercase()] ?: "")
+
             binding.root.setOnClickListener { onEdit(log) }
             binding.root.setOnLongClickListener(null)
         }

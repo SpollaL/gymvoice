@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -34,6 +35,7 @@ class CalendarFragment : Fragment() {
     private var _binding: FragmentCalendarBinding? = null
     val binding get() = _binding!!
     private val viewModel: CalendarViewModel by viewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
     private lateinit var adapter: WorkoutLogAdapter
 
     private var selectedDate: LocalDate = LocalDate.now()
@@ -135,6 +137,11 @@ class CalendarFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.logsForDate.collect { logs -> adapter.submitList(logs) }
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                mainViewModel.exerciseImageMap.collect { adapter.imageMap = it }
             }
         }
     }

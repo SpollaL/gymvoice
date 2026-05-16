@@ -1,27 +1,28 @@
 package com.gymvoice.ui
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.gymvoice.data.Exercise
 import com.gymvoice.databinding.ItemExerciseBinding
 
 class ExerciseAdapter(
     private val onClick: (Exercise) -> Unit,
+    private val onLongClick: ((Exercise) -> Unit)? = null,
 ) : ListAdapter<Exercise, ExerciseAdapter.ViewHolder>(DIFF) {
     inner class ViewHolder(private val binding: ItemExerciseBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(exercise: Exercise) {
             binding.tvName.text = exercise.name
             binding.tvEquipment.text = exercise.equipment
-            binding.ivExercise.load(Uri.parse("file:///android_asset/exercises/${exercise.imageName}")) {
-                crossfade(true)
-            }
+            binding.ivExercise.loadExerciseImage(exercise.imageName)
             binding.root.setOnClickListener { onClick(exercise) }
+            binding.root.setOnLongClickListener {
+                onLongClick?.invoke(exercise)
+                onLongClick != null
+            }
         }
     }
 

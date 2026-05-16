@@ -13,6 +13,13 @@
         android:layout_height="match_parent"
         android:background="@color/mauve" />
 
+    <ImageView
+        android:id="@+id/ivExercise"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop" />
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"

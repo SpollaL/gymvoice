@@ -2086,5 +2086,45 @@
     "equipment": "kettlebells",
     "level": "intermediate",
     "imageName": "Lunge_Pass_Through.jpg"
+  },
+  {
+    "sourceId": "Leverage_Leg_Press",
+    "name": "Leverage Leg Press",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": ""
+  },
+  {
+    "sourceId": "Leverage_Leg_Press_Unilateral",
+    "name": "Leverage Leg Press Unilateral",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "intermediate",
+    "imageName": ""
+  },
+  {
+    "sourceId": "Leverage_Squat",
+    "name": "Leverage Squat",
+    "muscleGroup": "Legs",
+    "equipment": "machine",
+    "level": "intermediate",
+    "imageName": ""
+  },
+  {
+    "sourceId": "Leverage_Seated_Row",
+    "name": "Leverage Seated Row",
+    "muscleGroup": "Back",
+    "equipment": "machine",
+    "level": "beginner",
+    "imageName": ""
+  },
+  {
+    "sourceId": "Dumbbell_Front_Raise",
+    "name": "Dumbbell Front Raise",
+    "muscleGroup": "Shoulders",
+    "equipment": "dumbbell",
+    "level": "beginner",
+    "imageName": ""
   }
 ]

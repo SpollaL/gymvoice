@@ -12,7 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -27,7 +27,7 @@ import kotlinx.coroutines.launch
 class RecordFragment : Fragment() {
     private var _binding: FragmentRecordBinding? = null
     val binding get() = _binding!!
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: MainViewModel by activityViewModels()
     private lateinit var adapter: WorkoutLogAdapter
 
     private val requestMic =
@@ -55,6 +55,12 @@ class RecordFragment : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.exerciseImageMap.collect { adapter.imageMap = it }
+            }
+        }
+
         binding.btnRecord.setOnClickListener {
             when (viewModel.uiState.value) {
                 is MainViewModel.UiState.Idle -> viewModel.startRecording()
@@ -64,6 +70,9 @@ class RecordFragment : Fragment() {
         }
 
         binding.btnManualEntry.setOnClickListener { showManualEntryDialog() }
+        binding.btnStandardize.setOnClickListener {
+            RenameLogsBottomSheet().show(childFragmentManager, "rename_logs")
+        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -119,6 +128,27 @@ class RecordFragment : Fragment() {
             }
         }
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.pendingConfirmation.collect {
+                    ConfirmMatchBottomSheet()
+                        .show(childFragmentManager, "confirm_match")
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.standardizeResult.collect { msg ->
+                    AlertDialog.Builder(requireContext())
+                        .setTitle("Fix names")
+                        .setMessage(msg)
+                        .setPositiveButton("OK", null)
+                        .show()
+                }
+            }
+        }
+
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.RECORD_AUDIO)
             != PackageManager.PERMISSION_GRANTED
         ) {
@@ -133,15 +163,21 @@ class RecordFragment : Fragment() {
 
     private fun showManualEntryDialog() {
         val dialogBinding = DialogEditLogBinding.inflate(layoutInflater)
+        var selectedExercise = ""
+        dialogBinding.etExercise.setOnClickListener {
+            openExercisePicker { ex ->
+                selectedExercise = ex.name
+                dialogBinding.etExercise.setText(ex.name)
+            }
+        }
         AlertDialog.Builder(requireContext())
             .setTitle("Log manually")
             .setView(dialogBinding.root)
             .setPositiveButton("Log") { _, _ ->
-                val exercise = dialogBinding.etExercise.text.toString().trim()
-                if (exercise.isNotBlank()) {
+                if (selectedExercise.isNotBlank()) {
                     val unit = if (dialogBinding.rgUnit.checkedRadioButtonId == R.id.rbLbs) "lbs" else "kg"
                     viewModel.logManual(
-                        exercise = exercise,
+                        exercise = selectedExercise,
                         sets = dialogBinding.etSet.text.toString().toIntOrNull(),
                         reps = dialogBinding.etReps.text.toString().toIntOrNull(),
                         weight = dialogBinding.etWeight.text.toString().toFloatOrNull(),
@@ -152,6 +188,11 @@ class RecordFragment : Fragment() {
             }
             .setNegativeButton("Cancel", null)
             .show()
+    }
+
+    private fun openExercisePicker(onPicked: (com.gymvoice.data.Exercise) -> Unit) {
+        ExercisePickerBottomSheet().also { it.onPicked = onPicked }
+            .show(childFragmentManager, "exercise_picker")
     }
 
     private fun showFixDialog(log: WorkoutLog) {
@@ -178,18 +219,25 @@ class RecordFragment : Fragment() {
 
     private fun showEditDialog(log: WorkoutLog) {
         val dialogBinding = DialogEditLogBinding.inflate(layoutInflater)
+        var selectedExercise = log.exerciseName
         dialogBinding.etExercise.setText(log.exerciseName)
         dialogBinding.etSet.setText(log.setNumber?.toString() ?: "")
         dialogBinding.etReps.setText(log.reps?.toString() ?: "")
         dialogBinding.etWeight.setText(log.weight?.toString() ?: "")
         dialogBinding.etRest.setText(log.restSeconds?.toString() ?: "")
         if (log.unit == "lbs") dialogBinding.rbLbs.isChecked = true else dialogBinding.rbKg.isChecked = true
+        dialogBinding.etExercise.setOnClickListener {
+            openExercisePicker { ex ->
+                selectedExercise = ex.name
+                dialogBinding.etExercise.setText(ex.name)
+            }
+        }
 
         AlertDialog.Builder(requireContext())
             .setTitle("Edit Log")
             .setView(dialogBinding.root)
             .setPositiveButton("Save") { _, _ ->
-                val newExercise = dialogBinding.etExercise.text.toString()
+                val newExercise = selectedExercise
                 if (newExercise != log.exerciseName) {
                     viewModel.saveCorrection(log.exerciseName, newExercise)
                 }
