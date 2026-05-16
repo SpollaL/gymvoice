@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Tokyo Night palette -->
-    <color name="background">#1a1b26</color>
-    <color name="surface0">#1f2335</color>
-    <color name="surface1">#24283b</color>
-    <color name="border">#18FFFFFF</color>
-    <color name="separator">#0EFFFFFF</color>
-    <color name="overlay0">#3b4261</color>
+    <!-- Linear/Revolut-black + Tokyo Night accents -->
+    <color name="background">#0d0d11</color>
+    <color name="surface0">#111116</color>
+    <color name="surface1">#18181f</color>
+    <color name="border">#12FFFFFF</color>
+    <color name="separator">#08FFFFFF</color>
+    <color name="overlay0">#2d2f45</color>
     <color name="text">#c0caf5</color>
     <color name="subtext0">#565f89</color>
     <color name="subtext1">#9aa5ce</color>
-    <color name="accent">#7aa2f7</color>
+    <color name="accent">#818CF8</color>
     <color name="green">#9ece6a</color>
     <color name="red">#f7768e</color>
 

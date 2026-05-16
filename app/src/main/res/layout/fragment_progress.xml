@@ -22,9 +22,7 @@
             android:textStyle="bold"
             android:textColor="@color/text"
             android:paddingTop="24dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="12dp" />
+            android:paddingStart="20dp" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardWeeklyVolume"
