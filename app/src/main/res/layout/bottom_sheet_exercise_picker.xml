@@ -21,7 +21,6 @@
             android:id="@+id/etPickerSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="monospace"
             android:inputType="text"
             android:textColor="@color/text"
             android:textSize="14sp" />
@@ -39,7 +38,6 @@
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="monospace"
         android:text="＋ add as new exercise"
         android:textAllCaps="false"
         android:textColor="@color/mauve"

@@ -30,7 +30,6 @@
             android:layout_height="wrap_content"
             android:textColor="@color/text"
             android:textSize="12sp"
-            android:fontFamily="monospace"
             android:maxLines="2"
             android:ellipsize="end"
             android:padding="6dp" />
@@ -41,7 +40,6 @@
             android:layout_height="wrap_content"
             android:textColor="@color/overlay0"
             android:textSize="10sp"
-            android:fontFamily="monospace"
             android:paddingStart="6dp"
             android:paddingEnd="6dp"
             android:paddingBottom="6dp" />

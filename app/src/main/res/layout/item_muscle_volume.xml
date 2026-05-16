@@ -11,8 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="12sp"
-        android:textColor="@color/text"
-        android:fontFamily="monospace" />
+        android:textColor="@color/text" />
 
     <TextView
         android:id="@+id/tvSets"
@@ -20,15 +19,13 @@
         android:layout_height="wrap_content"
         android:gravity="end"
         android:textSize="12sp"
-        android:textColor="@color/text"
-        android:fontFamily="monospace" />
+        android:textColor="@color/text" />
 
     <TextView
         android:id="@+id/tvStatus"
         android:layout_width="72dp"
         android:layout_height="wrap_content"
         android:gravity="end"
-        android:textSize="11sp"
-        android:fontFamily="monospace" />
+        android:textSize="11sp" />
 
 </LinearLayout>

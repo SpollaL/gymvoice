@@ -36,9 +36,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textSize="14sp"
-            android:textColor="@color/text"
-            android:fontFamily="monospace"
-            android:letterSpacing="0.1" />
+            android:textColor="@color/text" />
 
         <ImageButton
             android:id="@+id/btnNextMonth"
@@ -67,13 +65,6 @@
         android:orientation="horizontal"
         android:paddingHorizontal="4dp">
 
-        <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="M" android:textSize="10sp" android:textColor="@color/overlay0" android:fontFamily="monospace" />
-        <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="T" android:textSize="10sp" android:textColor="@color/overlay0" android:fontFamily="monospace" />
-        <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="W" android:textSize="10sp" android:textColor="@color/overlay0" android:fontFamily="monospace" />
-        <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="T" android:textSize="10sp" android:textColor="@color/overlay0" android:fontFamily="monospace" />
-        <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="F" android:textSize="10sp" android:textColor="@color/overlay0" android:fontFamily="monospace" />
-        <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="S" android:textSize="10sp" android:textColor="@color/overlay0" android:fontFamily="monospace" />
-        <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="S" android:textSize="10sp" android:textColor="@color/overlay0" android:fontFamily="monospace" />
 
     </LinearLayout>
 
@@ -106,9 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="11sp"
-            android:textColor="@color/overlay0"
-            android:fontFamily="monospace"
-            android:letterSpacing="0.1" />
+            android:textColor="@color/overlay0" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAddLog"
@@ -118,7 +107,6 @@
             android:text="@string/add_log"
             android:textColor="@color/mauve"
             android:textSize="11sp"
-            android:fontFamily="monospace"
             android:minWidth="0dp"
             android:paddingHorizontal="8dp" />
 
