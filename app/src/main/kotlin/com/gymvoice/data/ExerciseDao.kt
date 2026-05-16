@@ -30,6 +30,9 @@ interface ExerciseDao {
     @Query("SELECT DISTINCT muscleGroup FROM exercises WHERE muscleGroup != '' ORDER BY muscleGroup ASC")
     fun getMuscleGroups(): Flow<List<String>>
 
+    @Query("SELECT DISTINCT equipment FROM exercises WHERE equipment != '' ORDER BY equipment ASC")
+    fun getEquipmentList(): Flow<List<String>>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(exercises: List<Exercise>)
 

@@ -78,7 +78,14 @@ class LibraryFragment : Fragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            vm.muscleGroups.collect { groups -> buildMuscleChips(groups) }
+            vm.muscleGroups.collect { groups -> buildFilterChips(groups, binding.cgMuscle) { vm.setMuscleGroup(it) } }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            vm.equipmentList.collect {
+                    items ->
+                buildFilterChips(items, binding.cgEquipment) { vm.setEquipmentFilter(it) }
+            }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -90,8 +97,12 @@ class LibraryFragment : Fragment() {
         }
     }
 
-    private fun buildMuscleChips(groups: List<String>) {
-        if (binding.cgMuscle.childCount > 0) return
+    private fun buildFilterChips(
+        items: List<String>,
+        chipGroup: com.google.android.material.chip.ChipGroup,
+        onFilter: (String?) -> Unit,
+    ) {
+        if (chipGroup.childCount > 0) return
 
         val allChip =
             Chip(requireContext()).apply {
@@ -100,22 +111,22 @@ class LibraryFragment : Fragment() {
                 isCheckable = true
                 isChecked = true
             }
-        binding.cgMuscle.addView(allChip)
+        chipGroup.addView(allChip)
 
-        groups.forEach { group ->
+        items.forEach { item ->
             val chip =
                 Chip(requireContext()).apply {
                     id = View.generateViewId()
-                    text = group
+                    text = item
                     isCheckable = true
-                    tag = group
+                    tag = item
                 }
-            binding.cgMuscle.addView(chip)
+            chipGroup.addView(chip)
         }
 
-        binding.cgMuscle.setOnCheckedStateChangeListener { chipGroup, checkedIds ->
-            val chip = checkedIds.firstOrNull()?.let { chipGroup.findViewById<Chip>(it) }
-            vm.setMuscleGroup(chip?.tag as? String)
+        chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
+            val chip = checkedIds.firstOrNull()?.let { group.findViewById<Chip>(it) }
+            onFilter(chip?.tag as? String)
         }
     }
 

@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
+import com.gymvoice.R
 import com.gymvoice.data.Exercise
 import com.gymvoice.databinding.BottomSheetExercisePickerBinding
 import kotlinx.coroutines.launch
@@ -24,6 +27,8 @@ class ExercisePickerBottomSheet : BottomSheetDialogFragment() {
 
     private val vm: MainViewModel by activityViewModels()
     private var allExercises: List<Exercise> = emptyList()
+    private var selectedMuscle: String? = null
+    private var selectedEquipment: String? = null
 
     private val adapter =
         ExercisePickerAdapter { exercise ->
@@ -55,8 +60,24 @@ class ExercisePickerBottomSheet : BottomSheetDialogFragment() {
         binding.rvPickerExercises.adapter = adapter
 
         viewLifecycleOwner.lifecycleScope.launch {
-            allExercises = vm.exerciseList()
-            adapter.submitList(allExercises)
+            val all = vm.exerciseList()
+            val recentNames = vm.recentExerciseNames()
+            val recentNameSet = recentNames.toSet()
+            val recent = recentNames.mapNotNull { name -> all.find { it.name == name } }
+            val rest = all.filter { it.name !in recentNameSet }
+            allExercises = recent + rest
+            applyFilters()
+
+            val muscles = vm.muscleGroups()
+            val equipment = vm.equipmentList()
+            buildChips(muscles, binding.cgPickerMuscle) {
+                selectedMuscle = it
+                applyFilters()
+            }
+            buildChips(equipment, binding.cgPickerEquipment) {
+                selectedEquipment = it
+                applyFilters()
+            }
         }
 
         binding.etPickerSearch.addTextChangedListener(
@@ -76,21 +97,56 @@ class ExercisePickerBottomSheet : BottomSheetDialogFragment() {
                 ) = Unit
 
                 override fun afterTextChanged(s: Editable?) {
-                    val query = s?.toString()?.trim() ?: ""
-                    adapter.submitList(
-                        if (query.isEmpty()) {
-                            allExercises
-                        } else {
-                            allExercises.filter { it.name.contains(query, ignoreCase = true) }
-                        },
-                    )
-                    binding.btnAddExercise.visibility = if (query.isNotEmpty()) View.VISIBLE else View.GONE
+                    applyFilters()
                 }
             },
         )
 
         binding.btnAddExercise.setOnClickListener {
             showAddDialog(binding.etPickerSearch.text?.toString()?.trim() ?: "")
+        }
+    }
+
+    private fun applyFilters() {
+        val query = binding.etPickerSearch.text?.toString()?.trim() ?: ""
+        val filtered =
+            allExercises.filter { ex ->
+                (selectedMuscle == null || ex.muscleGroup == selectedMuscle) &&
+                    (selectedEquipment == null || ex.equipment == selectedEquipment) &&
+                    (query.length < 2 || ex.name.contains(query, ignoreCase = true))
+            }
+        adapter.submitList(filtered)
+        binding.btnAddExercise.visibility = if (query.isNotEmpty()) View.VISIBLE else View.GONE
+    }
+
+    private fun buildChips(
+        items: List<String>,
+        chipGroup: ChipGroup,
+        onFilter: (String?) -> Unit,
+    ) {
+        val allChip =
+            Chip(requireContext()).apply {
+                id = View.generateViewId()
+                text = getString(R.string.chip_all)
+                isCheckable = true
+                isChecked = true
+            }
+        chipGroup.addView(allChip)
+
+        items.forEach { item ->
+            chipGroup.addView(
+                Chip(requireContext()).apply {
+                    id = View.generateViewId()
+                    text = item
+                    isCheckable = true
+                    tag = item
+                },
+            )
+        }
+
+        chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
+            val chip = checkedIds.firstOrNull()?.let { group.findViewById<Chip>(it) }
+            onFilter(chip?.tag as? String)
         }
     }
 

@@ -23,6 +23,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -169,6 +170,12 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     suspend fun exerciseList(): List<Exercise> = exerciseDao.getAllList() + extraExercises
+
+    suspend fun recentExerciseNames(limit: Int = 12): List<String> = dao.getRecentExerciseNames(limit)
+
+    suspend fun muscleGroups(): List<String> = exerciseDao.getMuscleGroups().first()
+
+    suspend fun equipmentList(): List<String> = exerciseDao.getEquipmentList().first()
 
     suspend fun updateExercise(exercise: Exercise): Exercise {
         exerciseDao.update(exercise)

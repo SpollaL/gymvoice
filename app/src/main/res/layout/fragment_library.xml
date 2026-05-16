@@ -65,6 +65,28 @@
 
     </HorizontalScrollView>
 
+    <HorizontalScrollView
+        android:id="@+id/hsvEquipment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:layout_marginTop="2dp"
+        app:layout_constraintTop_toBottomOf="@id/hsvMuscle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cgEquipment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="4dp"
+            app:singleSelection="true"
+            app:selectionRequired="true"
+            app:chipSpacingHorizontal="4dp" />
+
+    </HorizontalScrollView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvExercises"
         android:layout_width="0dp"
@@ -73,7 +95,7 @@
         android:paddingBottom="88dp"
         android:paddingHorizontal="8dp"
         android:clipToPadding="false"
-        app:layout_constraintTop_toBottomOf="@id/hsvMuscle"
+        app:layout_constraintTop_toBottomOf="@id/hsvEquipment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -98,7 +120,7 @@
         android:textSize="12sp"
         android:textColor="@color/overlay0"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/hsvMuscle"
+        app:layout_constraintTop_toBottomOf="@id/hsvEquipment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

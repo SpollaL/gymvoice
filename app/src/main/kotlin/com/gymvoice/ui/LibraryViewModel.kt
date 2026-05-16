@@ -10,8 +10,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flow
 
 @Suppress("OPT_IN_USAGE")
 class LibraryViewModel(app: Application) : AndroidViewModel(app) {
@@ -20,24 +18,35 @@ class LibraryViewModel(app: Application) : AndroidViewModel(app) {
     private val _muscleGroupFilter = MutableStateFlow<String?>(null)
     val muscleGroupFilter: StateFlow<String?> = _muscleGroupFilter.asStateFlow()
 
+    private val _equipmentFilter = MutableStateFlow<String?>(null)
+    val equipmentFilter: StateFlow<String?> = _equipmentFilter.asStateFlow()
+
     private val _searchQuery = MutableStateFlow("")
     val searchQuery: StateFlow<String> = _searchQuery.asStateFlow()
 
     val muscleGroups: Flow<List<String>> = dao.getMuscleGroups()
+    val equipmentList: Flow<List<String>> = dao.getEquipmentList()
 
     val exercises: Flow<List<Exercise>> =
-        combine(_muscleGroupFilter, _searchQuery.debounce(300)) { group, query ->
-            Pair(group, query)
-        }.flatMapLatest { (group, query) ->
-            when {
-                query.length >= 2 -> flow { emit(dao.search(query)) }
-                group != null -> dao.getByMuscleGroup(group)
-                else -> dao.getAll()
+        combine(
+            dao.getAll(),
+            _muscleGroupFilter,
+            _equipmentFilter,
+            _searchQuery.debounce(300),
+        ) { all, muscle, equipment, query ->
+            all.filter { ex ->
+                (muscle == null || ex.muscleGroup == muscle) &&
+                    (equipment == null || ex.equipment == equipment) &&
+                    (query.length < 2 || ex.name.contains(query, ignoreCase = true))
             }
         }
 
     fun setMuscleGroup(group: String?) {
         _muscleGroupFilter.value = group
+    }
+
+    fun setEquipmentFilter(equipment: String?) {
+        _equipmentFilter.value = equipment
     }
 
     fun setSearchQuery(query: String) {
