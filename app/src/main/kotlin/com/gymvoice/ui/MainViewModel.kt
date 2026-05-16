@@ -62,9 +62,6 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     private val _pendingConfirmation = MutableSharedFlow<Unit>(extraBufferCapacity = 1)
     val pendingConfirmation: SharedFlow<Unit> = _pendingConfirmation.asSharedFlow()
 
-    private val _standardizeResult = MutableSharedFlow<String>(extraBufferCapacity = 1)
-    val standardizeResult: SharedFlow<String> = _standardizeResult.asSharedFlow()
-
     val todayLogs = dao.getTodayLogs(startOfToday())
 
     init {
@@ -207,60 +204,6 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     suspend fun exerciseExists(name: String): Boolean = exerciseDao.countByName(name.trim()) > 0
 
     suspend fun distinctLogNames(): List<String> = dao.getDistinctExerciseNamesOnce()
-
-    fun applyRenames(renames: Map<String, String>) =
-        viewModelScope.launch {
-            val applied = mutableListOf<String>()
-            for ((old, new) in renames) {
-                val rows = dao.renameExercise(old, new)
-                applied.add("$old → $new ($rows rows)")
-            }
-            _standardizeResult.emit(
-                "RENAMED (${applied.size}):\n" + applied.joinToString("\n") { "• $it" },
-            )
-        }
-
-    fun standardizeLogs() =
-        viewModelScope.launch {
-            val exercises = allExercisesDeferred.await()
-            if (exercises.isEmpty()) {
-                _standardizeResult.emit("Exercise DB empty — cannot standardize")
-                return@launch
-            }
-            val names = dao.getDistinctExerciseNamesOnce()
-            if (names.isEmpty()) {
-                _standardizeResult.emit("No logs found")
-                return@launch
-            }
-            val renames = mutableListOf<String>()
-            val skipped = mutableListOf<String>()
-            for (name in names) {
-                val matches = ExerciseMatcher.findTopMatches(name, exercises, 1)
-                val top = matches.firstOrNull()
-                val tokens = name.trim().split(Regex("\\s+")).filter { it.isNotBlank() }
-                when {
-                    top == null -> skipped.add("$name (no match)")
-                    tokens.size <= 1 -> skipped.add("$name → ${top.exercise.name} (single word, skipped)")
-                    top.confidence < 0.6f -> skipped.add("$name → ${top.exercise.name} (low conf ${top.confidence})")
-                    top.exercise.name == name -> skipped.add("$name (already canonical)")
-                    else -> {
-                        val rows = dao.renameExercise(name, top.exercise.name)
-                        renames.add("$name → ${top.exercise.name} ($rows rows)")
-                    }
-                }
-            }
-            val sb = StringBuilder()
-            if (renames.isNotEmpty()) {
-                sb.append("RENAMED (${renames.size}):\n")
-                renames.forEach { sb.append("• $it\n") }
-            }
-            if (skipped.isNotEmpty()) {
-                if (renames.isNotEmpty()) sb.append("\n")
-                sb.append("SKIPPED (${skipped.size}):\n")
-                skipped.forEach { sb.append("• $it\n") }
-            }
-            _standardizeResult.emit(sb.toString().trim())
-        }
 
     val exerciseImageMap: StateFlow<Map<String, String>> =
         exerciseDao.getAll()

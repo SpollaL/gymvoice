@@ -75,9 +75,6 @@ class RecordFragment : Fragment() {
         }
 
         binding.btnManualEntry.setOnClickListener { showManualEntryDialog() }
-        binding.btnStandardize.setOnClickListener {
-            RenameLogsBottomSheet().show(childFragmentManager, "rename_logs")
-        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -138,18 +135,6 @@ class RecordFragment : Fragment() {
                 viewModel.pendingConfirmation.collect {
                     ConfirmMatchBottomSheet()
                         .show(childFragmentManager, "confirm_match")
-                }
-            }
-        }
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.standardizeResult.collect { msg ->
-                    AlertDialog.Builder(requireContext())
-                        .setTitle("Fix names")
-                        .setMessage(msg)
-                        .setPositiveButton("OK", null)
-                        .show()
                 }
             }
         }
