@@ -42,6 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="Apply 0 renames"
+        android:textColor="@color/text"
         android:textAllCaps="false"
         app:backgroundTint="@color/mauve" />
 
