@@ -210,7 +210,8 @@ class ProgressViewModel(app: Application) : AndroidViewModel(app) {
                 val allTimeBest = byDate.flatMap { it.value }.mapNotNull(weightedSet).maxByOrNull { it.third }
                 if (lastBest != null) {
                     val baseWeight = maxOf(lastBest.first, allTimeBest?.first ?: 0f)
-                    "Next: ${lastDayLogs.size}×${lastBest.second} @ %.1fkg".format(baseWeight + 2.5f)
+                    val sets = lastDayLogs.count { kotlin.math.abs((it.weight ?: 0f) - lastBest.first) < 0.01f && (it.reps ?: 0) > 0 }
+                    "Next: ${sets}×${lastBest.second} @ %.1fkg".format(baseWeight + 2.5f)
                 } else {
                     lastDayLogs
                         .mapNotNull { it.reps?.takeIf { it > 0 } }
