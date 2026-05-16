@@ -43,6 +43,9 @@ interface WorkoutLogDao {
     @Query("SELECT DISTINCT exerciseName FROM logs ORDER BY exerciseName ASC")
     suspend fun getDistinctExerciseNamesOnce(): List<String>
 
+    @Query("SELECT exerciseName FROM logs GROUP BY exerciseName ORDER BY MAX(timestamp) DESC LIMIT :limit")
+    suspend fun getRecentExerciseNames(limit: Int): List<String>
+
     @Query("UPDATE logs SET exerciseName = :newName WHERE exerciseName = :oldName")
     suspend fun renameExercise(
         oldName: String,

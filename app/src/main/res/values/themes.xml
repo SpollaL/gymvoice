@@ -1,26 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="ShapeAppearance.GymVoice.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="ShapeAppearance.GymVoice.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="TextAppearance.GymVoice.StatNumber" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:fontFamily">@font/plus_jakarta_sans</item>
+    </style>
+
     <style name="Theme.GymVoice" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/mauve</item>
+        <item name="colorPrimary">@color/accent</item>
         <item name="colorPrimaryVariant">@color/surface0</item>
-        <item name="colorOnPrimary">@color/base</item>
-        <item name="colorSecondary">@color/blue</item>
+        <item name="colorOnPrimary">@color/background</item>
+        <item name="colorSecondary">@color/accent</item>
         <item name="colorSecondaryVariant">@color/surface0</item>
-        <item name="colorOnSecondary">@color/base</item>
+        <item name="colorOnSecondary">@color/background</item>
         <item name="colorSurface">@color/surface0</item>
         <item name="colorOnSurface">@color/text</item>
-        <item name="android:colorBackground">@color/base</item>
+        <item name="android:colorBackground">@color/background</item>
         <item name="colorOnBackground">@color/text</item>
-        <item name="android:statusBarColor">@color/mantle</item>
-        <item name="android:navigationBarColor">@color/mantle</item>
-        <item name="android:windowBackground">@color/base</item>
+        <item name="android:statusBarColor">@color/background</item>
+        <item name="android:navigationBarColor">@color/surface0</item>
+        <item name="android:windowBackground">@color/background</item>
         <item name="android:textColorPrimary">@color/text</item>
         <item name="android:textColorSecondary">@color/subtext0</item>
+        <item name="android:fontFamily">@font/plus_jakarta_sans</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.GymVoice.MediumComponent</item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.GymVoice.SmallComponent</item>
         <item name="alertDialogTheme">@style/AlertDialog.GymVoice</item>
     </style>
 
     <style name="AlertDialog.GymVoice" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
-        <item name="colorPrimary">@color/mauve</item>
+        <item name="colorPrimary">@color/accent</item>
         <item name="colorSurface">@color/surface0</item>
         <item name="colorOnSurface">@color/text</item>
         <item name="android:colorBackground">@color/surface0</item>

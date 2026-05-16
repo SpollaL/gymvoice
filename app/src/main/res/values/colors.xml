@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Catppuccin Mocha -->
-    <color name="base">#1e1e2e</color>
-    <color name="mantle">#181825</color>
-    <color name="surface0">#313244</color>
-    <color name="surface1">#45475a</color>
-    <color name="overlay0">#6c7086</color>
-    <color name="text">#cdd6f4</color>
-    <color name="subtext0">#a6adc8</color>
-    <color name="mauve">#cba6f7</color>
-    <color name="blue">#89b4fa</color>
-    <color name="green">#a6e3a1</color>
-    <color name="red">#f38ba8</color>
-    <!-- Aliases -->
-    <color name="primary">@color/mauve</color>
-    <color name="onPrimary">@color/base</color>
-    <color name="background">@color/base</color>
+    <!-- Linear/Revolut-black + Tokyo Night accents -->
+    <color name="background">#0d0d11</color>
+    <color name="surface0">#111116</color>
+    <color name="surface1">#18181f</color>
+    <color name="border">#12FFFFFF</color>
+    <color name="separator">#08FFFFFF</color>
+    <color name="overlay0">#2d2f45</color>
+    <color name="text">#c0caf5</color>
+    <color name="subtext0">#565f89</color>
+    <color name="subtext1">#9aa5ce</color>
+    <color name="accent">#818CF8</color>
+    <color name="green">#9ece6a</color>
+    <color name="red">#f7768e</color>
+
+    <!-- legacy aliases -->
+    <color name="base">@color/background</color>
+    <color name="mantle">@color/surface0</color>
+    <color name="mauve">@color/accent</color>
+    <color name="blue">@color/accent</color>
+    <color name="primary">@color/accent</color>
+    <color name="onPrimary">@color/background</color>
     <color name="onBackground">@color/text</color>
     <color name="surface">@color/surface0</color>
 </resources>

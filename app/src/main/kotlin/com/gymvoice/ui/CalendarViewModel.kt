@@ -102,4 +102,6 @@ class CalendarViewModel(app: Application) : AndroidViewModel(app) {
     fun updateLog(log: WorkoutLog) = viewModelScope.launch { dao.update(log) }
 
     fun deleteLog(log: WorkoutLog) = viewModelScope.launch { dao.delete(log) }
+
+    fun insertLog(log: WorkoutLog) = viewModelScope.launch { dao.insert(log.copy(id = 0)) }
 }

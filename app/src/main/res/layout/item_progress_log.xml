@@ -4,14 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_marginHorizontal="8dp"
-    android:layout_marginVertical="2dp"
-    android:background="@color/surface0">
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginVertical="3dp"
+    android:background="@drawable/bg_history_item"
+    android:clipToPadding="true">
 
     <View
         android:layout_width="3dp"
         android:layout_height="match_parent"
-        android:background="@color/surface1" />
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="2dp"
+        android:background="@drawable/bg_accent_bar" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -26,16 +30,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="11sp"
-            android:textColor="@color/subtext0"
-            android:fontFamily="monospace" />
+            android:textColor="@color/subtext0" />
 
         <TextView
             android:id="@+id/tvDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="13sp"
-            android:textColor="@color/text"
-            android:fontFamily="monospace" />
+            android:textStyle="bold"
+            android:textColor="@color/text" />
 
     </LinearLayout>
 
@@ -48,8 +51,6 @@
         android:text="PR"
         android:textSize="10sp"
         android:textColor="@color/green"
-        android:fontFamily="monospace"
-        android:letterSpacing="0.1"
         android:visibility="gone" />
 
 </LinearLayout>

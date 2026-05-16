@@ -23,6 +23,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -60,9 +61,6 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     private val _pendingConfirmation = MutableSharedFlow<Unit>(extraBufferCapacity = 1)
     val pendingConfirmation: SharedFlow<Unit> = _pendingConfirmation.asSharedFlow()
-
-    private val _standardizeResult = MutableSharedFlow<String>(extraBufferCapacity = 1)
-    val standardizeResult: SharedFlow<String> = _standardizeResult.asSharedFlow()
 
     val todayLogs = dao.getTodayLogs(startOfToday())
 
@@ -170,6 +168,12 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     suspend fun exerciseList(): List<Exercise> = exerciseDao.getAllList() + extraExercises
 
+    suspend fun recentExerciseNames(limit: Int = 12): List<String> = dao.getRecentExerciseNames(limit)
+
+    suspend fun muscleGroups(): List<String> = exerciseDao.getMuscleGroups().first()
+
+    suspend fun equipmentList(): List<String> = exerciseDao.getEquipmentList().first()
+
     suspend fun updateExercise(exercise: Exercise): Exercise {
         exerciseDao.update(exercise)
         val idx = extraExercises.indexOfFirst { it.id == exercise.id }
@@ -200,60 +204,6 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     suspend fun exerciseExists(name: String): Boolean = exerciseDao.countByName(name.trim()) > 0
 
     suspend fun distinctLogNames(): List<String> = dao.getDistinctExerciseNamesOnce()
-
-    fun applyRenames(renames: Map<String, String>) =
-        viewModelScope.launch {
-            val applied = mutableListOf<String>()
-            for ((old, new) in renames) {
-                val rows = dao.renameExercise(old, new)
-                applied.add("$old → $new ($rows rows)")
-            }
-            _standardizeResult.emit(
-                "RENAMED (${applied.size}):\n" + applied.joinToString("\n") { "• $it" },
-            )
-        }
-
-    fun standardizeLogs() =
-        viewModelScope.launch {
-            val exercises = allExercisesDeferred.await()
-            if (exercises.isEmpty()) {
-                _standardizeResult.emit("Exercise DB empty — cannot standardize")
-                return@launch
-            }
-            val names = dao.getDistinctExerciseNamesOnce()
-            if (names.isEmpty()) {
-                _standardizeResult.emit("No logs found")
-                return@launch
-            }
-            val renames = mutableListOf<String>()
-            val skipped = mutableListOf<String>()
-            for (name in names) {
-                val matches = ExerciseMatcher.findTopMatches(name, exercises, 1)
-                val top = matches.firstOrNull()
-                val tokens = name.trim().split(Regex("\\s+")).filter { it.isNotBlank() }
-                when {
-                    top == null -> skipped.add("$name (no match)")
-                    tokens.size <= 1 -> skipped.add("$name → ${top.exercise.name} (single word, skipped)")
-                    top.confidence < 0.6f -> skipped.add("$name → ${top.exercise.name} (low conf ${top.confidence})")
-                    top.exercise.name == name -> skipped.add("$name (already canonical)")
-                    else -> {
-                        val rows = dao.renameExercise(name, top.exercise.name)
-                        renames.add("$name → ${top.exercise.name} ($rows rows)")
-                    }
-                }
-            }
-            val sb = StringBuilder()
-            if (renames.isNotEmpty()) {
-                sb.append("RENAMED (${renames.size}):\n")
-                renames.forEach { sb.append("• $it\n") }
-            }
-            if (skipped.isNotEmpty()) {
-                if (renames.isNotEmpty()) sb.append("\n")
-                sb.append("SKIPPED (${skipped.size}):\n")
-                skipped.forEach { sb.append("• $it\n") }
-            }
-            _standardizeResult.emit(sb.toString().trim())
-        }
 
     val exerciseImageMap: StateFlow<Map<String, String>> =
         exerciseDao.getAll()
@@ -308,6 +258,8 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     fun updateLog(log: WorkoutLog) = viewModelScope.launch { dao.update(log) }
 
     fun deleteLog(log: WorkoutLog) = viewModelScope.launch { dao.delete(log) }
+
+    fun insertLog(log: WorkoutLog) = viewModelScope.launch { dao.insert(log.copy(id = 0)) }
 
     fun confirmLog(
         exercise: Exercise,

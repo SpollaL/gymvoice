@@ -1,11 +1,15 @@
 package com.gymvoice.ui
 
 import android.Manifest
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.pm.PackageManager
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -29,6 +33,7 @@ class RecordFragment : Fragment() {
     val binding get() = _binding!!
     private val viewModel: MainViewModel by activityViewModels()
     private lateinit var adapter: WorkoutLogAdapter
+    private var pulseAnimator: AnimatorSet? = null
 
     private val requestMic =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
@@ -70,31 +75,28 @@ class RecordFragment : Fragment() {
         }
 
         binding.btnManualEntry.setOnClickListener { showManualEntryDialog() }
-        binding.btnStandardize.setOnClickListener {
-            RenameLogsBottomSheet().show(childFragmentManager, "rename_logs")
-        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { state ->
                     when (state) {
                         is MainViewModel.UiState.Idle -> {
-                            binding.btnRecord.text = getString(R.string.tap_to_record)
-                            binding.btnRecord.alpha = 1f
+                            setButtonIdle()
                             binding.tvStatus.text = ""
                         }
                         is MainViewModel.UiState.Recording -> {
-                            binding.btnRecord.text = getString(R.string.tap_to_stop)
-                            binding.btnRecord.alpha = 1f
+                            setButtonRecording()
                             binding.tvStatus.text = ""
                         }
                         is MainViewModel.UiState.Processing -> {
-                            binding.btnRecord.alpha = 0.5f
-                            binding.tvStatus.text = state.status
+                            binding.ivRecordIcon.alpha = 0.35f
+                            binding.tvRecordLabel.text = state.status
+                            binding.progressSpinner.visibility = View.VISIBLE
+                            stopPulse()
+                            binding.tvStatus.text = ""
                         }
                         is MainViewModel.UiState.Error -> {
-                            binding.btnRecord.text = getString(R.string.tap_to_record)
-                            binding.btnRecord.alpha = 1f
+                            setButtonIdle()
                             binding.tvStatus.text = state.message
                         }
                     }
@@ -137,18 +139,6 @@ class RecordFragment : Fragment() {
             }
         }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.standardizeResult.collect { msg ->
-                    AlertDialog.Builder(requireContext())
-                        .setTitle("Fix names")
-                        .setMessage(msg)
-                        .setPositiveButton("OK", null)
-                        .show()
-                }
-            }
-        }
-
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.RECORD_AUDIO)
             != PackageManager.PERMISSION_GRANTED
         ) {
@@ -157,8 +147,67 @@ class RecordFragment : Fragment() {
     }
 
     override fun onDestroyView() {
+        pulseAnimator?.cancel()
+        pulseAnimator = null
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun setButtonIdle() {
+        binding.progressSpinner.visibility = View.GONE
+        binding.ivRecordIcon.setImageResource(R.drawable.ic_mic)
+        binding.ivRecordIcon.backgroundTintList =
+            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.accent))
+        binding.ivRecordIcon.alpha = 1f
+        binding.tvRecordLabel.text = getString(R.string.record_label_idle)
+        stopPulse()
+    }
+
+    private fun setButtonRecording() {
+        binding.progressSpinner.visibility = View.GONE
+        binding.ivRecordIcon.setImageResource(R.drawable.ic_stop)
+        binding.ivRecordIcon.backgroundTintList =
+            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.red))
+        binding.ivRecordIcon.alpha = 1f
+        binding.tvRecordLabel.text = getString(R.string.record_label_recording)
+        startPulse()
+    }
+
+    private fun startPulse() {
+        pulseAnimator?.cancel()
+        val ring = binding.pulseRing
+        ring.scaleX = 1f
+        ring.scaleY = 1f
+        ring.backgroundTintList =
+            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.red))
+        val scaleX = ObjectAnimator.ofFloat(ring, "scaleX", 1f, 1.7f).apply {
+            duration = 1100
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.RESTART
+            interpolator = AccelerateDecelerateInterpolator()
+        }
+        val scaleY = ObjectAnimator.ofFloat(ring, "scaleY", 1f, 1.7f).apply {
+            duration = 1100
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.RESTART
+            interpolator = AccelerateDecelerateInterpolator()
+        }
+        val alpha = ObjectAnimator.ofFloat(ring, "alpha", 0.75f, 0f).apply {
+            duration = 1100
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.RESTART
+            interpolator = AccelerateDecelerateInterpolator()
+        }
+        pulseAnimator = AnimatorSet().apply {
+            playTogether(scaleX, scaleY, alpha)
+            start()
+        }
+    }
+
+    private fun stopPulse() {
+        pulseAnimator?.cancel()
+        pulseAnimator = null
+        binding.pulseRing.animate().alpha(0f).scaleX(1f).scaleY(1f).setDuration(200).start()
     }
 
     private fun showManualEntryDialog() {
@@ -254,7 +303,12 @@ class RecordFragment : Fragment() {
                 )
             }
             .setNeutralButton("Clone") { _, _ -> viewModel.cloneLog(log) }
-            .setNegativeButton("Delete") { _, _ -> viewModel.deleteLog(log) }
+            .setNegativeButton("Delete") { _, _ ->
+                viewModel.deleteLog(log)
+                Snackbar.make(binding.root, "Deleted ${log.exerciseName}", Snackbar.LENGTH_LONG)
+                    .setAction("Undo") { viewModel.insertLog(log) }
+                    .show()
+            }
             .show()
     }
 }
