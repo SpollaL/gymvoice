@@ -46,6 +46,7 @@ class ProgressFragment : Fragment() {
                 when (checkedIds.firstOrNull()) {
                     R.id.chipReps -> ProgressMode.REPS
                     R.id.chipVolume -> ProgressMode.VOLUME
+                    R.id.chipE1rm -> ProgressMode.E1RM
                     else -> ProgressMode.WEIGHT
                 }
             vm.setMode(mode)
@@ -58,6 +59,7 @@ class ProgressFragment : Fragment() {
                         ProgressMode.WEIGHT -> R.id.chipWeight
                         ProgressMode.REPS -> R.id.chipReps
                         ProgressMode.VOLUME -> R.id.chipVolume
+                        ProgressMode.E1RM -> R.id.chipE1rm
                     }
                 binding.cgMode.check(chipId)
             }
@@ -104,6 +106,19 @@ class ProgressFragment : Fragment() {
                             null -> resources.getColor(R.color.subtext0, null)
                         },
                     )
+
+                    val suggestion = data.nextSuggestion
+                    binding.cardNextSession.isVisible = suggestion != null
+                    if (suggestion != null) {
+                        binding.tvNextSuggestion.text = suggestion
+                        binding.tvNextSuggestion.setTextColor(
+                            if (data.isPlateauWarning) {
+                                resources.getColor(R.color.red, null)
+                            } else {
+                                resources.getColor(R.color.blue, null)
+                            },
+                        )
+                    }
 
                     historyAdapter.prValue = data.prValue
                     historyAdapter.hasWeight = data.hasWeight

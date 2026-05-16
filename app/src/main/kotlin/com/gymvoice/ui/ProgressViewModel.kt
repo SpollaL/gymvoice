@@ -23,7 +23,7 @@ import java.time.Instant
 import java.time.ZoneId
 import java.util.UUID
 
-enum class ProgressMode { WEIGHT, REPS, VOLUME }
+enum class ProgressMode { WEIGHT, REPS, VOLUME, E1RM }
 
 data class ProgressData(
     val logs: List<WorkoutLog>,
@@ -35,6 +35,8 @@ data class ProgressData(
     val trendUp: Boolean?,
     val hasWeight: Boolean,
     val mode: ProgressMode,
+    val nextSuggestion: String?,
+    val isPlateauWarning: Boolean,
 )
 
 class ProgressViewModel(app: Application) : AndroidViewModel(app) {
@@ -100,6 +102,12 @@ class ProgressViewModel(app: Application) : AndroidViewModel(app) {
                     ProgressMode.REPS -> dayLogs.mapNotNull { it.reps?.toFloat() }.maxOrNull() ?: 0f
                     ProgressMode.VOLUME ->
                         dayLogs.sumOf { ((it.weight ?: 0f) * (it.reps ?: 0)).toDouble() }.toFloat()
+                    ProgressMode.E1RM ->
+                        dayLogs.mapNotNull { log ->
+                            val w = log.weight?.takeIf { it > 0f } ?: return@mapNotNull null
+                            val r = log.reps?.takeIf { it > 0 } ?: return@mapNotNull null
+                            epley(w, r)
+                        }.maxOrNull() ?: 0f
                 }
             }
 
@@ -109,6 +117,7 @@ class ProgressViewModel(app: Application) : AndroidViewModel(app) {
                 ProgressMode.WEIGHT -> prValue?.let { "%.1f kg".format(it) } ?: "-"
                 ProgressMode.REPS -> prValue?.toInt()?.let { "$it reps" } ?: "-"
                 ProgressMode.VOLUME -> prValue?.toInt()?.let { "$it vol" } ?: "-"
+                ProgressMode.E1RM -> prValue?.let { "%.1f e1rm".format(it) } ?: "-"
             }
 
         val firstVal = pointsPerDate.firstOrNull() ?: 0f
@@ -122,12 +131,14 @@ class ProgressViewModel(app: Application) : AndroidViewModel(app) {
                         ProgressMode.WEIGHT -> "+%.1f kg".format(diff)
                         ProgressMode.REPS -> "+${diff.toInt()} reps"
                         ProgressMode.VOLUME -> "+${diff.toInt()} vol"
+                        ProgressMode.E1RM -> "+%.1f e1rm".format(diff)
                     }
                 diff < -0.01f ->
                     when (mode) {
                         ProgressMode.WEIGHT -> "%.1f kg".format(diff)
                         ProgressMode.REPS -> "${diff.toInt()} reps"
                         ProgressMode.VOLUME -> "${diff.toInt()} vol"
+                        ProgressMode.E1RM -> "%.1f e1rm".format(diff)
                     }
                 else -> "stable"
             }
@@ -137,6 +148,9 @@ class ProgressViewModel(app: Application) : AndroidViewModel(app) {
                 diff < -0.01f -> false
                 else -> null
             }
+
+        val isPlateauWarning = computePlateauWarning(byDate)
+        val nextSuggestion = computeNextSuggestion(byDate, isPlateauWarning)
 
         return ProgressData(
             logs = logs.sortedByDescending { it.timestamp },
@@ -148,6 +162,62 @@ class ProgressViewModel(app: Application) : AndroidViewModel(app) {
             trendUp = trendUp,
             hasWeight = hasWeight,
             mode = mode,
+            nextSuggestion = nextSuggestion,
+            isPlateauWarning = isPlateauWarning,
         )
+    }
+
+    private fun epley(
+        weight: Float,
+        reps: Int,
+    ): Float = weight * (1f + reps / 30f)
+
+    private fun computePlateauWarning(byDate: List<Map.Entry<java.time.LocalDate, List<WorkoutLog>>>): Boolean {
+        if (byDate.size < 3) return false
+        val valid =
+            byDate
+                .takeLast(3)
+                .map { (_, dayLogs) ->
+                    dayLogs
+                        .mapNotNull { log ->
+                            val w = log.weight?.takeIf { it > 0f } ?: return@mapNotNull null
+                            val r = log.reps?.takeIf { it > 0 } ?: return@mapNotNull null
+                            epley(w, r)
+                        }.maxOrNull()
+                }.filterNotNull()
+        return valid.size == 3 &&
+            run {
+                val maxE1rm = valid.max()
+                maxE1rm > 0f && (maxE1rm - valid.min()) / maxE1rm < 0.02f
+            }
+    }
+
+    private fun computeNextSuggestion(
+        byDate: List<Map.Entry<java.time.LocalDate, List<WorkoutLog>>>,
+        isPlateauWarning: Boolean,
+    ): String? {
+        if (byDate.isEmpty()) return null
+        val lastDayLogs = byDate.last().value
+        return when {
+            isPlateauWarning -> "Plateau (3 sessions) — try +2.5kg or vary"
+            else -> {
+                val weightedSet: (WorkoutLog) -> Triple<Float, Int, Float>? = { log ->
+                    val w = log.weight?.takeIf { it > 0f }
+                    val r = log.reps?.takeIf { it > 0 }
+                    if (w != null && r != null) Triple(w, r, epley(w, r)) else null
+                }
+                val lastBest = lastDayLogs.mapNotNull(weightedSet).maxByOrNull { it.third }
+                val allTimeBest = byDate.flatMap { it.value }.mapNotNull(weightedSet).maxByOrNull { it.third }
+                if (lastBest != null) {
+                    val baseWeight = maxOf(lastBest.first, allTimeBest?.first ?: 0f)
+                    "Next: ${lastDayLogs.size}×${lastBest.second} @ %.1fkg".format(baseWeight + 2.5f)
+                } else {
+                    lastDayLogs
+                        .mapNotNull { it.reps?.takeIf { it > 0 } }
+                        .maxOrNull()
+                        ?.let { "Next: try ${it + 1} reps" }
+                }
+            }
+        }
     }
 }

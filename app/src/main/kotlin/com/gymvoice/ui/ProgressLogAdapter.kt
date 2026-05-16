@@ -26,6 +26,7 @@ class ProgressLogAdapter : ListAdapter<WorkoutLog, ProgressLogAdapter.ViewHolder
 
     inner class ViewHolder(private val binding: ItemProgressLogBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @Suppress("CyclomaticComplexMethod")
         fun bind(log: WorkoutLog) {
             binding.root.setOnClickListener { view ->
                 if (onClone != null) {
@@ -55,7 +56,12 @@ class ProgressLogAdapter : ListAdapter<WorkoutLog, ProgressLogAdapter.ViewHolder
                 when (mode) {
                     ProgressMode.WEIGHT -> log.weight
                     ProgressMode.REPS -> log.reps?.toFloat()
-                    ProgressMode.VOLUME -> null // PR badge not shown for volume mode
+                    ProgressMode.VOLUME -> null
+                    ProgressMode.E1RM -> {
+                        val w = log.weight?.takeIf { it > 0f }
+                        val r = log.reps?.takeIf { it > 0 }
+                        if (w != null && r != null) w * (1f + r / 30f) else null
+                    }
                 }
             val pr = prValue
             binding.tvPr.isVisible = pr != null && value != null && abs(value - pr) < 0.01f
