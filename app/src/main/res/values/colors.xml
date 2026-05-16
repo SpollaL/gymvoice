@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Linear-inspired dark palette -->
-    <color name="background">#111118</color>
-    <color name="surface0">#161618</color>
-    <color name="surface1">#1E1E22</color>
-    <color name="border">#14FFFFFF</color>
-    <color name="separator">#0AFFFFFF</color>
-    <color name="overlay0">#4D5566</color>
-    <color name="text">#F4F4F5</color>
-    <color name="subtext0">#8A8F98</color>
-    <color name="accent">#5E6AD2</color>
-    <color name="green">#26B05C</color>
-    <color name="red">#E5484D</color>
+    <!-- Tokyo Night palette -->
+    <color name="background">#1a1b26</color>
+    <color name="surface0">#1f2335</color>
+    <color name="surface1">#24283b</color>
+    <color name="border">#18FFFFFF</color>
+    <color name="separator">#0EFFFFFF</color>
+    <color name="overlay0">#3b4261</color>
+    <color name="text">#c0caf5</color>
+    <color name="subtext0">#565f89</color>
+    <color name="subtext1">#9aa5ce</color>
+    <color name="accent">#7aa2f7</color>
+    <color name="green">#9ece6a</color>
+    <color name="red">#f7768e</color>
 
     <!-- legacy aliases -->
     <color name="base">@color/background</color>
@@ -19,7 +20,7 @@
     <color name="mauve">@color/accent</color>
     <color name="blue">@color/accent</color>
     <color name="primary">@color/accent</color>
-    <color name="onPrimary">@color/text</color>
+    <color name="onPrimary">@color/background</color>
     <color name="onBackground">@color/text</color>
     <color name="surface">@color/surface0</color>
 </resources>

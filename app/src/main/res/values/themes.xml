@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="ShapeAppearance.GymVoice.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
-        <item name="cornerSize">12dp</item>
+        <item name="cornerSize">16dp</item>
     </style>
 
     <style name="ShapeAppearance.GymVoice.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
-        <item name="cornerSize">8dp</item>
+        <item name="cornerSize">12dp</item>
     </style>
 
     <style name="TextAppearance.GymVoice.StatNumber" parent="TextAppearance.MaterialComponents.Headline4">
         <item name="android:textSize">26sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/text</item>
-        <item name="android:fontFamily">@font/inter</item>
+        <item name="android:fontFamily">@font/plus_jakarta_sans</item>
     </style>
 
     <style name="Theme.GymVoice" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -31,7 +31,7 @@
         <item name="android:windowBackground">@color/background</item>
         <item name="android:textColorPrimary">@color/text</item>
         <item name="android:textColorSecondary">@color/subtext0</item>
-        <item name="android:fontFamily">@font/inter</item>
+        <item name="android:fontFamily">@font/plus_jakarta_sans</item>
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.GymVoice.MediumComponent</item>
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.GymVoice.SmallComponent</item>
         <item name="alertDialogTheme">@style/AlertDialog.GymVoice</item>
