@@ -36,4 +36,6 @@
     <string name="quick_log_reps_hint">reps</string>
     <string name="quick_log_weight_hint">weight</string>
     <string name="quick_log_log">log</string>
+    <string name="record_label_idle">tap to record</string>
+    <string name="record_label_recording">recording · tap to stop</string>
 </resources>

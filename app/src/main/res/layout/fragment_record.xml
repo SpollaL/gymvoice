@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:clipChildren="false">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnStandardize"
@@ -88,27 +89,65 @@
         android:textSize="11sp"
         android:textColor="@color/overlay0"
         android:gravity="center"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintBottom_toTopOf="@id/btnRecord"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
+    <!-- Record button tap target -->
+    <FrameLayout
         android:id="@+id/btnRecord"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:text="@string/tap_to_record"
-        android:textColor="@color/text"
-        android:textSize="13sp"
-        android:textStyle="bold"
-        android:elevation="8dp"
-        app:backgroundTint="@color/accent"
-        app:cornerRadius="80dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:clipChildren="false"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@id/tvRecordLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Pulsing ring, initially invisible -->
+        <View
+            android:id="@+id/pulseRing"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:background="@drawable/bg_record_ring"
+            android:alpha="0" />
+
+        <!-- Inner circle with icon -->
+        <ImageView
+            android:id="@+id/ivRecordIcon"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_record_inner"
+            android:backgroundTint="@color/accent"
+            android:src="@drawable/ic_mic"
+            android:tint="@color/text"
+            android:padding="18dp"
+            android:scaleType="fitCenter"
+            android:elevation="8dp"
+            android:outlineProvider="background"
+            android:contentDescription="Record" />
+
+    </FrameLayout>
+
+    <!-- State label below button -->
+    <TextView
+        android:id="@+id/tvRecordLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/record_label_idle"
+        android:textSize="12sp"
+        android:letterSpacing="0.04"
+        android:textColor="@color/subtext0"
+        android:layout_marginBottom="44dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="32dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
