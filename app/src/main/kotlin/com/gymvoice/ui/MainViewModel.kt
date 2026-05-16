@@ -309,6 +309,8 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     fun deleteLog(log: WorkoutLog) = viewModelScope.launch { dao.delete(log) }
 
+    fun insertLog(log: WorkoutLog) = viewModelScope.launch { dao.insert(log.copy(id = 0)) }
+
     fun confirmLog(
         exercise: Exercise,
         pending: PendingLog,

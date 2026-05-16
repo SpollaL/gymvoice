@@ -254,7 +254,12 @@ class RecordFragment : Fragment() {
                 )
             }
             .setNeutralButton("Clone") { _, _ -> viewModel.cloneLog(log) }
-            .setNegativeButton("Delete") { _, _ -> viewModel.deleteLog(log) }
+            .setNegativeButton("Delete") { _, _ ->
+                viewModel.deleteLog(log)
+                Snackbar.make(binding.root, "Deleted ${log.exerciseName}", Snackbar.LENGTH_LONG)
+                    .setAction("Undo") { viewModel.insertLog(log) }
+                    .show()
+            }
             .show()
     }
 }

@@ -15,6 +15,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.gymvoice.R
 import com.gymvoice.data.WorkoutLog
 import com.gymvoice.databinding.DialogEditLogBinding
@@ -175,24 +176,30 @@ class CalendarFragment : Fragment() {
 
     private fun showEditDialog(log: WorkoutLog) {
         val dialogBinding = DialogEditLogBinding.inflate(layoutInflater)
+        var selectedExercise = log.exerciseName
         dialogBinding.etExercise.setText(log.exerciseName)
         dialogBinding.etSet.setText(log.setNumber?.toString() ?: "")
         dialogBinding.etReps.setText(log.reps?.toString() ?: "")
         dialogBinding.etWeight.setText(log.weight?.toString() ?: "")
         if (log.unit == "lbs") dialogBinding.rbLbs.isChecked = true else dialogBinding.rbKg.isChecked = true
+        dialogBinding.etExercise.setOnClickListener {
+            openExercisePicker { ex ->
+                selectedExercise = ex.name
+                dialogBinding.etExercise.setText(ex.name)
+            }
+        }
 
         AlertDialog.Builder(requireContext())
             .setTitle("Edit Log")
             .setView(dialogBinding.root)
             .setPositiveButton("Save") { _, _ ->
-                val newExercise = dialogBinding.etExercise.text.toString()
-                if (newExercise != log.exerciseName) {
-                    viewModel.saveCorrection(log.exerciseName, newExercise)
+                if (selectedExercise != log.exerciseName) {
+                    viewModel.saveCorrection(log.exerciseName, selectedExercise)
                 }
                 val unit = if (dialogBinding.rgUnit.checkedRadioButtonId == R.id.rbLbs) "lbs" else "kg"
                 viewModel.updateLog(
                     log.copy(
-                        exerciseName = newExercise,
+                        exerciseName = selectedExercise,
                         setNumber = dialogBinding.etSet.text.toString().toIntOrNull(),
                         reps = dialogBinding.etReps.text.toString().toIntOrNull(),
                         weight = dialogBinding.etWeight.text.toString().toFloatOrNull(),
@@ -200,8 +207,18 @@ class CalendarFragment : Fragment() {
                     ),
                 )
             }
-            .setNegativeButton("Delete") { _, _ -> viewModel.deleteLog(log) }
+            .setNegativeButton("Delete") { _, _ ->
+                viewModel.deleteLog(log)
+                Snackbar.make(binding.root, "Deleted ${log.exerciseName}", Snackbar.LENGTH_LONG)
+                    .setAction("Undo") { viewModel.insertLog(log) }
+                    .show()
+            }
             .show()
+    }
+
+    private fun openExercisePicker(onPicked: (com.gymvoice.data.Exercise) -> Unit) {
+        ExercisePickerBottomSheet().also { it.onPicked = onPicked }
+            .show(childFragmentManager, "exercise_picker")
     }
 
     companion object {
